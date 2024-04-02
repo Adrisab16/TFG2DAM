@@ -1,0 +1,117 @@
+{
+  "name": "platforms_icons",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "EtSmXEVNWeabOV1W1xAYhc",
+    "node": "11:540",
+    "version": "5465974866",
+    "component-id": "8abfca6ef75dc9be62fd7a7b4e6ba082c1491fe3"
+  },
+  "default": "PlatformsIcons",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "image",
+        "id": "xboxIcon"
+      },
+      {
+        "type": "image",
+        "id": "NintendoToadIcon"
+      },
+      {
+        "type": "image",
+        "id": "estacion-de-juegos 1"
+      }
+    ],
+    "modes": {
+      "PlatformsIcons": {
+        "rules": [
+          {
+            "id": "top_level",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "xboxIcon",
+              "NintendoToadIcon",
+              "estacion-de-juegos 1"
+            ],
+            "item-spacing": "41.0",
+            "clip-content": "false"
+          },
+          {
+            "id": "xboxIcon",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "55.11111068725586"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "56.0"
+              }
+            },
+            "image-content": "xbox_icon.png",
+            "scale": "cover"
+          },
+          {
+            "id": "NintendoToadIcon",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "55.11111068725586"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "56.0"
+              }
+            },
+            "image-content": "nintendo_toad_icon.png",
+            "scale": "cover"
+          },
+          {
+            "id": "estacion-de-juegos 1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "55.11111068725586"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "56.0"
+              }
+            },
+            "image-content": "estacion_de_juegos_1.png",
+            "scale": "cover"
+          }
+        ]
+      }
+    }
+  },
+  "previews": [
+    {
+      "design": "PlatformsIcons",
+      "size": {
+        "width": 247.3333282470703,
+        "height": 56.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

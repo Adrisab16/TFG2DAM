@@ -1,0 +1,148 @@
+{
+  "name": "header",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "EtSmXEVNWeabOV1W1xAYhc",
+    "node": "3:41",
+    "version": "5462693497",
+    "component-id": "8011c1415fa0d7452c35d23a48f02b8edf9da818"
+  },
+  "default": "Header",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "image",
+        "id": "UserIcon"
+      },
+      {
+        "type": "text",
+        "id": "AppTitle"
+      },
+      {
+        "type": "image",
+        "id": "SettingsIcon"
+      }
+    ],
+    "modes": {
+      "Header": {
+        "rules": [
+          {
+            "id": "top_level",
+            "padding": "8.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "children": [
+              "UserIcon",
+              "AppTitle",
+              "SettingsIcon"
+            ],
+            "item-spacing": "42.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0784313725490196"
+            }
+          },
+          {
+            "id": "UserIcon",
+            "tap-handler": "$onUserIconClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "32.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "32.0"
+              }
+            },
+            "image-content": "user_icon.png",
+            "scale": "cover"
+          },
+          {
+            "id": "AppTitle",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "200.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "32.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Ocio & Geek",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "30.0",
+            "line-height": "1.2102272033691406",
+            "typeface": "Inter"
+          },
+          {
+            "id": "SettingsIcon",
+            "tap-handler": "$onSettingsIconClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "image-content": "settings_icon.png",
+            "scale": "cover"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "onUserIconClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onSettingsIconClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "Header",
+      "size": {
+        "width": 356.0,
+        "height": 48.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

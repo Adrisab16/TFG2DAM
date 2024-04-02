@@ -1,0 +1,180 @@
+{
+  "name": "email_field",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "EtSmXEVNWeabOV1W1xAYhc",
+    "node": "11:426",
+    "version": "5470677351",
+    "component-id": "cb095e985e35f262984463d20c9a5182ad886338"
+  },
+  "default": "EmailField",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "image",
+        "id": "klipartz 1"
+      },
+      {
+        "type": "group",
+        "id": "EmailGroup"
+      },
+      {
+        "type": "text",
+        "id": "EmailTxt"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 11"
+      }
+    ],
+    "modes": {
+      "EmailField": {
+        "rules": [
+          {
+            "id": "top_level",
+            "padding": {
+              "left": "5.0",
+              "top": "4.0",
+              "right": "5.0",
+              "bottom": "4.0"
+            },
+            "border-radius": "6.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "children": [
+              "klipartz 1",
+              "EmailGroup"
+            ],
+            "item-spacing": "5.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.13725490196078433"
+            }
+          },
+          {
+            "id": "klipartz 1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "30.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "30.0"
+              }
+            },
+            "image-content": "klipartz_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "EmailGroup",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "180.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "25.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "EmailTxt",
+              "Rectangle 11"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "EmailTxt",
+            "margin": {
+              "left": "4.0",
+              "right": "4.0",
+              "bottom": "1.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "$EmailTxtcontent",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": "13.0",
+            "line-height": "1.2102272327129657",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Rectangle 11",
+            "margin": {
+              "top": "24.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "rectangle_11.svg"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "EmailTxtcontent": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "EmailField",
+      "size": {
+        "width": 225.0,
+        "height": 38.0
+      },
+      "parameters": {
+        "EmailTxtcontent": "Email"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

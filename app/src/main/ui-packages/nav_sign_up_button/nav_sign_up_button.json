@@ -1,0 +1,166 @@
+{
+  "name": "nav_sign_up_button",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "EtSmXEVNWeabOV1W1xAYhc",
+    "node": "11:408",
+    "version": "5466023661",
+    "component-id": "dd7a77138ca7a2f009535331f2eb7c22f8751a88"
+  },
+  "default": "Property 1=Default",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "text",
+        "id": "Dont have an account?"
+      },
+      {
+        "type": "text",
+        "id": "You already have an account?"
+      }
+    ],
+    "modes": {
+      "Property 1=Default": {
+        "rules": [
+          {
+            "id": "top_level",
+            "padding": {
+              "left": "16.0",
+              "top": "8.0",
+              "right": "16.0",
+              "bottom": "8.0"
+            },
+            "border-radius": "10.0",
+            "tap-handler": "$onNavButtonSignUpClicked",
+            "doubletap-handler": "$onNavButtonLogInClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "children": [
+              "Dont have an account?"
+            ],
+            "item-spacing": "10.0",
+            "background-color": {
+              "alpha": "0.4980392156862745",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.13725490196078433"
+            }
+          },
+          {
+            "id": "Dont have an account?",
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "0.8470588235294118",
+              "hue": "241.1764705882353",
+              "saturation": "1.0",
+              "value": "1.0"
+            },
+            "text-content": "Dont have an account?",
+            "overflow": "visible",
+            "text-align-vertical": "center",
+            "text-size": "13.0",
+            "line-height": "1.2102272327129657",
+            "typeface": "Inter",
+            "underline": "true"
+          }
+        ]
+      },
+      "Property 1=NavLogInButton": {
+        "rules": [
+          {
+            "id": "top_level",
+            "padding": {
+              "left": "16.0",
+              "top": "8.0",
+              "right": "16.0",
+              "bottom": "8.0"
+            },
+            "border-radius": "10.0",
+            "tap-handler": "$onNavButtonSignUpClicked",
+            "doubletap-handler": "$onNavButtonLogInClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "children": [
+              "You already have an account?"
+            ],
+            "item-spacing": "10.0",
+            "background-color": {
+              "alpha": "0.4980392156862745",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.13725490196078433"
+            }
+          },
+          {
+            "id": "You already have an account?",
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "0.8470588235294118",
+              "hue": "241.1764705882353",
+              "saturation": "1.0",
+              "value": "1.0"
+            },
+            "text-content": "You already have an account?",
+            "overflow": "visible",
+            "text-align-vertical": "center",
+            "text-size": "13.0",
+            "line-height": "1.2102272327129657",
+            "typeface": "Inter",
+            "underline": "true"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "onNavButtonSignUpClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onNavButtonLogInClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "Property 1=Default",
+      "size": {
+        "width": 178.0,
+        "height": 32.0
+      }
+    },
+    {
+      "design": "Property 1=NavLogInButton",
+      "size": {
+        "width": 221.0,
+        "height": 32.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
