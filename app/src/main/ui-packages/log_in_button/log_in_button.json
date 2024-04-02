@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "11:412",
-    "version": "5465990431",
+    "version": "5471772965",
     "component-id": "e2c9003f9bb5741d45082ddac37b85374c4df458"
   },
   "default": "Property 1=Default",
@@ -15,10 +15,6 @@
         "type": "group",
         "id": "top_level",
         "root": "true"
-      },
-      {
-        "type": "vector",
-        "id": "Rectangle 7"
       },
       {
         "type": "text",
@@ -34,46 +30,37 @@
         "rules": [
           {
             "id": "top_level",
+            "padding": {
+              "left": "80.0",
+              "top": "8.0",
+              "right": "80.0",
+              "bottom": "8.0"
+            },
+            "border-radius": "10.0",
             "tap-handler": "$onLogInButtonClicked",
             "doubletap-handler": "$onSignUpButtonClicked",
-            "is-structured": "false",
-            "children": [
-              "Rectangle 7",
-              "Log in"
-            ],
-            "clip-content": "false"
-          },
-          {
-            "id": "Rectangle 7",
-            "border-radius": "10.0",
             "size-constraints": {
               "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
+                "sizing-mode": "shrink"
               },
               "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
+                "sizing-mode": "shrink"
               }
             },
-            "vector-content": "rectangle_7.svg"
+            "arrangement": "row",
+            "children": [
+              "Log in"
+            ],
+            "item-spacing": "10.0",
+            "background-color": {
+              "alpha": "0.807843137254902",
+              "hue": "226.8235294117647",
+              "saturation": "1.0",
+              "value": "1.0"
+            }
           },
           {
             "id": "Log in",
-            "margin": {
-              "left": "8.0",
-              "right": "8.0"
-            },
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              }
-            },
             "font-weight": "700.0",
             "color": {
               "alpha": "1.0",
@@ -83,7 +70,6 @@
             },
             "text-content": "Log in",
             "overflow": "visible",
-            "max-lines": "-1",
             "text-align-vertical": "center",
             "text-size": "25.0",
             "line-height": "1.210227279663086",
@@ -95,46 +81,37 @@
         "rules": [
           {
             "id": "top_level",
+            "padding": {
+              "left": "80.0",
+              "top": "8.0",
+              "right": "80.0",
+              "bottom": "8.0"
+            },
+            "border-radius": "10.0",
             "tap-handler": "$onLogInButtonClicked",
             "doubletap-handler": "$onSignUpButtonClicked",
-            "is-structured": "false",
-            "children": [
-              "Rectangle 7",
-              "Sign Up"
-            ],
-            "clip-content": "false"
-          },
-          {
-            "id": "Rectangle 7",
-            "border-radius": "10.0",
             "size-constraints": {
               "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
+                "sizing-mode": "shrink"
               },
               "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
+                "sizing-mode": "shrink"
               }
             },
-            "vector-content": "rectangle_8.svg"
+            "arrangement": "row",
+            "children": [
+              "Sign Up"
+            ],
+            "item-spacing": "10.0",
+            "background-color": {
+              "alpha": "0.807843137254902",
+              "hue": "226.8235294117647",
+              "saturation": "1.0",
+              "value": "1.0"
+            }
           },
           {
             "id": "Sign Up",
-            "margin": {
-              "left": "8.0",
-              "right": "8.0"
-            },
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              }
-            },
             "font-weight": "700.0",
             "color": {
               "alpha": "1.0",
@@ -144,7 +121,6 @@
             },
             "text-content": "Sign Up",
             "overflow": "visible",
-            "max-lines": "-1",
             "text-align-vertical": "center",
             "text-size": "25.0",
             "line-height": "1.210227279663086",
@@ -170,15 +146,15 @@
     {
       "design": "Property 1=Default",
       "size": {
-        "width": 232.0,
-        "height": 40.0
+        "width": 234.0,
+        "height": 46.0
       }
     },
     {
       "design": "Property 1=SignUpButton",
       "size": {
-        "width": 232.0,
-        "height": 40.0
+        "width": 255.0,
+        "height": 46.0
       }
     }
   ],

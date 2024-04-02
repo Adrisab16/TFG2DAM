@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "11:426",
-    "version": "5470677351",
+    "version": "5471798251",
     "component-id": "cb095e985e35f262984463d20c9a5182ad886338"
   },
   "default": "EmailField",
@@ -39,10 +39,10 @@
           {
             "id": "top_level",
             "padding": {
-              "left": "5.0",
-              "top": "4.0",
-              "right": "5.0",
-              "bottom": "4.0"
+              "left": "8.0",
+              "top": "9.0",
+              "right": "8.0",
+              "bottom": "9.0"
             },
             "border-radius": "6.0",
             "size-constraints": {
@@ -54,7 +54,6 @@
               }
             },
             "arrangement": "row",
-            "main-axis-align": "start",
             "children": [
               "klipartz 1",
               "EmailGroup"
@@ -166,8 +165,8 @@
     {
       "design": "EmailField",
       "size": {
-        "width": 225.0,
-        "height": 38.0
+        "width": 231.0,
+        "height": 48.0
       },
       "parameters": {
         "EmailTxtcontent": "Email"

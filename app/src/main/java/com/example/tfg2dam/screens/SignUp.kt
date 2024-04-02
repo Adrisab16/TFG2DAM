@@ -22,36 +22,38 @@ import androidx.navigation.NavController
 import com.example.tfg2dam.R
 import com.example.tfg2dam.emailfield.EmailField
 import com.example.tfg2dam.loginbutton.LogInButton
-import com.example.tfg2dam.loginbutton.LogInProperty1Default
 import com.example.tfg2dam.loginfield.LogInField
 import com.example.tfg2dam.loginheader.LoginHeader
 import com.example.tfg2dam.loginheader.Property1
 import com.example.tfg2dam.navsignupbutton.NavSignUpButton
 import com.example.tfg2dam.passwordfield.PasswordField
 import com.example.tfg2dam.platformsicons.PlatformsIcons
-
+import com.example.tfg2dam.signupbackground.SignUpBackground
+import com.example.tfg2dam.signupfield.SignUpField
+import com.example.tfg2dam.userfield.UserField
 
 @Composable
-fun LogIn(navController: NavController) {
+fun SignUp(navController: NavController){
     var emailText by remember { mutableStateOf("") }
     var passwordText by remember { mutableStateOf("") }
+    var userText by remember { mutableStateOf("") }
 
     Box(Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(id = R.drawable.login_background_login_background_photo),
+            painter = painterResource(id = R.drawable.sign_up_background_image_1),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds // Esto ajustará la escala de contenido para que la imagen ocupe tod0 el espacio disponible sin recortarla
         )
 
         // Titulo de la pantalla de LogIn
-        LoginHeader(property1 = Property1.Default, modifier = Modifier
+        LoginHeader(property1 = Property1.SignUpHeader, modifier = Modifier
             .align(Alignment.TopCenter)
             .padding(top = 10.dp))
 
-        Box(modifier = Modifier.align(Alignment.Center)) {
+        Box(modifier = Modifier.align(Alignment.Center).padding(top = 60.dp)) {
 
-            LogInField()
+            SignUpField()
 
             Box(modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -67,17 +69,17 @@ fun LogIn(navController: NavController) {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
+                    UserField(userTxtcontent = userText)
+                    Spacer(modifier = Modifier.height(30.dp))
                     EmailField(emailTxtcontent = emailText)
                     Spacer(modifier = Modifier.height(30.dp))
                     PasswordField(passwordTxtcontent = passwordText)
                     Spacer(modifier = Modifier.height(40.dp))
-                    LogInButton(onLogInButtonClicked =  {navController.navigate("Home")})
+                    LogInButton(property1 = com.example.tfg2dam.loginbutton.Property1.SignUpButton, onLogInButtonClicked =  {navController.navigate("Home")})
                     Spacer(modifier = Modifier.height(20.dp))
-                    NavSignUpButton(onNavButtonSignUpClicked = {navController.navigate("SignUp")})
+                    NavSignUpButton(property1 = com.example.tfg2dam.navsignupbutton.Property1.NavLogInButton, onNavButtonSignUpClicked =  {navController.navigate("LogIn")})
                 }
             }
         }
     }
 }
-
-
