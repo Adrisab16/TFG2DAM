@@ -57,7 +57,7 @@ fun EmailField(
             value = textFieldValue,
             label = { Text(text = "Email")},
             onValueChange = onTextFieldValueChanged,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             modifier = Modifier
                 .padding(vertical = 8.dp)
                 .width(200.dp)

@@ -58,7 +58,7 @@ fun PasswordField(
             value = textFieldValue,
             label = { Text(text = "Password")},
             onValueChange = onTextFieldValueChanged,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             modifier = Modifier
                 .padding(vertical = 8.dp)
                 .width(200.dp)
