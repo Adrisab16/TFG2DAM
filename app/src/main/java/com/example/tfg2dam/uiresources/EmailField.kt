@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -49,7 +50,7 @@ fun EmailField(
             imageVector = Icons.Default.Email,
             contentDescription = null,
             tint = Color.White, // Configurar el color del icono
-            modifier = Modifier.padding(end = 16.dp, start = 10.dp)
+            modifier = Modifier.padding(end = 10.dp, start = 10.dp).size(35.dp)
         )
         // Zona para introducir datos
         TextField(

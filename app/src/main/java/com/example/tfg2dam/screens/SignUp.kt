@@ -1,6 +1,7 @@
 package com.example.tfg2dam.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,6 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -26,7 +30,9 @@ import com.example.tfg2dam.loginheader.Property1
 import com.example.tfg2dam.navsignupbutton.NavSignUpButton
 import com.example.tfg2dam.platformsicons.PlatformsIcons
 import com.example.tfg2dam.signupfield.SignUpField
-import com.example.tfg2dam.userfield.UserField
+import com.example.tfg2dam.uiresources.EmailField
+import com.example.tfg2dam.uiresources.PasswordField
+import com.example.tfg2dam.uiresources.UserField
 
 @Composable
 fun SignUp(navController: NavController){
@@ -65,11 +71,36 @@ fun SignUp(navController: NavController){
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    UserField(userTxtcontent = userText)
                     Spacer(modifier = Modifier.height(30.dp))
-                    // EmailField(emailTxtcontent = emailText)
+                    Box(modifier =  Modifier
+                        .background(Color.DarkGray, shape = RoundedCornerShape(10.dp))
+                        .clip(RoundedCornerShape(10.dp))
+                    ) {
+                        UserField(
+                            textFieldValue = userText,
+                            onTextFieldValueChanged = { userText = it },
+                        )
+                    }
                     Spacer(modifier = Modifier.height(30.dp))
-                    //PasswordField(passwordTxtcontent = passwordText)
+                    Box(modifier =  Modifier
+                        .background(Color.DarkGray, shape = RoundedCornerShape(10.dp))
+                        .clip(RoundedCornerShape(10.dp))
+                    ) {
+                        EmailField(
+                            textFieldValue = emailText,
+                            onTextFieldValueChanged = { emailText = it },
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(30.dp))
+                    Box(modifier =  Modifier
+                        .background(Color.DarkGray, shape = RoundedCornerShape(10.dp))
+                        .clip(RoundedCornerShape(10.dp))
+                    ) {
+                        PasswordField(
+                            textFieldValue = passwordText,
+                            onTextFieldValueChanged = { passwordText = it },
+                        )
+                    }
                     Spacer(modifier = Modifier.height(40.dp))
                     LogInButton(property1 = com.example.tfg2dam.loginbutton.Property1.SignUpButton, onLogInButtonClicked =  {navController.navigate("Home")})
                     Spacer(modifier = Modifier.height(20.dp))
