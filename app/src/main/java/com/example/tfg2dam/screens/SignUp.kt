@@ -20,15 +20,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.tfg2dam.R
-import com.example.tfg2dam.emailfield.EmailField
 import com.example.tfg2dam.loginbutton.LogInButton
-import com.example.tfg2dam.loginfield.LogInField
 import com.example.tfg2dam.loginheader.LoginHeader
 import com.example.tfg2dam.loginheader.Property1
 import com.example.tfg2dam.navsignupbutton.NavSignUpButton
-import com.example.tfg2dam.passwordfield.PasswordField
 import com.example.tfg2dam.platformsicons.PlatformsIcons
-import com.example.tfg2dam.signupbackground.SignUpBackground
 import com.example.tfg2dam.signupfield.SignUpField
 import com.example.tfg2dam.userfield.UserField
 
@@ -71,9 +67,9 @@ fun SignUp(navController: NavController){
                 ) {
                     UserField(userTxtcontent = userText)
                     Spacer(modifier = Modifier.height(30.dp))
-                    EmailField(emailTxtcontent = emailText)
+                    // EmailField(emailTxtcontent = emailText)
                     Spacer(modifier = Modifier.height(30.dp))
-                    PasswordField(passwordTxtcontent = passwordText)
+                    //PasswordField(passwordTxtcontent = passwordText)
                     Spacer(modifier = Modifier.height(40.dp))
                     LogInButton(property1 = com.example.tfg2dam.loginbutton.Property1.SignUpButton, onLogInButtonClicked =  {navController.navigate("Home")})
                     Spacer(modifier = Modifier.height(20.dp))
