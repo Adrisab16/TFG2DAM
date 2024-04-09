@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
     id("com.google.relay") version "0.3.11"
 }
 
@@ -52,8 +53,9 @@ android {
 
 dependencies {
 
+    implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.navigation:navigation-compose:2.7.7")
-
+    implementation ("com.google.firebase:firebase-auth-ktx:22.3.1")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
@@ -69,4 +71,12 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    // DCS - Firebase
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+    // DCS - Servicio de Autenticación
+    implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
+    // DCS - Base de datos Firestore
+    implementation("com.google.firebase:firebase-firestore-ktx:24.11.0")
+    implementation("com.google.firebase:firebase-analytics")
 }

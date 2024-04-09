@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "11:527",
-    "version": "5465921791",
+    "version": "5520703367",
     "component-id": "03db92038cd0682bee199838c9aed51182ae9ce4"
   },
   "default": "LogInField",
@@ -49,11 +49,11 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "280.0"
+                "value": "339.0"
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "480.0"
+                "value": "567.0"
               }
             },
             "image-content": "rectangle_4.png",
@@ -67,8 +67,8 @@
     {
       "design": "LogInField",
       "size": {
-        "width": 280.0,
-        "height": 480.0
+        "width": 339.0,
+        "height": 567.0
       }
     }
   ],

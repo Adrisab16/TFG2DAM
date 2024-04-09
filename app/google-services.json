@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1074287426147",
+    "project_id": "tfg2dam-77205",
+    "storage_bucket": "tfg2dam-77205.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074287426147:android:15febe7449e5c362db1656",
+        "android_client_info": {
+          "package_name": "com.example.tfg2dam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7ISl1uQjHD4iA4CE5ncl4ZewxGtVHC8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,14 +7,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,6 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.tfg2dam.alerts.Alert
 import com.example.tfg2dam.R
 import com.example.tfg2dam.loginbutton.LogInButton
 import com.example.tfg2dam.loginheader.LoginHeader
@@ -33,12 +31,10 @@ import com.example.tfg2dam.signupfield.SignUpField
 import com.example.tfg2dam.uiresources.EmailField
 import com.example.tfg2dam.uiresources.PasswordField
 import com.example.tfg2dam.uiresources.UserField
+import com.example.tfg2dam.viewmodel.loginViewModel
 
 @Composable
-fun SignUp(navController: NavController){
-    var emailText by remember { mutableStateOf("") }
-    var passwordText by remember { mutableStateOf("") }
-    var userText by remember { mutableStateOf("") }
+fun SignUp(navController: NavController, loginVM: loginViewModel){
 
     Box(Modifier.fillMaxSize()) {
         Image(
@@ -53,9 +49,16 @@ fun SignUp(navController: NavController){
             .align(Alignment.TopCenter)
             .padding(top = 10.dp))
 
-        Box(modifier = Modifier.align(Alignment.Center).padding(top = 60.dp)) {
+        Box(modifier = Modifier.align(Alignment.Center).padding(top = 120.dp)) {
 
-            SignUpField()
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 35.dp)
+                    .align(Alignment.Center)
+            ) {
+                SignUpField()
+            }
 
             Box(modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -71,14 +74,14 @@ fun SignUp(navController: NavController){
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Spacer(modifier = Modifier.height(30.dp))
+                    Spacer(modifier = Modifier.height(50.dp))
                     Box(modifier =  Modifier
                         .background(Color.DarkGray, shape = RoundedCornerShape(10.dp))
                         .clip(RoundedCornerShape(10.dp))
                     ) {
                         UserField(
-                            textFieldValue = userText,
-                            onTextFieldValueChanged = { userText = it },
+                            textFieldValue = loginVM.userName,
+                            onTextFieldValueChanged = { loginVM.changeUserName(it) },
                         )
                     }
                     Spacer(modifier = Modifier.height(30.dp))
@@ -87,8 +90,8 @@ fun SignUp(navController: NavController){
                         .clip(RoundedCornerShape(10.dp))
                     ) {
                         EmailField(
-                            textFieldValue = emailText,
-                            onTextFieldValueChanged = { emailText = it },
+                            textFieldValue = loginVM.email,
+                            onTextFieldValueChanged = { loginVM.changeEmail(it) },
                         )
                     }
                     Spacer(modifier = Modifier.height(30.dp))
@@ -97,16 +100,27 @@ fun SignUp(navController: NavController){
                         .clip(RoundedCornerShape(10.dp))
                     ) {
                         PasswordField(
-                            textFieldValue = passwordText,
-                            onTextFieldValueChanged = { passwordText = it },
+                            textFieldValue = loginVM.password,
+                            onTextFieldValueChanged = { loginVM.changePassword(it) },
                         )
                     }
                     Spacer(modifier = Modifier.height(40.dp))
-                    LogInButton(property1 = com.example.tfg2dam.loginbutton.Property1.SignUpButton, onLogInButtonClicked =  {navController.navigate("Home")})
+                    LogInButton(property1 = com.example.tfg2dam.loginbutton.Property1.SignUpButton, onLogInButtonClicked =  {loginVM.createUser { navController.navigate("Home") }})
                     Spacer(modifier = Modifier.height(20.dp))
                     NavSignUpButton(property1 = com.example.tfg2dam.navsignupbutton.Property1.NavLogInButton, onNavButtonSignUpClicked =  {navController.navigate("LogIn")})
                 }
             }
         }
+        // Se muestra un diálogo de alerta si [LoginViewModel.showAlert] es true.
+        if (loginVM.showAlert) {
+            Alert(
+                title = "Alerta",
+                message = "Usuario no creado correctamente",
+                confirmText = "Aceptar",
+                onConfirmClick = { loginVM.closeAlert() },
+                onDismissClick = { }
+            ) // DCS - ninguna acción en onDismissClick para que no oculte el diálogo
+        }
     }
+
 }

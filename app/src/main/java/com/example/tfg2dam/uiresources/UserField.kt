@@ -42,7 +42,7 @@ fun UserField(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             modifier = Modifier
                 .padding(vertical = 8.dp)
-                .width(200.dp)
+                .width(250.dp)
                 .padding(end = 10.dp, top = 5.dp, bottom = 5.dp)
                 .background(Color.Transparent, shape = RoundedCornerShape(10.dp)),
             singleLine = true // Para evitar que el texto se desborde

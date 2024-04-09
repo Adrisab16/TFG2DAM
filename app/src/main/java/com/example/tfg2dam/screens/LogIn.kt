@@ -2,7 +2,6 @@ package com.example.tfg2dam.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,18 +9,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -34,12 +29,11 @@ import com.example.tfg2dam.navsignupbutton.NavSignUpButton
 import com.example.tfg2dam.platformsicons.PlatformsIcons
 import com.example.tfg2dam.uiresources.EmailField
 import com.example.tfg2dam.uiresources.PasswordField
+import com.example.tfg2dam.viewmodel.loginViewModel
 
 
 @Composable
-fun LogIn(navController: NavController) {
-    var emailText by remember { mutableStateOf("") }
-    var passwordText by remember { mutableStateOf("") }
+fun LogIn(navController: NavController, loginVM: loginViewModel) {
 
     Box(Modifier.fillMaxSize()) {
         Image(
@@ -54,10 +48,11 @@ fun LogIn(navController: NavController) {
             .align(Alignment.TopCenter)
             .padding(top = 10.dp))
 
-        Box(modifier = Modifier.align(Alignment.Center)) {
+        Box(modifier = Modifier.align(Alignment.Center).padding(top=60.dp)) {
 
             LogInField()
 
+            // Iconos de plataformas de arriba
             Box(modifier = Modifier
                 .align(Alignment.TopCenter)
                 .padding(top = 20.dp)) {
@@ -73,28 +68,38 @@ fun LogIn(navController: NavController) {
                     verticalArrangement = Arrangement.Center
                 ) {
                     Spacer(modifier = Modifier.height(40.dp))
+
+                    // Introduccion de email:
                     Box(modifier =  Modifier
                         .background(Color.DarkGray, shape = RoundedCornerShape(10.dp))
                         .clip(RoundedCornerShape(10.dp))
+                        .width(300.dp)
                     ) {
                         EmailField(
-                            textFieldValue = emailText,
-                            onTextFieldValueChanged = { emailText = it },
+                            textFieldValue = loginVM.email,
+                            onTextFieldValueChanged = { loginVM.changeEmail(it) },
                         )
                     }
                     Spacer(modifier = Modifier.height(30.dp))
+
+                    // Introduccion de contraseña:
                     Box(modifier =  Modifier
                         .background(Color.DarkGray, shape = RoundedCornerShape(10.dp))
                         .clip(RoundedCornerShape(10.dp))
+                        .width(300.dp)
                     ) {
                         PasswordField(
-                            textFieldValue = passwordText,
-                            onTextFieldValueChanged = { passwordText = it },
+                            textFieldValue = loginVM.password,
+                            onTextFieldValueChanged = { loginVM.changePassword(it) },
                         )
                     }
                     Spacer(modifier = Modifier.height(40.dp))
-                    LogInButton(onLogInButtonClicked =  {navController.navigate("Home")})
+
+                    // Botón Login:
+                    LogInButton(onLogInButtonClicked =  {loginVM.login { navController.navigate("Home") }})
                     Spacer(modifier = Modifier.height(20.dp))
+
+                    // Botón para ir al SignUp:
                     NavSignUpButton(onNavButtonSignUpClicked = {navController.navigate("SignUp")})
                 }
             }

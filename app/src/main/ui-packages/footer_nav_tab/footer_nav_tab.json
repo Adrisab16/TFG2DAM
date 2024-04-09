@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "9:2",
-    "version": "5462728438",
+    "version": "5521502004",
     "component-id": "6cd0319c0fc79ace971c9dea68472ae1c885ecf4"
   },
   "default": "Property 1=Default",
@@ -51,6 +51,10 @@
       {
         "type": "image",
         "id": "ListIcon"
+      },
+      {
+        "type": "image",
+        "id": "search (1) 1"
       }
     ],
     "modes": {
@@ -344,7 +348,7 @@
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "40.0"
+                "value": "42.0"
               }
             },
             "is-structured": "false",
@@ -384,7 +388,7 @@
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "40.0"
+                "value": "42.0"
               }
             },
             "is-structured": "false",
@@ -397,7 +401,7 @@
           {
             "id": "HomeTxt",
             "margin": {
-              "top": "24.0"
+              "top": "26.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -427,9 +431,9 @@
           {
             "id": "HomeIcon",
             "margin": {
-              "left": "8.0",
-              "right": "8.0",
-              "bottom": "15.0"
+              "left": "10.0",
+              "right": "10.0",
+              "bottom": "14.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -441,7 +445,7 @@
                 "value": "1.0"
               }
             },
-            "image-content": "home_icon.png",
+            "image-content": "home_icon1.png",
             "scale": "cover"
           },
           {
@@ -479,7 +483,7 @@
             "margin": {
               "left": "14.0",
               "right": "14.0",
-              "bottom": "16.0"
+              "bottom": "14.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -491,13 +495,13 @@
                 "value": "1.0"
               }
             },
-            "image-content": "discover_icon.png",
+            "image-content": "discover_icon1.png",
             "scale": "cover"
           },
           {
             "id": "MyListTxt",
             "margin": {
-              "top": "24.0"
+              "top": "26.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -527,9 +531,9 @@
           {
             "id": "ListIcon",
             "margin": {
-              "left": "13.0",
-              "right": "13.0",
-              "bottom": "16.0"
+              "left": "14.0",
+              "right": "14.0",
+              "bottom": "14.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -541,7 +545,7 @@
                 "value": "1.0"
               }
             },
-            "image-content": "list_icon.png",
+            "image-content": "list_icon1.png",
             "scale": "cover"
           }
         ]
@@ -590,7 +594,7 @@
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "40.0"
+                "value": "42.0"
               }
             },
             "is-structured": "false",
@@ -610,13 +614,13 @@
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "42.0"
+                "value": "43.0"
               }
             },
             "is-structured": "false",
             "children": [
               "DiscoverTxt",
-              "DiscoverIcon"
+              "search (1) 1"
             ],
             "clip-content": "false"
           },
@@ -630,7 +634,7 @@
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "40.0"
+                "value": "42.0"
               }
             },
             "is-structured": "false",
@@ -643,7 +647,7 @@
           {
             "id": "HomeTxt",
             "margin": {
-              "top": "24.0"
+              "top": "26.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -673,9 +677,9 @@
           {
             "id": "HomeIcon",
             "margin": {
-              "left": "8.0",
-              "right": "8.0",
-              "bottom": "15.0"
+              "left": "10.0",
+              "right": "10.0",
+              "bottom": "14.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -687,13 +691,13 @@
                 "value": "1.0"
               }
             },
-            "image-content": "home_icon.png",
+            "image-content": "home_icon2.png",
             "scale": "cover"
           },
           {
             "id": "DiscoverTxt",
             "margin": {
-              "top": "26.0"
+              "top": "27.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -721,11 +725,11 @@
             "typeface": "Inter"
           },
           {
-            "id": "DiscoverIcon",
+            "id": "search (1) 1",
             "margin": {
               "left": "14.0",
               "right": "14.0",
-              "bottom": "16.0"
+              "bottom": "15.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -737,13 +741,13 @@
                 "value": "1.0"
               }
             },
-            "image-content": "discover_icon.png",
+            "image-content": "search_1_1.png",
             "scale": "cover"
           },
           {
             "id": "MyListTxt",
             "margin": {
-              "top": "24.0"
+              "top": "26.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -773,9 +777,9 @@
           {
             "id": "ListIcon",
             "margin": {
-              "left": "13.0",
-              "right": "13.0",
-              "bottom": "16.0"
+              "left": "14.0",
+              "right": "14.0",
+              "bottom": "14.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -787,7 +791,7 @@
                 "value": "1.0"
               }
             },
-            "image-content": "list_icon.png",
+            "image-content": "list_icon1.png",
             "scale": "cover"
           }
         ]
@@ -836,7 +840,7 @@
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "40.0"
+                "value": "42.0"
               }
             },
             "is-structured": "false",
@@ -856,7 +860,7 @@
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "42.0"
+                "value": "43.0"
               }
             },
             "is-structured": "false",
@@ -876,7 +880,7 @@
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "40.0"
+                "value": "42.0"
               }
             },
             "is-structured": "false",
@@ -889,7 +893,7 @@
           {
             "id": "HomeTxt",
             "margin": {
-              "top": "24.0"
+              "top": "26.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -919,9 +923,9 @@
           {
             "id": "HomeIcon",
             "margin": {
-              "left": "8.0",
-              "right": "8.0",
-              "bottom": "15.0"
+              "left": "10.0",
+              "right": "10.0",
+              "bottom": "14.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -933,13 +937,13 @@
                 "value": "1.0"
               }
             },
-            "image-content": "home_icon.png",
+            "image-content": "home_icon2.png",
             "scale": "cover"
           },
           {
             "id": "DiscoverTxt",
             "margin": {
-              "top": "26.0"
+              "top": "27.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -969,9 +973,9 @@
           {
             "id": "DiscoverIcon",
             "margin": {
-              "left": "14.0",
-              "right": "14.0",
-              "bottom": "16.0"
+              "left": "15.0",
+              "right": "13.0",
+              "bottom": "15.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -983,13 +987,13 @@
                 "value": "1.0"
               }
             },
-            "image-content": "discover_icon.png",
+            "image-content": "discover_icon1.png",
             "scale": "cover"
           },
           {
             "id": "MyListTxt",
             "margin": {
-              "top": "24.0"
+              "top": "26.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -1019,9 +1023,9 @@
           {
             "id": "ListIcon",
             "margin": {
-              "left": "13.0",
-              "right": "13.0",
-              "bottom": "16.0"
+              "left": "14.0",
+              "right": "14.0",
+              "bottom": "14.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -1033,7 +1037,7 @@
                 "value": "1.0"
               }
             },
-            "image-content": "list_icon.png",
+            "image-content": "list_icon2.png",
             "scale": "cover"
           }
         ]
@@ -1076,14 +1080,14 @@
       "design": "Property 1=DiscoverClicked",
       "size": {
         "width": 360.0,
-        "height": 54.0
+        "height": 55.0
       }
     },
     {
       "design": "Property 1=MyListClicked",
       "size": {
         "width": 360.0,
-        "height": 54.0
+        "height": 55.0
       }
     }
   ],

@@ -23,11 +23,9 @@ import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
 import com.example.tfg2dam.viewmodel.loginViewModel
 
-
 @Composable
-fun Home(navController: NavController, loginVM: loginViewModel) {
+fun Discover(navController: NavController, loginVM: loginViewModel){
     var isMenuVisible by remember { mutableStateOf(false) }
-
     Box(Modifier.fillMaxSize()) {
         Header(
             modifier = Modifier.align(Alignment.TopCenter),
@@ -35,12 +33,11 @@ fun Home(navController: NavController, loginVM: loginViewModel) {
             onSettingsIconClicked = {}
         )
 
-        FooterNavTab(
-            modifier = Modifier.align(Alignment.BottomCenter),
-            property1 = Property1.HomeClicked,
-            onListButtonClicked = { navController.navigate("MyList") },
-            onDiscoverButtonClicked = { navController.navigate("Discover") },
-        )
+        FooterNavTab(modifier = Modifier.align(Alignment.BottomCenter),
+            property1 = Property1.DiscoverClicked,
+            onHomeButtonClicked = {navController.navigate("Home")},
+            onListButtonClicked = {navController.navigate("MyList")},
+            )
 
         AnimatedVisibility(
             visible = isMenuVisible,
@@ -62,4 +59,3 @@ fun Home(navController: NavController, loginVM: loginViewModel) {
         }
     }
 }
-

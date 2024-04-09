@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "3:41",
-    "version": "5462693497",
+    "version": "5521029632",
     "component-id": "8011c1415fa0d7452c35d23a48f02b8edf9da818"
   },
   "default": "Header",
@@ -40,7 +40,8 @@
                 "sizing-mode": "shrink"
               },
               "height-constraints": {
-                "sizing-mode": "shrink"
+                "sizing-mode": "proportional",
+                "value": "1.0"
               }
             },
             "arrangement": "row",
@@ -138,7 +139,7 @@
       "design": "Header",
       "size": {
         "width": 356.0,
-        "height": 48.0
+        "height": 66.0
       }
     }
   ],

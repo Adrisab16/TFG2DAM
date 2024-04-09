@@ -1,5 +1,6 @@
 package com.example.tfg2dam.viewmodel
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -7,11 +8,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.tfg2dam.model.UserModel
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
-/***
-class LoginViewModel: ViewModel() {
+import java.io.FileWriter
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
+class loginViewModel: ViewModel() {
     // DCS - Definición de variables y funciones para manejar el inicio de sesión y registro de usuarios.
 
     private val auth: FirebaseAuth = Firebase.auth
@@ -29,6 +38,21 @@ class LoginViewModel: ViewModel() {
         private set
 
     /**
+     * Método privado para escribir en el archivo de registro.
+     */
+    private fun writeToLog(action: String) {
+        val timeStamp = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+        val logMessage = "[$timeStamp] $action"
+        try {
+            FileWriter("F:\\MyProjects\\TFG2DAM\\app\\src\\main\\java\\com\\example\\tfg2dam\\logs", true).use { writer ->
+                writer.appendLine(logMessage)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    /**
      * Intenta iniciar sesión con el email y la contraseña proporcionados.
      * Si el inicio de sesión es exitoso, ejecuta la acción de éxito proporcionada.
      * En caso de error, actualiza el estado para mostrar una alerta.
@@ -43,10 +67,12 @@ class LoginViewModel: ViewModel() {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+                            writeToLog("Inicio de sesión exitoso")
                             onSuccess()
                         } else {
+                            writeToLog("Error al iniciar sesion")
                             Log.d("ERROR EN FIREBASE","Usuario y/o contrasena incorrectos")
-                            showAlert = true
+                            //showAlert = true
                         }
                     }
             } catch (e: Exception){
@@ -70,10 +96,12 @@ class LoginViewModel: ViewModel() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+                            writeToLog("Usuario creado con éxito")
                             // DCS - Si se realiza con éxito, almacenamos el usuario en la colección "Users"
                             saveUser(userName)
                             onSuccess()
                         } else {
+                            writeToLog("Error al crear usuario")
                             Log.d("ERROR EN FIREBASE","Error al crear usuario")
                             showAlert = true
                         }
@@ -89,6 +117,7 @@ class LoginViewModel: ViewModel() {
      *
      * @param username Nombre de usuario a guardar.
      */
+    @SuppressLint("SuspiciousIndentation")
     private fun saveUser(username: String){
         val id = auth.currentUser?.uid
         val email = auth.currentUser?.email
@@ -96,62 +125,25 @@ class LoginViewModel: ViewModel() {
 
 
         viewModelScope.launch(Dispatchers.IO) {
-            /*val user = UserModel(
+            val user = UserModel(
                 userId = id.toString(),
                 email = email.toString(),
-                username = username
-            )*/
-            // DCS - Añade el usuario a la colección "Users" en la base de datos Firestore
-            firestore.collection("Users")
-            //.add(user)
+                username = username,
+                password = pwd.toString(),
+                )
+            writeToLog("Usuario guardado con éxito")
+                // DCS - Añade el usuario a la colección "Users" en la base de datos Firestore
+                 firestore.collection("Users").add(user)
             //.addOnSuccessListener { Log.d("GUARDAR OK", "Se guardó el usuario correctamente en Firestore") }
             //.addOnFailureListener { Log.d("ERROR AL GUARDAR", "ERROR al guardar en Firestore") }
         }
     }
 
-    /* DCS - Otra forma de hacer lo mismo...
-
-    Accediendo a "FirebaseFirestore" directamente mediante su método estático getInstance().
-    Esto es perfectamente válido y se utiliza en muchas guías y ejemplos de Firebase,
-    pero yo prefiero la otra opción, es decir, utilizar la sintaxis de Kotlin para acceder a
-    servicios de Firebase, aprovechando la biblioteca firebase-ktx (Kotlin Extensions).
-    "Firebase.firestore" es esencialmente un wrapper que llama internamente a FirebaseFirestore.getInstance(),
-    proporcionando un acceso más conciso y alineado con las convenciones de Kotlin.
-
-    Además, puede considerarse más idiomática para los desarrolladores de Kotlin, ya que hace
-    uso de las extensiones de Kotlin (KTX) de Firebase, lo cual está en línea con las prácticas
-    recomendadas para el desarrollo moderno en Kotlin.
-
-    En cuanto a términos de funcionalidad, no hay diferencia; ambas opciones realizarán la operación
-    de escritura en Firestore de la misma manera. Pero si ya estamos utilizando las extensiones de Kotlin
-    para Firebase en otras partes de nuestra aplicación, usar "Firebase.firestore" puede ayudar a mantener
-    la consistencia en nuestra base de código.
-
-    import com.google.firebase.firestore.FirebaseFirestore
-
-    private fun saveUser(username: String){
-        val id = auth.currentUser?.uid
-        val email = auth.currentUser?.email
-
-        viewModelScope.launch(Dispatchers.IO) {
-            val user = UserModel(
-                userId = id.toString(),
-                email = email.toString(),
-                username = username
-            )
-            // DCS - Añade el usuario a la colección "Users" en la base de datos Firestore
-            FirebaseFirestore.getInstance().collection("Users")
-                .add(user)
-                .addOnSuccessListener { Log.d("GUARDAR OK", "Se guardó el usuario correctamente en Firestore") }
-                .addOnFailureListener { Log.d("ERROR AL GUARDAR", "ERROR al guardar en Firestore") }
-        }
-    }
-    */
-
     /**
      * Cierra el diálogo de alerta de error mostrada en la UI.
      */
     fun closeAlert(){
+        writeToLog("Alerta cerrada")
         showAlert = false
     }
 
@@ -190,4 +182,16 @@ class LoginViewModel: ViewModel() {
     fun changeSelectedTab(selectedTab: Int) {
         this.selectedTab = selectedTab
     }
-}***/
+
+    /**
+     * Cierra la sesión del usuario actual.
+     */
+    fun logout() {
+        try {
+            auth.signOut()
+            writeToLog("Cierre de sesion del usuario exitoso")
+        }catch(_: Exception){
+            writeToLog("Fallo al cerrar sesión")
+        }
+    }
+}

@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "11:400",
-    "version": "5470947418",
+    "version": "5521083188",
     "component-id": "e6914a3eac5c1ca7ddfa941748d02d8352c7f9df"
   },
   "default": "Property 1=Default",
@@ -35,8 +35,8 @@
           {
             "id": "top_level",
             "padding": {
-              "left": "60.0",
-              "right": "60.0"
+              "left": "45.0",
+              "right": "45.0"
             },
             "border-radius": "10.0",
             "size-constraints": {
@@ -51,7 +51,7 @@
               "AppTitle",
               "My Account"
             ],
-            "item-spacing": "2.0",
+            "item-spacing": "7.0",
             "background-color": {
               "alpha": "1.0",
               "hue": "0.0",
@@ -64,7 +64,7 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "189.0"
+                "value": "218.0"
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
@@ -125,7 +125,7 @@
               "AppTitle",
               "Create an Account"
             ],
-            "item-spacing": "2.0",
+            "item-spacing": "7.0",
             "background-color": {
               "alpha": "1.0",
               "hue": "0.0",
@@ -138,7 +138,7 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "189.0"
+                "value": "218.0"
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
@@ -183,15 +183,15 @@
     {
       "design": "Property 1=Default",
       "size": {
-        "width": 309.0,
-        "height": 104.0
+        "width": 308.0,
+        "height": 109.0
       }
     },
     {
       "design": "Property 1=SignUpHeader",
       "size": {
         "width": 311.0,
-        "height": 104.0
+        "height": 109.0
       }
     }
   ],
