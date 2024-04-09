@@ -1,0 +1,406 @@
+{
+  "name": "menu_desplegable",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "EtSmXEVNWeabOV1W1xAYhc",
+    "node": "83:96",
+    "version": "5521883595",
+    "component-id": "7f97870336519b0818cab18692b4b39acebf8f42"
+  },
+  "default": "MenuDesplegable",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableHeader"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableFooter"
+      },
+      {
+        "type": "vector",
+        "id": "UserProfileIconBackground"
+      },
+      {
+        "type": "group",
+        "id": "UsernameView"
+      },
+      {
+        "type": "group",
+        "id": "ProfileEditButton"
+      },
+      {
+        "type": "vector",
+        "id": "UsernameViewBackground"
+      },
+      {
+        "type": "text",
+        "id": "UsernameTxt"
+      },
+      {
+        "type": "vector",
+        "id": "ProfileEditBackground"
+      },
+      {
+        "type": "text",
+        "id": "ProfileEditTxt"
+      },
+      {
+        "type": "vector",
+        "id": "MenuDesplegableFooter1"
+      },
+      {
+        "type": "group",
+        "id": "LogOutButton"
+      },
+      {
+        "type": "vector",
+        "id": "LogOutButtonBackground"
+      },
+      {
+        "type": "text",
+        "id": "LogOutTxt"
+      },
+      {
+        "type": "image",
+        "id": "LogOutIcon"
+      }
+    ],
+    "modes": {
+      "MenuDesplegable": {
+        "rules": [
+          {
+            "id": "top_level",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "main-axis-align": "start",
+            "children": [
+              "MenuDesplegableHeader",
+              "MenuDesplegableFooter"
+            ],
+            "item-spacing": "664.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.8509803921568627"
+            }
+          },
+          {
+            "id": "MenuDesplegableHeader",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "80.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "UserProfileIconBackground",
+              "UsernameView",
+              "ProfileEditButton"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MenuDesplegableFooter",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "272.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "48.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "MenuDesplegableFooter1",
+              "LogOutButton"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "UserProfileIconBackground",
+            "margin": {
+              "right": "176.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "user_profile_icon_background.svg"
+          },
+          {
+            "id": "UsernameView",
+            "margin": {
+              "left": "88.0",
+              "top": "8.0",
+              "bottom": "40.0"
+            },
+            "border-radius": "5.0",
+            "is-structured": "false",
+            "children": [
+              "UsernameViewBackground",
+              "UsernameTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "ProfileEditButton",
+            "margin": {
+              "left": "132.0",
+              "top": "52.0",
+              "right": "44.0",
+              "bottom": "12.0"
+            },
+            "border-radius": "5.0",
+            "is-structured": "false",
+            "children": [
+              "ProfileEditBackground",
+              "ProfileEditTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "UsernameViewBackground",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "username_view_background.svg"
+          },
+          {
+            "id": "UsernameTxt",
+            "margin": {
+              "top": "4.0",
+              "bottom": "4.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Hola,",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "20.0",
+            "line-height": "1.172000026702881",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "ProfileEditBackground",
+            "border-radius": "5.0",
+            "tap-handler": "$onProfileEditBackgroundClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "profile_edit_background.svg"
+          },
+          {
+            "id": "ProfileEditTxt",
+            "margin": {
+              "left": "8.0",
+              "right": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Editar Perfil",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "10.0",
+            "line-height": "1.172000026702881",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "MenuDesplegableFooter1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "menu_desplegable_footer.svg"
+          },
+          {
+            "id": "LogOutButton",
+            "margin": {
+              "left": "8.0",
+              "top": "4.0",
+              "right": "140.0",
+              "bottom": "4.0"
+            },
+            "is-structured": "false",
+            "children": [
+              "LogOutButtonBackground",
+              "LogOutTxt",
+              "LogOutIcon"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "LogOutButtonBackground",
+            "tap-handler": "$onLogOutButtonBackgroundClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "log_out_button_background.svg"
+          },
+          {
+            "id": "LogOutTxt",
+            "margin": {
+              "left": "44.0",
+              "top": "8.0",
+              "bottom": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Log Out",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": "20.0",
+            "line-height": "1.172000026702881",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "LogOutIcon",
+            "margin": {
+              "left": "3.3214111328125",
+              "top": "6.0",
+              "right": "89.6785888671875",
+              "bottom": "3.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "log_out_icon.png",
+            "scale": "cover"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "onProfileEditBackgroundClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onLogOutButtonBackgroundClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "MenuDesplegable",
+      "size": {
+        "width": 272.0,
+        "height": 792.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
