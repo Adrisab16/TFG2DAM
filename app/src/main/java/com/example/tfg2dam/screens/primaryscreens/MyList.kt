@@ -31,11 +31,10 @@ fun MyList(navController: NavController, loginVM: loginViewModel){
     Box(Modifier.fillMaxSize()) {
         Header(
             modifier = Modifier
-                .padding(bottom = 720.dp)
-                .align(Alignment.TopCenter)
+                .padding(bottom = 700.dp)
+                .align(Alignment.Center)
             , // Agregar espacio superior
             onUserIconClicked = { isMenuVisible = true },
-            onSettingsIconClicked = {}
         )
 
         FooterNavTab(
@@ -59,7 +58,6 @@ fun MyList(navController: NavController, loginVM: loginViewModel){
                 MenuDesplegable(
                     modifier = Modifier.clickable {  },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
-                    onProfileEditBackgroundClicked = {  },
                     usernameTxttextcontent = "Hola,"
                 )
             }

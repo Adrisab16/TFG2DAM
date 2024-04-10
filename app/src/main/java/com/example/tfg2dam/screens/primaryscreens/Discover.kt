@@ -31,11 +31,10 @@ fun Discover(navController: NavController, loginVM: loginViewModel){
     Box(Modifier.fillMaxSize()) {
         Header(
             modifier = Modifier
-                .padding(bottom = 720.dp)
-                .align(Alignment.TopCenter)
+                .padding(bottom = 700.dp)
+                .align(Alignment.Center)
             , // Agregar espacio superior
             onUserIconClicked = { isMenuVisible = true },
-            onSettingsIconClicked = {}
         )
 
         FooterNavTab(modifier = Modifier.align(Alignment.BottomCenter),
@@ -58,7 +57,6 @@ fun Discover(navController: NavController, loginVM: loginViewModel){
                 MenuDesplegable(
                     modifier = Modifier.clickable {  },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
-                    onProfileEditBackgroundClicked = {  },
                     usernameTxttextcontent = "Hola,"
                 )
             }

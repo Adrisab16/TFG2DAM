@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "3:41",
-    "version": "5528745026",
+    "version": "5530486024",
     "component-id": "8011c1415fa0d7452c35d23a48f02b8edf9da818"
   },
   "default": "Header",
@@ -23,10 +23,6 @@
       {
         "type": "text",
         "id": "AppTitle"
-      },
-      {
-        "type": "image",
-        "id": "SettingsIcon"
       }
     ],
     "modes": {
@@ -34,24 +30,27 @@
         "rules": [
           {
             "id": "top_level",
-            "padding": "8.0",
+            "padding": {
+              "left": "10.0",
+              "top": "10.0",
+              "right": "5.0",
+              "bottom": "10.0"
+            },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "shrink"
               },
               "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
+                "sizing-mode": "shrink"
               }
             },
             "arrangement": "row",
             "main-axis-align": "start",
             "children": [
               "UserIcon",
-              "AppTitle",
-              "SettingsIcon"
+              "AppTitle"
             ],
-            "item-spacing": "38.0",
+            "item-spacing": "20.0",
             "background-color": {
               "alpha": "1.0",
               "hue": "0.0",
@@ -65,11 +64,11 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "32.0"
+                "value": "52.0"
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "32.0"
+                "value": "52.0"
               }
             },
             "image-content": "user_icon.png",
@@ -80,11 +79,11 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "200.0"
+                "value": "273.0"
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "32.0"
+                "value": "56.0"
               }
             },
             "font-weight": "700.0",
@@ -98,25 +97,9 @@
             "overflow": "visible",
             "max-lines": "-1",
             "text-align-vertical": "center",
-            "text-size": "30.0",
-            "line-height": "1.2102272033691406",
-            "typeface": "Inter"
-          },
-          {
-            "id": "SettingsIcon",
-            "tap-handler": "$onSettingsIconClicked",
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "fixed",
-                "value": "24.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "fixed",
-                "value": "24.0"
-              }
-            },
-            "image-content": "settings_icon.png",
-            "scale": "cover"
+            "text-size": "40.0",
+            "line-height": "1.2569999694824219",
+            "typeface": "Merriweather"
           }
         ]
       }
@@ -127,19 +110,14 @@
       "data-type": "void-callback",
       "required": false,
       "description": ""
-    },
-    "onSettingsIconClicked": {
-      "data-type": "void-callback",
-      "required": false,
-      "description": ""
     }
   },
   "previews": [
     {
       "design": "Header",
       "size": {
-        "width": 348.0,
-        "height": 66.0
+        "width": 360.0,
+        "height": 76.0
       }
     }
   ],

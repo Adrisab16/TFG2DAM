@@ -27,6 +27,7 @@ import com.example.tfg2dam.footernavtab.FooterNavTab
 import com.example.tfg2dam.footernavtab.Property1
 import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
+import com.example.tfg2dam.screens.Settings
 import com.example.tfg2dam.viewmodel.loginViewModel
 
 
@@ -34,14 +35,13 @@ import com.example.tfg2dam.viewmodel.loginViewModel
 fun Home(navController: NavController, loginVM: loginViewModel) {
     var isMenuVisible by remember { mutableStateOf(false) }
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize().background(Color(android.graphics.Color.parseColor("#141414")))) {
         Header(
             modifier = Modifier
-                .padding(bottom = 720.dp)
-                .align(Alignment.TopCenter)
+                .padding(bottom = 700.dp)
+                .align(Alignment.Center)
             , // Agregar espacio superior
             onUserIconClicked = { isMenuVisible = true },
-            onSettingsIconClicked = {}
         )
 
         FooterNavTab(
@@ -65,7 +65,6 @@ fun Home(navController: NavController, loginVM: loginViewModel) {
                 MenuDesplegable(
                     modifier = Modifier.clickable {  },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
-                    onProfileEditBackgroundClicked = {  },
                     usernameTxttextcontent = "Hola,"
                 )
             }

@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "83:96",
-    "version": "5528260864",
+    "version": "5530796410",
     "component-id": "7f97870336519b0818cab18692b4b39acebf8f42"
   },
   "default": "MenuDesplegable",
@@ -22,7 +22,23 @@
       },
       {
         "type": "group",
+        "id": "AccountField"
+      },
+      {
+        "type": "group",
+        "id": "ExtraContentField"
+      },
+      {
+        "type": "group",
+        "id": "MiscField"
+      },
+      {
+        "type": "group",
         "id": "MenuDesplegableFooter"
+      },
+      {
+        "type": "vector",
+        "id": "MenuDesplegableHeaderBackground"
       },
       {
         "type": "vector",
@@ -33,10 +49,6 @@
         "id": "UsernameView"
       },
       {
-        "type": "group",
-        "id": "ProfileEditButton"
-      },
-      {
         "type": "vector",
         "id": "UsernameViewBackground"
       },
@@ -45,12 +57,192 @@
         "id": "UsernameTxt"
       },
       {
+        "type": "group",
+        "id": "AccountTitle"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableButtons"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableButtons1"
+      },
+      {
         "type": "vector",
-        "id": "ProfileEditBackground"
+        "id": "AccountTitleBackground"
       },
       {
         "type": "text",
-        "id": "ProfileEditTxt"
+        "id": "AccountTxt"
+      },
+      {
+        "type": "vector",
+        "id": "MyAccountButtonBackground"
+      },
+      {
+        "type": "image",
+        "id": "profile 1"
+      },
+      {
+        "type": "text",
+        "id": "MyAccountTxt"
+      },
+      {
+        "type": "vector",
+        "id": "MyStadisticsButtonBackground"
+      },
+      {
+        "type": "image",
+        "id": "MyStadisticsIcon"
+      },
+      {
+        "type": "text",
+        "id": "MyStadisticsTxt"
+      },
+      {
+        "type": "vector",
+        "id": "LineSpacer"
+      },
+      {
+        "type": "group",
+        "id": "ExtraContentTitle"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableButtons2"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableButtons3"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableButtons4"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableButtons5"
+      },
+      {
+        "type": "vector",
+        "id": "ExtraContentTitleBackground"
+      },
+      {
+        "type": "text",
+        "id": "ExtraContentTxt"
+      },
+      {
+        "type": "vector",
+        "id": "GamePediaButtonBackground"
+      },
+      {
+        "type": "image",
+        "id": "encyclopedia 1"
+      },
+      {
+        "type": "text",
+        "id": "GamePediaTxt"
+      },
+      {
+        "type": "vector",
+        "id": "GameNewsButtonBackground"
+      },
+      {
+        "type": "image",
+        "id": "newspaper-folded 1"
+      },
+      {
+        "type": "text",
+        "id": "GameNewsTxt"
+      },
+      {
+        "type": "vector",
+        "id": "MinigamesButtonBackground"
+      },
+      {
+        "type": "image",
+        "id": "game 1"
+      },
+      {
+        "type": "text",
+        "id": "MinigamesTxt"
+      },
+      {
+        "type": "vector",
+        "id": "DailyChallengesButtonBackground"
+      },
+      {
+        "type": "image",
+        "id": "target 1"
+      },
+      {
+        "type": "text",
+        "id": "DailyChallengesTxt"
+      },
+      {
+        "type": "vector",
+        "id": "LineSpacer1"
+      },
+      {
+        "type": "group",
+        "id": "MiscTitle"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableButtons6"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableButtons7"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableButtons8"
+      },
+      {
+        "type": "vector",
+        "id": "MiscTitleBackground"
+      },
+      {
+        "type": "text",
+        "id": "MiscTxt"
+      },
+      {
+        "type": "vector",
+        "id": "HelpButtonBackground"
+      },
+      {
+        "type": "image",
+        "id": "question 1"
+      },
+      {
+        "type": "text",
+        "id": "HelpTxt"
+      },
+      {
+        "type": "vector",
+        "id": "FAQButtonBackground"
+      },
+      {
+        "type": "image",
+        "id": "FAQIcon"
+      },
+      {
+        "type": "text",
+        "id": "FAQTxt"
+      },
+      {
+        "type": "vector",
+        "id": "SettingsButtonBackground"
+      },
+      {
+        "type": "image",
+        "id": "SettingsIcon"
+      },
+      {
+        "type": "text",
+        "id": "SettingsTxt"
       },
       {
         "type": "vector",
@@ -89,9 +281,12 @@
             "main-axis-align": "start",
             "children": [
               "MenuDesplegableHeader",
+              "AccountField",
+              "ExtraContentField",
+              "MiscField",
               "MenuDesplegableFooter"
             ],
-            "item-spacing": "664.0",
+            "item-spacing": "16.0",
             "background-color": {
               "alpha": "1.0",
               "hue": "0.0",
@@ -104,18 +299,83 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "256.0"
+                "value": "272.0"
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "80.0"
+                "value": "96.0"
               }
             },
             "is-structured": "false",
             "children": [
+              "MenuDesplegableHeaderBackground",
               "UserProfileIconBackground",
-              "UsernameView",
-              "ProfileEditButton"
+              "UsernameView"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "AccountField",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "129.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "AccountTitle",
+              "MenuDesplegableButtons",
+              "MenuDesplegableButtons1"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "ExtraContentField",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "264.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "272.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "LineSpacer",
+              "ExtraContentTitle",
+              "MenuDesplegableButtons2",
+              "MenuDesplegableButtons3",
+              "MenuDesplegableButtons4",
+              "MenuDesplegableButtons5"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MiscField",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "264.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "184.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "LineSpacer1",
+              "MiscTitle",
+              "MenuDesplegableButtons6",
+              "MenuDesplegableButtons7",
+              "MenuDesplegableButtons8"
             ],
             "clip-content": "false"
           },
@@ -128,7 +388,7 @@
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "48.0"
+                "value": "47.98242950439453"
               }
             },
             "is-structured": "false",
@@ -139,9 +399,26 @@
             "clip-content": "false"
           },
           {
+            "id": "MenuDesplegableHeaderBackground",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "272.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "96.0"
+              }
+            },
+            "vector-content": "menu_desplegable_header_background.svg"
+          },
+          {
             "id": "UserProfileIconBackground",
             "margin": {
-              "right": "176.0"
+              "left": "8.0",
+              "top": "8.90673828125",
+              "right": "184.0",
+              "bottom": "8.911888122558594"
             },
             "size-constraints": {
               "width-constraints": {
@@ -158,31 +435,16 @@
           {
             "id": "UsernameView",
             "margin": {
-              "left": "88.0",
-              "top": "8.0",
-              "bottom": "40.0"
+              "left": "96.0",
+              "top": "12.86529541015625",
+              "right": "8.0",
+              "bottom": "12.0"
             },
             "border-radius": "5.0",
             "is-structured": "false",
             "children": [
               "UsernameViewBackground",
               "UsernameTxt"
-            ],
-            "clip-content": "false"
-          },
-          {
-            "id": "ProfileEditButton",
-            "margin": {
-              "left": "132.0",
-              "top": "52.0",
-              "right": "44.0",
-              "bottom": "12.0"
-            },
-            "border-radius": "5.0",
-            "is-structured": "false",
-            "children": [
-              "ProfileEditBackground",
-              "ProfileEditTxt"
             ],
             "clip-content": "false"
           },
@@ -204,8 +466,8 @@
           {
             "id": "UsernameTxt",
             "margin": {
-              "top": "4.0",
-              "bottom": "4.0"
+              "top": "8.891815185546875",
+              "bottom": "8.891860961914062"
             },
             "size-constraints": {
               "width-constraints": {
@@ -227,14 +489,136 @@
             "overflow": "visible",
             "max-lines": "-1",
             "text-align-vertical": "center",
-            "text-size": "20.0",
-            "line-height": "1.172000026702881",
+            "text-size": "25.0",
+            "line-height": "1.1720000457763673",
             "typeface": "Caladea"
           },
           {
-            "id": "ProfileEditBackground",
+            "id": "AccountTitle",
             "border-radius": "5.0",
-            "tap-handler": "$onProfileEditBackgroundClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "80.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "AccountTitleBackground",
+              "AccountTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MenuDesplegableButtons",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "40.0"
+              }
+            },
+            "tap-handler": "$onSettingsButtonClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "MyAccountButtonBackground",
+              "profile 1",
+              "MyAccountTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MenuDesplegableButtons1",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "89.0"
+              }
+            },
+            "tap-handler": "$onSettingsButtonClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "MyStadisticsButtonBackground",
+              "MyStadisticsIcon",
+              "MyStadisticsTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "AccountTitleBackground",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "80.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "vector-content": "account_title_background.svg"
+          },
+          {
+            "id": "AccountTxt",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "80.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Account:",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "15.0",
+            "line-height": "1.171999994913737",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "MyAccountButtonBackground",
+            "border-radius": "5.0",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "proportional",
@@ -245,13 +629,36 @@
                 "value": "1.0"
               }
             },
-            "vector-content": "profile_edit_background.svg"
+            "vector-content": "my_account_button_background.svg"
           },
           {
-            "id": "ProfileEditTxt",
+            "id": "profile 1",
             "margin": {
               "left": "8.0",
-              "right": "8.0"
+              "top": "8.0",
+              "right": "224.0",
+              "bottom": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "profile_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "MyAccountTxt",
+            "margin": {
+              "left": "40.0",
+              "top": "2.0",
+              "right": "6.0",
+              "bottom": "3.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -269,12 +676,953 @@
               "saturation": "0.0",
               "value": "1.0"
             },
-            "text-content": "Editar Perfil",
+            "text-content": "My Account",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": "30.0",
+            "line-height": "1.171999994913737",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "MyStadisticsButtonBackground",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "my_stadistics_button_background.svg"
+          },
+          {
+            "id": "MyStadisticsIcon",
+            "margin": {
+              "left": "8.0",
+              "top": "8.0",
+              "right": "224.0",
+              "bottom": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "my_stadistics_icon.png",
+            "scale": "cover"
+          },
+          {
+            "id": "MyStadisticsTxt",
+            "margin": {
+              "left": "40.0",
+              "top": "2.0",
+              "right": "7.0",
+              "bottom": "3.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "My Stadistics",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": "30.0",
+            "line-height": "1.171999994913737",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "LineSpacer",
+            "border-radius": "10.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "264.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "2.0"
+              }
+            },
+            "vector-content": "line_spacer.svg"
+          },
+          {
+            "id": "ExtraContentTitle",
+            "border-radius": "5.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "4.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "8.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "105.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "ExtraContentTitleBackground",
+              "ExtraContentTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MenuDesplegableButtons2",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "4.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "48.0"
+              }
+            },
+            "tap-handler": "$onSettingsButtonClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "GamePediaButtonBackground",
+              "encyclopedia 1",
+              "GamePediaTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MenuDesplegableButtons3",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "4.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "108.0"
+              }
+            },
+            "tap-handler": "$onSettingsButtonClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "GameNewsButtonBackground",
+              "newspaper-folded 1",
+              "GameNewsTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MenuDesplegableButtons4",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "4.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "172.0"
+              }
+            },
+            "tap-handler": "$onSettingsButtonClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "MinigamesButtonBackground",
+              "game 1",
+              "MinigamesTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MenuDesplegableButtons5",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "4.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "232.0"
+              }
+            },
+            "tap-handler": "$onSettingsButtonClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "DailyChallengesButtonBackground",
+              "target 1",
+              "DailyChallengesTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "ExtraContentTitleBackground",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "105.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "vector-content": "extra_content_title_background.svg"
+          },
+          {
+            "id": "ExtraContentTxt",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "105.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Extra contents:",
             "overflow": "visible",
             "max-lines": "-1",
             "text-align-vertical": "center",
-            "text-size": "10.0",
-            "line-height": "1.172000026702881",
+            "text-size": "15.0",
+            "line-height": "1.171999994913737",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "GamePediaButtonBackground",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "game_pedia_button_background.svg"
+          },
+          {
+            "id": "encyclopedia 1",
+            "margin": {
+              "left": "8.0",
+              "top": "8.0",
+              "right": "224.0",
+              "bottom": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "encyclopedia_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "GamePediaTxt",
+            "margin": {
+              "left": "40.0",
+              "top": "2.0",
+              "right": "4.0",
+              "bottom": "3.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "GamePedia",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": "30.0",
+            "line-height": "1.171999994913737",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "GameNewsButtonBackground",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "game_news_button_background.svg"
+          },
+          {
+            "id": "newspaper-folded 1",
+            "margin": {
+              "left": "8.0",
+              "top": "8.0",
+              "right": "224.0",
+              "bottom": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "newspaper_folded_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "GameNewsTxt",
+            "margin": {
+              "left": "40.0",
+              "top": "2.0",
+              "right": "5.0",
+              "bottom": "3.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Game News",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": "30.0",
+            "line-height": "1.171999994913737",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "MinigamesButtonBackground",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "minigames_button_background.svg"
+          },
+          {
+            "id": "game 1",
+            "margin": {
+              "left": "8.0",
+              "top": "8.0",
+              "right": "224.0",
+              "bottom": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "game_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "MinigamesTxt",
+            "margin": {
+              "left": "40.0",
+              "top": "2.0",
+              "right": "5.0",
+              "bottom": "3.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Minigames",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": "30.0",
+            "line-height": "1.171999994913737",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "DailyChallengesButtonBackground",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "daily_challenges_button_background.svg"
+          },
+          {
+            "id": "target 1",
+            "margin": {
+              "left": "8.0",
+              "top": "8.0",
+              "right": "224.0",
+              "bottom": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "target_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "DailyChallengesTxt",
+            "margin": {
+              "left": "40.0",
+              "top": "2.0",
+              "bottom": "3.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Daily Challenges",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": "30.0",
+            "line-height": "1.171999994913737",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "LineSpacer1",
+            "border-radius": "10.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "264.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "2.0"
+              }
+            },
+            "vector-content": "line_spacer1.svg"
+          },
+          {
+            "id": "MiscTitle",
+            "border-radius": "5.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "4.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "9.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "80.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "MiscTitleBackground",
+              "MiscTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MenuDesplegableButtons6",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "4.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "48.0"
+              }
+            },
+            "tap-handler": "$onSettingsButtonClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "HelpButtonBackground",
+              "question 1",
+              "HelpTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MenuDesplegableButtons7",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "4.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "97.0"
+              }
+            },
+            "tap-handler": "$onSettingsButtonClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "FAQButtonBackground",
+              "FAQIcon",
+              "FAQTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MenuDesplegableButtons8",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "4.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "144.0"
+              }
+            },
+            "tap-handler": "$onSettingsButtonClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "SettingsButtonBackground",
+              "SettingsIcon",
+              "SettingsTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MiscTitleBackground",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "80.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "vector-content": "misc_title_background.svg"
+          },
+          {
+            "id": "MiscTxt",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "80.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Misc:",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "15.0",
+            "line-height": "1.171999994913737",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "HelpButtonBackground",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "help_button_background.svg"
+          },
+          {
+            "id": "question 1",
+            "margin": {
+              "left": "8.0",
+              "top": "8.0",
+              "right": "224.0",
+              "bottom": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "question_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "HelpTxt",
+            "margin": {
+              "left": "40.0",
+              "top": "2.0",
+              "right": "9.0",
+              "bottom": "3.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Help",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": "30.0",
+            "line-height": "1.171999994913737",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "FAQButtonBackground",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "faqbutton_background.svg"
+          },
+          {
+            "id": "FAQIcon",
+            "margin": {
+              "left": "8.0",
+              "top": "8.0",
+              "right": "224.0",
+              "bottom": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "faqicon.png",
+            "scale": "cover"
+          },
+          {
+            "id": "FAQTxt",
+            "margin": {
+              "left": "40.0",
+              "top": "2.0",
+              "right": "7.0",
+              "bottom": "3.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "FAQ",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": "30.0",
+            "line-height": "1.171999994913737",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "SettingsButtonBackground",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "settings_button_background.svg"
+          },
+          {
+            "id": "SettingsIcon",
+            "margin": {
+              "left": "8.0",
+              "top": "8.0",
+              "right": "224.0",
+              "bottom": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "settings_icon.png",
+            "scale": "cover"
+          },
+          {
+            "id": "SettingsTxt",
+            "margin": {
+              "left": "40.0",
+              "top": "2.0",
+              "right": "2.0",
+              "bottom": "3.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Settings",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": "30.0",
+            "line-height": "1.171999994913737",
             "typeface": "Caladea"
           },
           {
@@ -295,9 +1643,9 @@
             "id": "LogOutButton",
             "margin": {
               "left": "8.0",
-              "top": "4.0",
+              "top": "3.998504638671875",
               "right": "140.0",
-              "bottom": "4.0"
+              "bottom": "3.998565673828125"
             },
             "is-structured": "false",
             "children": [
@@ -326,8 +1674,8 @@
             "id": "LogOutTxt",
             "margin": {
               "left": "44.0",
-              "top": "8.0",
-              "bottom": "8.0"
+              "top": "7.9970703125",
+              "bottom": "7.997074127197266"
             },
             "size-constraints": {
               "width-constraints": {
@@ -357,10 +1705,10 @@
           {
             "id": "LogOutIcon",
             "margin": {
-              "left": "3.3214111328125",
-              "top": "6.0",
-              "right": "89.6785888671875",
-              "bottom": "3.0"
+              "left": "3.3214263916015625",
+              "top": "5.997802734375",
+              "right": "89.67857360839844",
+              "bottom": "2.9989051818847656"
             },
             "size-constraints": {
               "width-constraints": {
@@ -385,7 +1733,7 @@
       "required": false,
       "description": ""
     },
-    "onProfileEditBackgroundClicked": {
+    "onSettingsButtonClicked": {
       "data-type": "void-callback",
       "required": false,
       "description": ""
@@ -401,7 +1749,7 @@
       "design": "MenuDesplegable",
       "size": {
         "width": 272.0,
-        "height": 792.0
+        "height": 792.982421875
       },
       "parameters": {
         "UsernameTxttextcontent": "Hola,"
