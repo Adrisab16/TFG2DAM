@@ -1,4 +1,4 @@
-package com.example.tfg2dam.screens
+package com.example.tfg2dam.screens.login_signupscreens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

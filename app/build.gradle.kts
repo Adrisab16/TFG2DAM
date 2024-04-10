@@ -79,4 +79,8 @@ dependencies {
     // DCS - Base de datos Firestore
     implementation("com.google.firebase:firebase-firestore-ktx:24.11.0")
     implementation("com.google.firebase:firebase-analytics")
+    // Uso de retrofit para acceder a la API RAWG:
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
 }

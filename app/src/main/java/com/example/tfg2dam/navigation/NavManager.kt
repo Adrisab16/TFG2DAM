@@ -5,12 +5,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tfg2dam.screens.BlankView
-import com.example.tfg2dam.screens.Discover
-import com.example.tfg2dam.screens.Home
-import com.example.tfg2dam.screens.LogIn
-import com.example.tfg2dam.screens.MyList
+import com.example.tfg2dam.screens.primaryscreens.Discover
+import com.example.tfg2dam.screens.primaryscreens.Home
+import com.example.tfg2dam.screens.login_signupscreens.LogIn
+import com.example.tfg2dam.screens.primaryscreens.MyList
 import com.example.tfg2dam.screens.Settings
-import com.example.tfg2dam.screens.SignUp
+import com.example.tfg2dam.screens.login_signupscreens.SignUp
 import com.example.tfg2dam.viewmodel.loginViewModel
 
 @Composable

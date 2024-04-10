@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "83:96",
-    "version": "5521883595",
+    "version": "5528260864",
     "component-id": "7f97870336519b0818cab18692b4b39acebf8f42"
   },
   "default": "MenuDesplegable",
@@ -96,7 +96,7 @@
               "alpha": "1.0",
               "hue": "0.0",
               "saturation": "0.0",
-              "value": "0.8509803921568627"
+              "value": "0.4666666666666667"
             }
           },
           {
@@ -223,7 +223,7 @@
               "saturation": "0.0",
               "value": "1.0"
             },
-            "text-content": "Hola,",
+            "text-content": "$UsernameTxttextcontent",
             "overflow": "visible",
             "max-lines": "-1",
             "text-align-vertical": "center",
@@ -380,6 +380,11 @@
     }
   },
   "parameters": {
+    "UsernameTxttextcontent": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
     "onProfileEditBackgroundClicked": {
       "data-type": "void-callback",
       "required": false,
@@ -397,6 +402,9 @@
       "size": {
         "width": 272.0,
         "height": 792.0
+      },
+      "parameters": {
+        "UsernameTxttextcontent": "Hola,"
       }
     }
   ],
