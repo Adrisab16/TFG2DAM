@@ -60,6 +60,7 @@ fun Home(navController: NavController, loginVM: loginViewModel) {
                 MenuDesplegable(
                     modifier = Modifier.clickable {  },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
+                    onSettingsButtonClicked = {navController.navigate("Settings")},
                     usernameTxttextcontent = "Hola,"
                 )
             }

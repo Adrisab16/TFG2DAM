@@ -28,7 +28,7 @@ import com.example.tfg2dam.viewmodel.loginViewModel
 @Composable
 fun MyList(navController: NavController, loginVM: loginViewModel){
     var isMenuVisible by remember { mutableStateOf(false) }
-    Box(Modifier.fillMaxSize()) {
+    Box(Modifier.fillMaxSize().background(Color(android.graphics.Color.parseColor("#141414")))) {
         Header(
             modifier = Modifier
                 .padding(bottom = 700.dp)
@@ -58,6 +58,7 @@ fun MyList(navController: NavController, loginVM: loginViewModel){
                 MenuDesplegable(
                     modifier = Modifier.clickable {  },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
+                    onSettingsButtonClicked = {navController.navigate("Settings")},
                     usernameTxttextcontent = "Hola,"
                 )
             }

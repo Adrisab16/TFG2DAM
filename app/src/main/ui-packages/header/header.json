@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "3:41",
-    "version": "5530486024",
+    "version": "5559583799",
     "component-id": "8011c1415fa0d7452c35d23a48f02b8edf9da818"
   },
   "default": "Header",
@@ -76,6 +76,7 @@
           },
           {
             "id": "AppTitle",
+            "tap-handler": "$onAppTitleClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -107,6 +108,11 @@
   },
   "parameters": {
     "onUserIconClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onAppTitleClicked": {
       "data-type": "void-callback",
       "required": false,
       "description": ""

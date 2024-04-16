@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "83:96",
-    "version": "5530796410",
+    "version": "5559455288",
     "component-id": "7f97870336519b0818cab18692b4b39acebf8f42"
   },
   "default": "MenuDesplegable",
@@ -1211,8 +1211,8 @@
             "id": "DailyChallengesTxt",
             "margin": {
               "left": "40.0",
-              "top": "2.0",
-              "bottom": "3.0"
+              "top": "3.0",
+              "bottom": "4.0"
             },
             "size-constraints": {
               "width-constraints": {
@@ -1235,8 +1235,8 @@
             "max-lines": "-1",
             "text-align": "left",
             "text-align-vertical": "center",
-            "text-size": "30.0",
-            "line-height": "1.171999994913737",
+            "text-size": "28.0",
+            "line-height": "1.1720000675746374",
             "typeface": "Caladea"
           },
           {
@@ -1705,9 +1705,9 @@
           {
             "id": "LogOutIcon",
             "margin": {
-              "left": "3.3214263916015625",
+              "left": "3.3214111328125",
               "top": "5.997802734375",
-              "right": "89.67857360839844",
+              "right": "89.6785888671875",
               "bottom": "2.9989051818847656"
             },
             "size-constraints": {
