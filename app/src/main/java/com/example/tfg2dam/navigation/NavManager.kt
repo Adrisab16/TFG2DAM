@@ -53,7 +53,7 @@ fun NavManager(
         }
         composable("GameDetailsScreen") {
             // Muestra la vista correspondiente a la pantalla Blank.
-            GameDetailsScreen(navController)
+            GameDetailsScreen(navController, loginVM)
         }
         composable("Settings") {
             // Muestra la vista correspondiente a la pantalla principal (Home).

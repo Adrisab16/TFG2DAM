@@ -9,6 +9,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,24 +33,36 @@ import com.example.tfg2dam.viewmodel.loginViewModel
 @Composable
 fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: VideojuegosViewModel){
     var isMenuVisible by remember { mutableStateOf(false) }
+    var isloaded by remember { mutableStateOf(true) }
     //val games by gameVM.games.collectAsState()
 
 
-    Box(Modifier.fillMaxSize().background(Color(android.graphics.Color.parseColor("#141414")))) {
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(Color(android.graphics.Color.parseColor("#141414")))) {
         //Header:
 
-
-        // Grid de videojuegos:
-        Box(modifier = Modifier
-            .padding(top = 80.dp, bottom = 60.dp)){
-            Scaffold {
-                ContenidoGridView(
-                    viewModel = gameVM,
-                    pad = it,
-                    navController = navController
-                )
+        if(isloaded){
+            // Grid de videojuegos:
+            Box(modifier = Modifier
+                .padding(top = 80.dp, bottom = 60.dp)){
+                Scaffold {
+                    ContenidoGridView(
+                        viewModel = gameVM,
+                        pad = it,
+                        navController = navController
+                    )
+                }
             }
         }
+        else{
+            Box(modifier = Modifier
+                .padding(top = 80.dp, bottom = 60.dp)){
+                CircularProgressIndicator()
+            }
+        }
+
         Header(
             modifier = Modifier
                 .padding(bottom = 700.dp)

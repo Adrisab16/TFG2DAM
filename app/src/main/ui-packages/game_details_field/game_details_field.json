@@ -1,0 +1,370 @@
+{
+  "name": "game_details_field",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "EtSmXEVNWeabOV1W1xAYhc",
+    "node": "107:31",
+    "version": "5610988842",
+    "component-id": "a6221c13f0de37dd9366e4776c6f24c100e207ac"
+  },
+  "default": "GameDetailsField",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "GameTitleField"
+      },
+      {
+        "type": "group",
+        "id": "DetailsScreen"
+      },
+      {
+        "type": "vector",
+        "id": "GameDescription"
+      },
+      {
+        "type": "vector",
+        "id": "GameTitle"
+      },
+      {
+        "type": "text",
+        "id": "Titletxt"
+      },
+      {
+        "type": "vector",
+        "id": "GamePhoto"
+      },
+      {
+        "type": "group",
+        "id": "AddAndScoreButton"
+      },
+      {
+        "type": "group",
+        "id": "HoursAndMetacriticFields"
+      },
+      {
+        "type": "vector",
+        "id": "AddToListButton"
+      },
+      {
+        "type": "vector",
+        "id": "ScoreButton"
+      },
+      {
+        "type": "vector",
+        "id": "MetacriticScoreBackground"
+      },
+      {
+        "type": "vector",
+        "id": "HoursToBeatField"
+      }
+    ],
+    "modes": {
+      "GameDetailsField": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "GameTitleField",
+              "DetailsScreen",
+              "GameDescription"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "GameTitleField",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "328.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "48.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "GameTitle",
+              "Titletxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "DetailsScreen",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "8.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "76.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "312.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "184.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "GamePhoto",
+              "AddAndScoreButton",
+              "HoursAndMetacriticFields"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "GameDescription",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "288.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "328.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "224.0"
+              }
+            },
+            "vector-content": "game_description.svg"
+          },
+          {
+            "id": "GameTitle",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "328.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "48.0"
+              }
+            },
+            "vector-content": "game_title.svg"
+          },
+          {
+            "id": "Titletxt",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "8.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "8.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "312.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "32.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Title",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "20.0",
+            "line-height": "1.2569999694824219",
+            "typeface": "Merriweather"
+          },
+          {
+            "id": "GamePhoto",
+            "margin": {
+              "right": "192.0"
+            },
+            "border-radius": "10.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "game_photo.svg"
+          },
+          {
+            "id": "AddAndScoreButton",
+            "border-radius": "5.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "156.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "124.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "136.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "60.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "AddToListButton",
+              "ScoreButton"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "HoursAndMetacriticFields",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "136.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "0.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "176.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "68.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "MetacriticScoreBackground",
+              "HoursToBeatField"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "AddToListButton",
+            "margin": {
+              "bottom": "36.0"
+            },
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "add_to_list_button.svg"
+          },
+          {
+            "id": "ScoreButton",
+            "margin": {
+              "top": "36.0"
+            },
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "score_button.svg"
+          },
+          {
+            "id": "MetacriticScoreBackground",
+            "margin": {
+              "right": "104.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "metacritic_score_background.svg"
+          },
+          {
+            "id": "HoursToBeatField",
+            "margin": {
+              "left": "80.0",
+              "top": "12.0",
+              "bottom": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "hours_to_beat_field.svg"
+          }
+        ]
+      }
+    }
+  },
+  "previews": [
+    {
+      "design": "GameDetailsField",
+      "size": {
+        "width": 328.0,
+        "height": 512.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
