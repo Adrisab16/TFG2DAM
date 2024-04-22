@@ -55,11 +55,14 @@ android {
 dependencies {
 
     implementation("androidx.compose.material:material-icons-extended")
+    // Dependencia para la navegacion
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation ("com.google.firebase:firebase-auth-ktx:22.3.1")
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.core:core-ktx:1.13.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation("androidx.activity:activity-compose:1.8.2")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.6")
+    implementation("androidx.activity:activity-compose:1.9.0")
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
@@ -78,7 +81,7 @@ dependencies {
     // DCS - Servicio de Autenticación
     implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
     // DCS - Base de datos Firestore
-    implementation("com.google.firebase:firebase-firestore-ktx:24.11.0")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.11.1")
     implementation("com.google.firebase:firebase-analytics")
     // Uso de retrofit para acceder a la API RAWG:
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")

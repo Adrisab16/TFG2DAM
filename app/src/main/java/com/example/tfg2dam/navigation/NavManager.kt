@@ -11,10 +11,11 @@ import com.example.tfg2dam.screens.login_signupscreens.LogIn
 import com.example.tfg2dam.screens.primaryscreens.MyList
 import com.example.tfg2dam.screens.Settings
 import com.example.tfg2dam.screens.login_signupscreens.SignUp
+//import com.example.tfg2dam.viewmodel.VideogamesViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
 
 @Composable
-fun NavManager(loginVM: loginViewModel) {
+fun NavManager(loginVM: loginViewModel, /*gameVM: VideogamesViewModel*/) {
     // DCS - Configuración del sistema de navegación y definición de las rutas.
 
     // Se crea el controlador de navegación que recordará el estado de la navegación.
@@ -40,7 +41,7 @@ fun NavManager(loginVM: loginViewModel) {
         }
         composable("Discover") {
             // Muestra la vista correspondiente a la pantalla principal (Home).
-            Discover(navController, loginVM)
+            Discover(navController, loginVM, /*gameVM*/)
         }
         composable("MyList") {
             // Muestra la vista correspondiente a la pantalla principal (Home).

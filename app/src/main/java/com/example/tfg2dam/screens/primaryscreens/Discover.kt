@@ -14,9 +14,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,16 +32,13 @@ import com.example.tfg2dam.footernavtab.FooterNavTab
 import com.example.tfg2dam.footernavtab.Property1
 import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
-import com.example.tfg2dam.network.RetrofitClient.api
 import com.example.tfg2dam.viewmodel.loginViewModel
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.style.TextAlign
-import coil.compose.rememberImagePainter
 
 
 @Composable
-fun Discover(navController: NavController, loginVM: loginViewModel){
+fun Discover(navController: NavController, loginVM: loginViewModel, /*gameVM:VideogamesViewModel*/){
     var isMenuVisible by remember { mutableStateOf(false) }
+    //val games by gameVM.games.collectAsState()
 
 
     Box(Modifier.fillMaxSize()) {
@@ -52,30 +51,12 @@ fun Discover(navController: NavController, loginVM: loginViewModel){
             onUserIconClicked = { isMenuVisible = true },
         )
 
-        // var games by remember { mutableStateOf<List<GameModel>>(emptyList()) }
+        // Grid de videojuegos:
 
-        // Llama a la API para obtener los juegos:
 
-        /*LaunchedEffect(Unit) {
-            try {
-                val response = api.getGames(page = 1, pageSize = 20)
-                games = response.results
-            } catch (e: Exception) {
-                // Manejo de errores
-            }
-        }*/
 
-        // Lo muestra en un VerticalGrid (un listado de imagenes junto a su texto):
 
-        /*LazyVerticalGrid(
-            columns = GridCells.Adaptive(minSize = 100.dp),
-            modifier = Modifier.fillMaxSize(),
-            ) {
-            items(games) { game ->
-                GameItem(game = game)
-            }
-        }*/
-        Text("Hola")
+
 
         // Footer:
         FooterNavTab(modifier = Modifier.align(Alignment.BottomCenter),
@@ -109,24 +90,23 @@ fun Discover(navController: NavController, loginVM: loginViewModel){
 
 /*
 @Composable
-fun GameItem(game: GameModel) {
+fun GameItem(gameModel: GameModel) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.padding(8.dp)
     ) {
         // Imagen del juego
         Image(
-            painter = rememberImagePainter(game.imageUrl),
-            contentDescription = game.name,
+            painter = rememberAsyncImagePainter(gameModel.image), // Corrección aquí
+            contentDescription = gameModel.name,
             modifier = Modifier.size(72.dp, 98.dp),
             contentScale = ContentScale.Crop
         )
         // Nombre del juego
         Text(
-            text = game.name,
+            text = gameModel.name,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(top = 4.dp)
         )
     }
-}
-*/
+}*/
