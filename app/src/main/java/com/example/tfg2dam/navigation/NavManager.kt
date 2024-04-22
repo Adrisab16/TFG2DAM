@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.screens.blankview.BlankView
 import com.example.tfg2dam.screens.primaryscreens.Discover
 import com.example.tfg2dam.screens.primaryscreens.Home

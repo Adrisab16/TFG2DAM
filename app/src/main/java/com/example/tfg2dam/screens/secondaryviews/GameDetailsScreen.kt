@@ -33,7 +33,9 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel)
     // Para esta pantalla, me gustaria extraer el tiempo de juego (playtime) y el rating de metacritic
 
 
-    Box(modifier = Modifier.fillMaxSize().background(Color(android.graphics.Color.parseColor("#141414")))) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Color(android.graphics.Color.parseColor("#141414")))) {
         Header(
             modifier = Modifier
                 .padding(bottom = 700.dp)
@@ -44,13 +46,14 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel)
 
         Box(modifier = Modifier.padding(top = 100.dp, start = 40.dp)){
             GameDetailsField(
-
+                // Aqui estoy intentando que aparezca el titulo del juego:
+                //titletxtextcontent = juego.name
             )
         }
 
         FooterNavTab(
             modifier = Modifier.align(Alignment.BottomCenter),
-            property1 = Property1.HomeClicked,
+            property1 = Property1.DiscoverClicked,
             onListButtonClicked = { navController.navigate("MyList") },
             onDiscoverButtonClicked = { navController.navigate("Discover") },
         )

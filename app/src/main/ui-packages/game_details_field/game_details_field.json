@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "107:31",
-    "version": "5610988842",
+    "version": "5611131194",
     "component-id": "a6221c13f0de37dd9366e4776c6f24c100e207ac"
   },
   "default": "GameDetailsField",
@@ -25,8 +25,8 @@
         "id": "DetailsScreen"
       },
       {
-        "type": "vector",
-        "id": "GameDescription"
+        "type": "group",
+        "id": "SynopsisField"
       },
       {
         "type": "vector",
@@ -49,20 +49,60 @@
         "id": "HoursAndMetacriticFields"
       },
       {
+        "type": "group",
+        "id": "AddButton"
+      },
+      {
+        "type": "group",
+        "id": "ScoreButton"
+      },
+      {
         "type": "vector",
         "id": "AddToListButton"
       },
       {
+        "type": "text",
+        "id": "Boton anadir"
+      },
+      {
         "type": "vector",
-        "id": "ScoreButton"
+        "id": "ScoreButton1"
+      },
+      {
+        "type": "text",
+        "id": "Boton score"
+      },
+      {
+        "type": "group",
+        "id": "HoursField"
+      },
+      {
+        "type": "group",
+        "id": "MetacriticField"
+      },
+      {
+        "type": "vector",
+        "id": "HoursToBeatField"
+      },
+      {
+        "type": "text",
+        "id": "0 horas"
       },
       {
         "type": "vector",
         "id": "MetacriticScoreBackground"
       },
       {
+        "type": "text",
+        "id": "1/10"
+      },
+      {
         "type": "vector",
-        "id": "HoursToBeatField"
+        "id": "GameDescription"
+      },
+      {
+        "type": "text",
+        "id": "Synopsis"
       }
     ],
     "modes": {
@@ -70,12 +110,21 @@
         "rules": [
           {
             "id": "top_level",
-            "is-structured": "false",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "main-axis-align": "start",
             "children": [
               "GameTitleField",
               "DetailsScreen",
-              "GameDescription"
+              "SynopsisField"
             ],
+            "item-spacing": "28.0",
             "clip-content": "false"
           },
           {
@@ -99,16 +148,6 @@
           },
           {
             "id": "DetailsScreen",
-            "alignment": {
-              "horizontal": {
-                "attachment": "start",
-                "offset": "8.0"
-              },
-              "vertical": {
-                "attachment": "start",
-                "offset": "76.0"
-              }
-            },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -128,17 +167,7 @@
             "clip-content": "false"
           },
           {
-            "id": "GameDescription",
-            "alignment": {
-              "horizontal": {
-                "attachment": "start",
-                "offset": "0.0"
-              },
-              "vertical": {
-                "attachment": "start",
-                "offset": "288.0"
-              }
-            },
+            "id": "SynopsisField",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -149,7 +178,12 @@
                 "value": "224.0"
               }
             },
-            "vector-content": "game_description.svg"
+            "is-structured": "false",
+            "children": [
+              "GameDescription",
+              "Synopsis"
+            ],
+            "clip-content": "false"
           },
           {
             "id": "GameTitle",
@@ -194,7 +228,7 @@
               "saturation": "0.0",
               "value": "1.0"
             },
-            "text-content": "Title",
+            "text-content": "$Titletxtextcontent",
             "overflow": "visible",
             "max-lines": "-1",
             "text-align-vertical": "center",
@@ -245,7 +279,7 @@
             },
             "is-structured": "false",
             "children": [
-              "AddToListButton",
+              "AddButton",
               "ScoreButton"
             ],
             "clip-content": "false"
@@ -274,16 +308,63 @@
             },
             "is-structured": "false",
             "children": [
-              "MetacriticScoreBackground",
-              "HoursToBeatField"
+              "HoursField",
+              "MetacriticField"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "AddButton",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "136.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "AddToListButton",
+              "Boton anadir"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "ScoreButton",
+            "border-radius": "5.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "36.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "136.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "ScoreButton1",
+              "Boton score"
             ],
             "clip-content": "false"
           },
           {
             "id": "AddToListButton",
-            "margin": {
-              "bottom": "36.0"
-            },
             "border-radius": "5.0",
             "size-constraints": {
               "width-constraints": {
@@ -298,10 +379,44 @@
             "vector-content": "add_to_list_button.svg"
           },
           {
-            "id": "ScoreButton",
-            "margin": {
-              "top": "36.0"
+            "id": "Boton anadir",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "4.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "4.0"
+              }
             },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "128.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "17.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Boton anadir",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "15.0",
+            "line-height": "1.2569999694824219",
+            "typeface": "Merriweather"
+          },
+          {
+            "id": "ScoreButton1",
             "border-radius": "5.0",
             "size-constraints": {
               "width-constraints": {
@@ -316,10 +431,143 @@
             "vector-content": "score_button.svg"
           },
           {
-            "id": "MetacriticScoreBackground",
-            "margin": {
-              "right": "104.0"
+            "id": "Boton score",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "4.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "4.0"
+              }
             },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "128.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Boton score",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "15.0",
+            "line-height": "1.2569999694824219",
+            "typeface": "Merriweather"
+          },
+          {
+            "id": "HoursField",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "80.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "12.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "96.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "48.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "HoursToBeatField",
+              "0 horas"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MetacriticField",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "72.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "68.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "MetacriticScoreBackground",
+              "1/10"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "HoursToBeatField",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "hours_to_beat_field.svg"
+          },
+          {
+            "id": "0 horas",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "8.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "8.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "80.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "32.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "0 horas",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "20.0",
+            "line-height": "1.2569999694824219",
+            "typeface": "Merriweather"
+          },
+          {
+            "id": "MetacriticScoreBackground",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "proportional",
@@ -333,26 +581,102 @@
             "vector-content": "metacritic_score_background.svg"
           },
           {
-            "id": "HoursToBeatField",
-            "margin": {
-              "left": "80.0",
-              "top": "12.0",
-              "bottom": "8.0"
+            "id": "1/10",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "8.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "8.0"
+              }
             },
             "size-constraints": {
               "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
+                "sizing-mode": "fixed",
+                "value": "56.0"
               },
               "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
+                "sizing-mode": "fixed",
+                "value": "56.0"
               }
             },
-            "vector-content": "hours_to_beat_field.svg"
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "1/10",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "20.0",
+            "line-height": "1.2569999694824219",
+            "typeface": "Merriweather"
+          },
+          {
+            "id": "GameDescription",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "328.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "224.0"
+              }
+            },
+            "vector-content": "game_description.svg"
+          },
+          {
+            "id": "Synopsis",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "8.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "8.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "312.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "208.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Synopsis",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "15.0",
+            "line-height": "1.2569999694824219",
+            "typeface": "Merriweather"
           }
         ]
       }
+    }
+  },
+  "parameters": {
+    "Titletxtextcontent": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
     }
   },
   "previews": [
@@ -361,6 +685,9 @@
       "size": {
         "width": 328.0,
         "height": 512.0
+      },
+      "parameters": {
+        "Titletxtextcontent": "Title"
       }
     }
   ],
