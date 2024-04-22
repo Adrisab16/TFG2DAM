@@ -4,21 +4,13 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.Text
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,17 +24,32 @@ import com.example.tfg2dam.footernavtab.FooterNavTab
 import com.example.tfg2dam.footernavtab.Property1
 import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
+import com.example.tfg2dam.screens.viewresources.ContenidoGridView
+import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
 
 
 @Composable
-fun Discover(navController: NavController, loginVM: loginViewModel, /*gameVM:VideogamesViewModel*/){
+fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: VideojuegosViewModel){
     var isMenuVisible by remember { mutableStateOf(false) }
     //val games by gameVM.games.collectAsState()
 
 
-    Box(Modifier.fillMaxSize()) {
+    Box(Modifier.fillMaxSize().background(Color(android.graphics.Color.parseColor("#141414")))) {
         //Header:
+
+
+        // Grid de videojuegos:
+        Box(modifier = Modifier
+            .padding(top = 80.dp, bottom = 60.dp)){
+            Scaffold {
+                ContenidoGridView(
+                    viewModel = gameVM,
+                    pad = it,
+                    navController = navController
+                )
+            }
+        }
         Header(
             modifier = Modifier
                 .padding(bottom = 700.dp)
@@ -50,13 +57,6 @@ fun Discover(navController: NavController, loginVM: loginViewModel, /*gameVM:Vid
             , // Agregar espacio superior
             onUserIconClicked = { isMenuVisible = true },
         )
-
-        // Grid de videojuegos:
-
-
-
-
-
 
         // Footer:
         FooterNavTab(modifier = Modifier.align(Alignment.BottomCenter),

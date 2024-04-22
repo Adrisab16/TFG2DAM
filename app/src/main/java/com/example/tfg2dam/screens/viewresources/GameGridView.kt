@@ -1,4 +1,4 @@
-package com.example.tfg2dam
+package com.example.tfg2dam.screens.viewresources
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -8,11 +8,11 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -23,47 +23,38 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 
-@Composable
-fun MyScreen(viewModel: VideojuegosViewModel) {
-    Scaffold {
-        ContenidoInicioView(
-            viewModel = viewModel,
-            pad = it
-        )
-    }
-}
 
+// Este funciona:
 @Composable
-fun ContenidoInicioView(
+fun ContenidoGridView(
+    navController: NavController,
     viewModel: VideojuegosViewModel,
     pad: PaddingValues
 ){
     val juegos by viewModel.juegos.collectAsState()
 
-    LazyColumn(
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
         modifier = Modifier
             .padding(pad)
-            .background(Color.Red),
+            .background(Color(android.graphics.Color.parseColor("#141414"))),
     ){
         items(juegos) {
-            CardJuego(juego = it) {  }
-            Text(
-                text = it.name,
-                fontWeight = FontWeight.ExtraBold,
-                color = Color.White,
-                modifier =  Modifier
-                    .padding(start = 12.dp)
-            )
+            CardJuego(navController = navController, juego = it) {
+                navController.navigate("GameDetailsScreen")
+            }
         }
     }
 }
 
 @Composable
 fun CardJuego(
+    navController: NavController,
     juego: VideojuegosLista,
     onClick: () -> Unit
 ) {
@@ -72,20 +63,26 @@ fun CardJuego(
         modifier = Modifier
             .padding(8.dp)
             .shadow(40.dp)
-            .clickable { onClick() }
+            .clickable { onClick()}
     ){
         Column {
-            InicioImagen(imagen = juego.image)
+            GameImage(imagen = juego.image)
+            Text(
+                text = juego.name,
+                fontWeight = FontWeight.ExtraBold,
+                color = Color.White,
+                modifier = Modifier.padding(start = 12.dp)
+            )
         }
     }
 }
 
 @Composable
-fun InicioImagen(imagen: String){
-    val imagen = rememberAsyncImagePainter(model = imagen)
+fun GameImage(imagen: String){
+    val imagenPainter = rememberAsyncImagePainter(model = imagen)
 
     Image (
-        painter = imagen,
+        painter = imagenPainter,
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = Modifier
@@ -93,4 +90,3 @@ fun InicioImagen(imagen: String){
             .height(250.dp)
     )
 }
-

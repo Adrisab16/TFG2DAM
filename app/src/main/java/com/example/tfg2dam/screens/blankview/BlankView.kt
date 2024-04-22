@@ -1,4 +1,4 @@
-package com.example.tfg2dam.screens
+package com.example.tfg2dam.screens.blankview
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

@@ -1,4 +1,4 @@
-package com.example.tfg2dam.screens
+package com.example.tfg2dam.screens.secondaryviews
 
 import android.media.audiofx.BassBoost.Settings
 import androidx.compose.foundation.layout.Arrangement

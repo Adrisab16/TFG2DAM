@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.example.tfg2dam.navigation.NavManager
 //import com.example.tfg2dam.MainScreen
-import com.example.tfg2dam.MyScreen
 import com.example.tfg2dam.ui.theme.TFG2DAMTheme
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 //import com.example.tfg2dam.viewmodel.VideogamesViewModel
@@ -29,9 +29,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    //NavManager(loginVM, gameVM) // Activar luego de termianr el test
-                    //MainScreen(VideogamesViewModel())
-                    MyScreen(gameVM)
+                    NavManager(loginVM, gameVM) // Activar luego de termianr el test
+
                 }
             }
         }
