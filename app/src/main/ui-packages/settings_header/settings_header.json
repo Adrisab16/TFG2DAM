@@ -1,0 +1,150 @@
+{
+  "name": "settings_header",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "EtSmXEVNWeabOV1W1xAYhc",
+    "node": "105:185",
+    "version": "5559641631",
+    "component-id": "7216cd57a8902def12719e0142279ee60bc43235"
+  },
+  "default": "SettingsHeader",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 21"
+      },
+      {
+        "type": "text",
+        "id": "SettingsTitle"
+      },
+      {
+        "type": "text",
+        "id": "SettingsSubtitle"
+      }
+    ],
+    "modes": {
+      "SettingsHeader": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "Rectangle 21",
+              "SettingsTitle",
+              "SettingsSubtitle"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Rectangle 21",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "rectangle_21.svg"
+          },
+          {
+            "id": "SettingsTitle",
+            "margin": {
+              "left": "16.0",
+              "top": "16.0",
+              "right": "16.0",
+              "bottom": "48.0"
+            },
+            "tap-handler": "$onSettingsTitleClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Ocio & Geek",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "45.0",
+            "line-height": "1.2569999694824219",
+            "typeface": "Merriweather"
+          },
+          {
+            "id": "SettingsSubtitle",
+            "margin": {
+              "left": "64.0",
+              "top": "80.0",
+              "right": "64.0",
+              "bottom": "16.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Settings",
+            "italic": "true",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "30.0",
+            "line-height": "1.2569999694824219",
+            "typeface": "Merriweather"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "onSettingsTitleClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "SettingsHeader",
+      "size": {
+        "width": 360.0,
+        "height": 128.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
