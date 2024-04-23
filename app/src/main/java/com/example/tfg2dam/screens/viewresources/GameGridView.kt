@@ -45,9 +45,7 @@ fun ContenidoGridView(
             .background(Color(android.graphics.Color.parseColor("#141414"))),
     ){
         items(juegos) {
-            CardJuego(navController = navController, juego = it) {
-                navController.navigate("GameDetailsScreen")
-            }
+            CardJuego(navController = navController, juego = it)
         }
     }
 }
@@ -56,14 +54,16 @@ fun ContenidoGridView(
 fun CardJuego(
     navController: NavController,
     juego: VideojuegosLista,
-    onClick: () -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(4.dp),
         modifier = Modifier
             .padding(8.dp)
             .shadow(40.dp)
-            .clickable { onClick()}
+            .clickable {
+                // Cuando se hace clic en el juego, navegamos a GameDetailsScreen pasando el ID del juego
+                navController.navigate("GameDetailsScreen/${juego.id}")
+            }
     ){
         Column {
             GameImage(imagen = juego.image)

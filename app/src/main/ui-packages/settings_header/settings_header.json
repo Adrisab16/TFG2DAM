@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "105:185",
-    "version": "5559641631",
+    "version": "5620437525",
     "component-id": "7216cd57a8902def12719e0142279ee60bc43235"
   },
   "default": "SettingsHeader",
@@ -17,8 +17,8 @@
         "root": "true"
       },
       {
-        "type": "vector",
-        "id": "Rectangle 21"
+        "type": "group",
+        "id": "SettingsHeaderTxt"
       },
       {
         "type": "text",
@@ -34,45 +34,65 @@
         "rules": [
           {
             "id": "top_level",
+            "padding": "16.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "children": [
+              "SettingsHeaderTxt"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0784313725490196"
+            }
+          },
+          {
+            "id": "SettingsHeaderTxt",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "328.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "96.0"
+              }
+            },
             "is-structured": "false",
             "children": [
-              "Rectangle 21",
               "SettingsTitle",
               "SettingsSubtitle"
             ],
             "clip-content": "false"
           },
           {
-            "id": "Rectangle 21",
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              }
-            },
-            "vector-content": "rectangle_21.svg"
-          },
-          {
             "id": "SettingsTitle",
-            "margin": {
-              "left": "16.0",
-              "top": "16.0",
-              "right": "16.0",
-              "bottom": "48.0"
+            "alignment": {
+              "horizontal": {
+                "attachment": "center",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "-16.0"
+              }
             },
             "tap-handler": "$onSettingsTitleClicked",
             "size-constraints": {
               "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
+                "sizing-mode": "fixed",
+                "value": "328.0"
               },
               "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
+                "sizing-mode": "fixed",
+                "value": "64.0"
               }
             },
             "font-weight": "700.0",
@@ -92,20 +112,24 @@
           },
           {
             "id": "SettingsSubtitle",
-            "margin": {
-              "left": "64.0",
-              "top": "80.0",
-              "right": "64.0",
-              "bottom": "16.0"
+            "alignment": {
+              "horizontal": {
+                "attachment": "center",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "32.0"
+              }
             },
             "size-constraints": {
               "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
+                "sizing-mode": "fixed",
+                "value": "232.0"
               },
               "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
+                "sizing-mode": "fixed",
+                "value": "32.0"
               }
             },
             "font-weight": "700.0",

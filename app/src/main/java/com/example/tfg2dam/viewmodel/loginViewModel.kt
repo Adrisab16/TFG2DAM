@@ -194,4 +194,19 @@ class loginViewModel: ViewModel() {
             writeToLog("Fallo al cerrar sesión")
         }
     }
+
+    fun deleteAccount(onSuccess: () -> Unit) {
+        val user = auth.currentUser
+        user?.delete()
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    writeToLog("Cuenta eliminada con éxito")
+                    onSuccess()
+                } else {
+                    writeToLog("Error al eliminar cuenta")
+                    showAlert = true
+                }
+            }
+    }
+
 }

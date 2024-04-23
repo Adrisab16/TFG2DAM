@@ -1,10 +1,11 @@
 package com.example.tfg2dam.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.tfg2dam.model.VideojuegosLista
+import androidx.navigation.navArgument
 import com.example.tfg2dam.screens.blankview.BlankView
 import com.example.tfg2dam.screens.primaryscreens.Discover
 import com.example.tfg2dam.screens.primaryscreens.Home
@@ -14,7 +15,6 @@ import com.example.tfg2dam.screens.secondaryviews.Settings
 import com.example.tfg2dam.screens.login_signupscreens.SignUp
 import com.example.tfg2dam.screens.secondaryviews.GameDetailsScreen
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
-//import com.example.tfg2dam.viewmodel.VideogamesViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
 
 @Composable
@@ -52,13 +52,20 @@ fun NavManager(
             // Muestra la vista correspondiente a la pantalla principal (Home).
             MyList(navController, loginVM)
         }
-        composable("GameDetailsScreen") {
-            // Muestra la vista correspondiente a la pantalla Blank.
-            GameDetailsScreen(navController, loginVM)
+        composable(
+            "GameDetailsScreen/{gameId}",
+            arguments = listOf(navArgument("gameId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val gameId = backStackEntry.arguments?.getInt("gameId")
+            if (gameId != null) {
+                GameDetailsScreen(navController, loginVM, gameId, gameVM)
+            } else {
+                // Manejar caso en el que no se recibe el ID del juego
+            }
         }
         composable("Settings") {
             // Muestra la vista correspondiente a la pantalla principal (Home).
-            Settings(navController)
+            Settings(navController, loginVM)
         }
     }
 }

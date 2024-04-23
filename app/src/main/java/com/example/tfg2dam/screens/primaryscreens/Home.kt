@@ -61,7 +61,8 @@ fun Home(navController: NavController, loginVM: loginViewModel) {
                     modifier = Modifier.clickable {  },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
                     onSettingsButtonClicked = {navController.navigate("Settings")},
-                    usernameTxttextcontent = "Hola,"
+                    onFAQButtonClicked = {},
+                    usernameTxttextcontent = "Hola,",
                 )
             }
         }

@@ -17,18 +17,29 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
 import com.example.tfg2dam.footernavtab.FooterNavTab
 import com.example.tfg2dam.footernavtab.Property1
 import com.example.tfg2dam.gamedetailsfield.GameDetailsField
 import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
+import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
 
 @Composable
-fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel) {
+fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel, id: Int, gameVM: VideojuegosViewModel) {
     var isMenuVisible by remember { mutableStateOf(false) }
+    val gameName = gameVM.getGameNameById(id)
+    val gameImage = gameVM.getGameImageById(id)
+    val gameImagePainter: Painter = rememberAsyncImagePainter(model = gameImage, contentScale = ContentScale.Crop)
+    val gameMetacriticScore = gameVM.getGameMcScoreById(id)
+    val gamePlaytime = gameVM.getGamePlayTimeById(id)
+    val gameDateReleased = gameVM.getGameDateById(id)
+
 
     // Para esta pantalla, me gustaria extraer el tiempo de juego (playtime) y el rating de metacritic
 
@@ -46,9 +57,13 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel)
 
         Box(modifier = Modifier.padding(top = 100.dp, start = 40.dp)){
             GameDetailsField(
-                // Aqui estoy intentando que aparezca el titulo del juego:
-                //titletxtextcontent = juego.name
-            )
+                titletxtextcontent = gameName,
+                gamePhotoimagecontent = gameImagePainter,
+                metacriticScoretextcontent = "Metacritic Score: $gameMetacriticScore/100",
+                gameHourstextcontent = "Hours to beat:\n$gamePlaytime horas",
+                releasedtextcontent = "Fecha de Lanzamiento: $gameDateReleased",
+            ){
+            }
         }
 
         FooterNavTab(

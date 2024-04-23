@@ -25,6 +25,49 @@ class VideojuegosViewModel : ViewModel() {
             }
         }
     }
+
+    fun getGameNameById(id: Int): String {
+        // Accede a la lista de juegos desde el StateFlow
+        val listaJuegos = _juegos.value
+        // Buscar el juego en la lista por su ID
+        val juego = listaJuegos.find { it.id == id }
+        // Devolver el nombre del juego si se encuentra, de lo contrario, devolver una cadena vacía
+        return juego?.name ?: ""
+    }
+
+    fun getGameImageById(id: Int): String {
+        val listaJuegos = _juegos.value
+        val juego = listaJuegos.find { it.id == id }
+        return juego?.image ?: ""
+    }
+
+    fun getGameMcScoreById(id: Int): Int {
+        val listaJuegos = _juegos.value
+        val juego = listaJuegos.find { it.id == id }
+        return juego?.mcscore ?: 0
+    }
+
+    fun getGamePlayTimeById(id: Int): Int {
+        val listaJuegos = _juegos.value
+        val juego = listaJuegos.find { it.id == id }
+        return juego?.gameplaytime ?: 0
+    }
+
+    fun getGameDateById(id: Int): Comparable<*> {
+        val listaJuegos = _juegos.value
+        val juego = listaJuegos.find { it.id == id }
+        return juego?.datereleased ?: ""
+    }
+
+    /*
+    Consultar GameModel para info
+    fun getGameDescById(id: Int): String {
+        val listaJuegos = _juegos.value
+        val juego = listaJuegos.find { it.id == id }
+        return juego?.gamedesc ?: ""
+    }
+    */
+
 }
 
 

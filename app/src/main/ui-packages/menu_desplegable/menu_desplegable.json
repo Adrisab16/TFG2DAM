@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "83:96",
-    "version": "5559455288",
+    "version": "5620388608",
     "component-id": "7f97870336519b0818cab18692b4b39acebf8f42"
   },
   "default": "MenuDesplegable",
@@ -525,7 +525,6 @@
                 "offset": "40.0"
               }
             },
-            "tap-handler": "$onSettingsButtonClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -556,7 +555,6 @@
                 "offset": "89.0"
               }
             },
-            "tap-handler": "$onSettingsButtonClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -811,7 +809,6 @@
                 "offset": "48.0"
               }
             },
-            "tap-handler": "$onSettingsButtonClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -842,7 +839,6 @@
                 "offset": "108.0"
               }
             },
-            "tap-handler": "$onSettingsButtonClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -873,7 +869,6 @@
                 "offset": "172.0"
               }
             },
-            "tap-handler": "$onSettingsButtonClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -904,7 +899,6 @@
                 "offset": "232.0"
               }
             },
-            "tap-handler": "$onSettingsButtonClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -1296,7 +1290,6 @@
                 "offset": "48.0"
               }
             },
-            "tap-handler": "$onSettingsButtonClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -1327,7 +1320,7 @@
                 "offset": "97.0"
               }
             },
-            "tap-handler": "$onSettingsButtonClicked",
+            "tap-handler": "$onFAQButtonClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -1730,6 +1723,11 @@
   "parameters": {
     "UsernameTxttextcontent": {
       "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "onFAQButtonClicked": {
+      "data-type": "void-callback",
       "required": false,
       "description": ""
     },

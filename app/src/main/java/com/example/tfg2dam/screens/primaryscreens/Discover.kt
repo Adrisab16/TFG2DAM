@@ -33,7 +33,7 @@ import com.example.tfg2dam.viewmodel.loginViewModel
 @Composable
 fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: VideojuegosViewModel){
     var isMenuVisible by remember { mutableStateOf(false) }
-    var isloaded by remember { mutableStateOf(true) }
+    val isloaded by remember { mutableStateOf(true) }
     //val games by gameVM.games.collectAsState()
 
 
@@ -100,26 +100,3 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
         }
     }
 }
-
-/*
-@Composable
-fun GameItem(gameModel: GameModel) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(8.dp)
-    ) {
-        // Imagen del juego
-        Image(
-            painter = rememberAsyncImagePainter(gameModel.image), // Corrección aquí
-            contentDescription = gameModel.name,
-            modifier = Modifier.size(72.dp, 98.dp),
-            contentScale = ContentScale.Crop
-        )
-        // Nombre del juego
-        Text(
-            text = gameModel.name,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(top = 4.dp)
-        )
-    }
-}*/
