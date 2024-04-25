@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,6 +36,15 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
     var isMenuVisible by remember { mutableStateOf(false) }
     val isloaded by remember { mutableStateOf(true) }
     //val games by gameVM.games.collectAsState()
+    var username by remember { mutableStateOf("") }
+
+    LaunchedEffect(Unit) {
+        loginVM.getUsernameFromFirestore { retrievedUsername ->
+            retrievedUsername?.let {
+                username = it
+            }
+        }
+    }
 
 
     Box(
@@ -94,7 +104,7 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
                     modifier = Modifier.clickable {  },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
                     onSettingsButtonClicked = {navController.navigate("Settings")},
-                    usernameTxttextcontent = "Hola,"
+                    usernameTxttextcontent = "Hola,\n$username"
                 )
             }
         }

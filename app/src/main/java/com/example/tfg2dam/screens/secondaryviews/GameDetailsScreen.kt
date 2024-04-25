@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,6 +40,15 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
     val gameMetacriticScore = gameVM.getGameMcScoreById(id)
     val gamePlaytime = gameVM.getGamePlayTimeById(id)
     val gameDateReleased = gameVM.getGameDateById(id)
+    var username by remember { mutableStateOf("") }
+
+    LaunchedEffect(Unit) {
+        loginVM.getUsernameFromFirestore { retrievedUsername ->
+            retrievedUsername?.let {
+                username = it
+            }
+        }
+    }
 
 
     // Para esta pantalla, me gustaria extraer el tiempo de juego (playtime) y el rating de metacritic
@@ -88,7 +98,7 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                     modifier = Modifier.clickable {  },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
                     onSettingsButtonClicked = {navController.navigate("Settings")},
-                    usernameTxttextcontent = "Hola,"
+                    usernameTxttextcontent = "Hola,\n$username"
                 )
             }
         }
