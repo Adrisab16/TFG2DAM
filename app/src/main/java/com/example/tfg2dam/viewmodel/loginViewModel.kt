@@ -36,9 +36,9 @@ class loginViewModel: ViewModel() {
     var userName by mutableStateOf("")
         private set
     private var selectedTab by mutableIntStateOf(0)
-        private set
+        //private set
 
-    private val _userData = mutableStateOf<UserModel?>(null)
+
 
 
 
