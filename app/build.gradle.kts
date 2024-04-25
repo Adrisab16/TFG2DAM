@@ -82,6 +82,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
     // DCS - Base de datos Firestore
     implementation("com.google.firebase:firebase-firestore-ktx:24.11.1")
+    // Uso de Google Analytics
     implementation("com.google.firebase:firebase-analytics")
     // Uso de retrofit para acceder a la API RAWG:
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")

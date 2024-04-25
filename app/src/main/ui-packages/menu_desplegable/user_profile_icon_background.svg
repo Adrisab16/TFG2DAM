@@ -1,3 +1,3 @@
-<svg width="80" height="79" viewBox="0 0 80 79" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M79 39.0907C79 60.106 61.5609 77.1814 40 77.1814C18.4391 77.1814 1 60.106 1 39.0907C1 18.0753 18.4391 1 40 1C61.5609 1 79 18.0753 79 39.0907Z" fill="#272727" stroke="white" stroke-width="2"/>
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="40" cy="40" r="39" fill="#272727" stroke="white" stroke-width="2"/>
 </svg>

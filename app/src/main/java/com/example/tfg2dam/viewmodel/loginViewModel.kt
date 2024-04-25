@@ -3,9 +3,9 @@ package com.example.tfg2dam.viewmodel
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tfg2dam.model.UserModel
@@ -19,6 +19,7 @@ import java.io.FileWriter
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+
 
 class loginViewModel: ViewModel() {
     // DCS - Definición de variables y funciones para manejar el inicio de sesión y registro de usuarios.
@@ -34,8 +35,12 @@ class loginViewModel: ViewModel() {
         private set
     var userName by mutableStateOf("")
         private set
-    var selectedTab by mutableIntStateOf(0)
+    private var selectedTab by mutableIntStateOf(0)
         private set
+
+    private val _userData = mutableStateOf<UserModel?>(null)
+
+
 
     /**
      * Método privado para escribir en el archivo de registro.
@@ -44,7 +49,7 @@ class loginViewModel: ViewModel() {
         val timeStamp = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
         val logMessage = "[$timeStamp] $action"
         try {
-            FileWriter("F:\\MyProjects\\TFG2DAM\\app\\src\\main\\java\\com\\example\\tfg2dam\\logs", true).use { writer ->
+            FileWriter("F:\\MyProjects\\TFG2DAM", true).use { writer ->
                 writer.appendLine(logMessage)
             }
         } catch (e: Exception) {
@@ -98,7 +103,7 @@ class loginViewModel: ViewModel() {
                         if (task.isSuccessful) {
                             writeToLog("Usuario creado con éxito")
                             // DCS - Si se realiza con éxito, almacenamos el usuario en la colección "Users"
-                            saveUser(userName)
+                            saveUser(userName, password)
                             onSuccess()
                         } else {
                             writeToLog("Error al crear usuario")
@@ -118,10 +123,9 @@ class loginViewModel: ViewModel() {
      * @param username Nombre de usuario a guardar.
      */
     @SuppressLint("SuspiciousIndentation")
-    private fun saveUser(username: String){
+    private fun saveUser(username: String, password: String){
         val id = auth.currentUser?.uid
         val email = auth.currentUser?.email
-        val pwd = auth.currentUser?.email
 
 
         viewModelScope.launch(Dispatchers.IO) {
@@ -129,13 +133,14 @@ class loginViewModel: ViewModel() {
                 userId = id.toString(),
                 email = email.toString(),
                 username = username,
-                password = pwd.toString(),
+                password = password,
                 )
             writeToLog("Usuario guardado con éxito")
                 // DCS - Añade el usuario a la colección "Users" en la base de datos Firestore
-                 firestore.collection("Users").add(user)
-            //.addOnSuccessListener { Log.d("GUARDAR OK", "Se guardó el usuario correctamente en Firestore") }
-            //.addOnFailureListener { Log.d("ERROR AL GUARDAR", "ERROR al guardar en Firestore") }
+            print(user)
+                 firestore.collection("users").add(user)
+            .addOnSuccessListener { Log.d("GUARDAR OK", "Se guardó el usuario correctamente en Firestore") }
+            .addOnFailureListener { Log.d("ERROR AL GUARDAR", "ERROR al guardar en Firestore") }
         }
     }
 
@@ -195,18 +200,84 @@ class loginViewModel: ViewModel() {
         }
     }
 
+    /**
+     * Elimina la cuenta del usuario actual, tanto de firestore como de authentication
+     */
+
     fun deleteAccount(onSuccess: () -> Unit) {
         val user = auth.currentUser
-        user?.delete()
-            ?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    writeToLog("Cuenta eliminada con éxito")
-                    onSuccess()
-                } else {
-                    writeToLog("Error al eliminar cuenta")
-                    showAlert = true
+        val userId = user?.uid
+
+        // Obtener el ID del documento asociado al ID de usuario
+        firestore.collection("users")
+            .whereEqualTo("userId", userId)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val documentId = document.id
+
+                    // Eliminar los datos del usuario en Firestore usando el ID del documento
+                    firestore.collection("users")
+                        .document(documentId)
+                        .delete()
+                        .addOnSuccessListener {
+                            // Eliminar la autenticación del usuario después de eliminar los datos en Firestore
+                            user?.delete()?.addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    writeToLog("Cuenta eliminada con éxito")
+                                    onSuccess()
+                                } else {
+                                    writeToLog("Error al eliminar cuenta")
+                                    showAlert = true
+                                }
+                            }
+                        }
+                        .addOnFailureListener { exception ->
+                            // Manejar el error si la eliminación de datos en Firestore falla
+                            writeToLog("Error al eliminar datos del usuario en Firestore: $exception")
+                            showAlert = true
+                        }
                 }
             }
+            .addOnFailureListener { exception ->
+                // Manejar el error si la consulta a Firestore falla
+                writeToLog("Error al obtener ID del documento en Firestore: $exception")
+                showAlert = true
+            }
+    }
+
+
+    fun getUsernameFromFirestore(callback: (String?) -> Unit) {
+        // Obtener el ID del usuario actualmente autenticado
+        val userId = auth.currentUser?.uid
+
+        // Verificar si el usuario está autenticado y tiene un ID válido
+        if (userId != null) {
+            // Realizar una consulta a Firestore para obtener los datos del usuario
+            firestore.collection("users")
+                .whereEqualTo("userId", userId)
+                .get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        // Obtener el nombre de usuario del documento
+                        val username = document.getString("username")
+                        // Llamar al callback con el nombre de usuario obtenido
+                        callback(username)
+                        return@addOnSuccessListener
+                    }
+                    // Si no se encontró ningún documento, llamar al callback con null
+                    callback(null)
+                }
+                .addOnFailureListener { exception ->
+                    // Manejar el error si la consulta a Firestore falla
+                    writeToLog("Error al obtener datos del usuario en Firestore: $exception")
+                    callback(null)
+                }
+        } else {
+            // Si el ID del usuario es null, llamar al callback con null
+            writeToLog("El ID del usuario actual es null")
+            callback(null)
+        }
     }
 
 }

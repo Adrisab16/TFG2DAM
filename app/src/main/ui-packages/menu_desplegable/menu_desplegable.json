@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "83:96",
-    "version": "5620388608",
+    "version": "5638487518",
     "component-id": "7f97870336519b0818cab18692b4b39acebf8f42"
   },
   "default": "MenuDesplegable",
@@ -41,12 +41,12 @@
         "id": "MenuDesplegableHeaderBackground"
       },
       {
-        "type": "vector",
-        "id": "UserProfileIconBackground"
+        "type": "group",
+        "id": "UsernameView"
       },
       {
         "type": "group",
-        "id": "UsernameView"
+        "id": "UserImageField"
       },
       {
         "type": "vector",
@@ -55,6 +55,14 @@
       {
         "type": "text",
         "id": "UsernameTxt"
+      },
+      {
+        "type": "vector",
+        "id": "UserProfileIconBackground"
+      },
+      {
+        "type": "image",
+        "id": "ProfileImageTemplate"
       },
       {
         "type": "group",
@@ -309,8 +317,8 @@
             "is-structured": "false",
             "children": [
               "MenuDesplegableHeaderBackground",
-              "UserProfileIconBackground",
-              "UsernameView"
+              "UsernameView",
+              "UserImageField"
             ],
             "clip-content": "false"
           },
@@ -413,26 +421,6 @@
             "vector-content": "menu_desplegable_header_background.svg"
           },
           {
-            "id": "UserProfileIconBackground",
-            "margin": {
-              "left": "8.0",
-              "top": "8.90673828125",
-              "right": "184.0",
-              "bottom": "8.911888122558594"
-            },
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              }
-            },
-            "vector-content": "user_profile_icon_background.svg"
-          },
-          {
             "id": "UsernameView",
             "margin": {
               "left": "96.0",
@@ -445,6 +433,35 @@
             "children": [
               "UsernameViewBackground",
               "UsernameTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "UserImageField",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "10.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "10.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "80.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "80.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "UserProfileIconBackground",
+              "ProfileImageTemplate"
             ],
             "clip-content": "false"
           },
@@ -494,6 +511,46 @@
             "typeface": "Caladea"
           },
           {
+            "id": "UserProfileIconBackground",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "user_profile_icon_background.svg"
+          },
+          {
+            "id": "ProfileImageTemplate",
+            "border-radius": "100.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "3.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "3.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "74.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "74.0"
+              }
+            },
+            "image-content": "$ProfileImageTemplateimagecontent",
+            "scale": "cover"
+          },
+          {
             "id": "AccountTitle",
             "border-radius": "5.0",
             "size-constraints": {
@@ -525,6 +582,7 @@
                 "offset": "40.0"
               }
             },
+            "tap-handler": "$onMyAccountClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -555,6 +613,7 @@
                 "offset": "89.0"
               }
             },
+            "tap-handler": "$onMyStadisticsClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -809,6 +868,7 @@
                 "offset": "48.0"
               }
             },
+            "tap-handler": "$onGamePediaClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -839,6 +899,7 @@
                 "offset": "108.0"
               }
             },
+            "tap-handler": "$onGameNewsClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -869,6 +930,7 @@
                 "offset": "172.0"
               }
             },
+            "tap-handler": "$onMinigamesClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -899,6 +961,7 @@
                 "offset": "232.0"
               }
             },
+            "tap-handler": "$onDailyChallengesClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -1290,6 +1353,7 @@
                 "offset": "48.0"
               }
             },
+            "tap-handler": "$onHelpClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -1726,6 +1790,46 @@
       "required": false,
       "description": ""
     },
+    "ProfileImageTemplateimagecontent": {
+      "data-type": "image",
+      "required": false,
+      "description": ""
+    },
+    "onMyAccountClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onMyStadisticsClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onGamePediaClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onGameNewsClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onMinigamesClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onDailyChallengesClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onHelpClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
     "onFAQButtonClicked": {
       "data-type": "void-callback",
       "required": false,
@@ -1750,7 +1854,8 @@
         "height": 792.982421875
       },
       "parameters": {
-        "UsernameTxttextcontent": "Hola,"
+        "UsernameTxttextcontent": "Hola,",
+        "ProfileImageTemplateimagecontent": "profile_image_template.png"
       }
     }
   ],

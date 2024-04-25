@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,6 +31,15 @@ import com.example.tfg2dam.viewmodel.loginViewModel
 @Composable
 fun Home(navController: NavController, loginVM: loginViewModel) {
     var isMenuVisible by remember { mutableStateOf(false) }
+    var username by remember { mutableStateOf("") }
+
+    LaunchedEffect(Unit) {
+        loginVM.getUsernameFromFirestore { retrievedUsername ->
+            retrievedUsername?.let {
+                username = it
+            }
+        }
+    }
 
     Box(modifier = Modifier.fillMaxSize().background(Color(android.graphics.Color.parseColor("#141414")))) {
         Header(
@@ -62,7 +73,7 @@ fun Home(navController: NavController, loginVM: loginViewModel) {
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
                     onSettingsButtonClicked = {navController.navigate("Settings")},
                     onFAQButtonClicked = {},
-                    usernameTxttextcontent = "Hola,",
+                    usernameTxttextcontent = "Hola,\n$username",
                 )
             }
         }

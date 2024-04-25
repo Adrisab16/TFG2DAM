@@ -24,7 +24,7 @@ fun Settings(navController: NavController, loginVM:loginViewModel) {
         Box(modifier = Modifier.align(Alignment.Center).padding(top = 5.0.dp)){
             Column {
                 SettingsScreen(
-                    onDeleteAccountButtonClicked = { loginVM.deleteAccount { loginVM.logout(); navController.navigate("Login")/* Añadir un showAlert para confirmar la eliminacion de la cuenta*/ } }
+                    onDeleteAccountButtonClicked = { loginVM.deleteAccount { navController.navigate("Login")/* Añadir un showAlert para confirmar la eliminacion de la cuenta*/ } }
                 )
             }
         }
