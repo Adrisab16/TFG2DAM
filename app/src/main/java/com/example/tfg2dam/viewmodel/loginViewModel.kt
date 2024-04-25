@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.mutableIntStateOf
+// import androidx.compose.runtime.mutableIntStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tfg2dam.model.UserModel
@@ -35,7 +35,7 @@ class loginViewModel: ViewModel() {
         private set
     var userName by mutableStateOf("")
         private set
-    private var selectedTab by mutableIntStateOf(0)
+    //private var selectedTab by mutableIntStateOf(0)
         //private set
 
 
@@ -179,6 +179,10 @@ class loginViewModel: ViewModel() {
         this.userName = userName
     }
 
+    /*
+
+    Codigo sin uso (puede que sea eliminado):
+
     /**
      * Cambia la pestaña seleccionada en la UI.
      *
@@ -186,7 +190,7 @@ class loginViewModel: ViewModel() {
      */
     fun changeSelectedTab(selectedTab: Int) {
         this.selectedTab = selectedTab
-    }
+    }*/
 
     /**
      * Cierra la sesión del usuario actual.
