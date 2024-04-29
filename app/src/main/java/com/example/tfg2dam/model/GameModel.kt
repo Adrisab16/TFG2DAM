@@ -2,6 +2,10 @@ package com.example.tfg2dam.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Este GameModel se conecta con la API para extraer sus datos
+ */
+
 data class VideoJuegoModel(
     @SerializedName("counts")
     val count: Int,

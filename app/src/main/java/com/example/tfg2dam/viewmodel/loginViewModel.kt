@@ -121,12 +121,12 @@ class loginViewModel: ViewModel() {
      * Guarda la información del usuario recién registrado en Firestore.
      *
      * @param username Nombre de usuario a guardar.
+     *
      */
     @SuppressLint("SuspiciousIndentation")
-    private fun saveUser(username: String, password: String){
+    private fun saveUser(username: String, password: String) {
         val id = auth.currentUser?.uid
         val email = auth.currentUser?.email
-
 
         viewModelScope.launch(Dispatchers.IO) {
             val user = UserModel(
@@ -134,13 +134,12 @@ class loginViewModel: ViewModel() {
                 email = email.toString(),
                 username = username,
                 password = password,
-                )
+            )
             writeToLog("Usuario guardado con éxito")
-                // DCS - Añade el usuario a la colección "Users" en la base de datos Firestore
-            print(user)
-                 firestore.collection("users").add(user)
-            .addOnSuccessListener { Log.d("GUARDAR OK", "Se guardó el usuario correctamente en Firestore") }
-            .addOnFailureListener { Log.d("ERROR AL GUARDAR", "ERROR al guardar en Firestore") }
+            // DCS - Añade el usuario a la colección "Users" en la base de datos Firestore
+            firestore.collection("users").document(id ?: "").set(user)
+                .addOnSuccessListener { Log.d("GUARDAR OK", "Se guardó el usuario correctamente en Firestore") }
+                .addOnFailureListener { Log.d("ERROR AL GUARDAR", "ERROR al guardar en Firestore") }
         }
     }
 
