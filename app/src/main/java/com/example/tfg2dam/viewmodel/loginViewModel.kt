@@ -8,13 +8,16 @@ import androidx.compose.runtime.setValue
 // import androidx.compose.runtime.mutableIntStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.tfg2dam.model.GameMap
 import com.example.tfg2dam.model.UserModel
+import com.example.tfg2dam.model.toMutableMap
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import java.io.FileWriter
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -128,18 +131,115 @@ class loginViewModel: ViewModel() {
         val id = auth.currentUser?.uid
         val email = auth.currentUser?.email
 
-        viewModelScope.launch(Dispatchers.IO) {
+        if (id != null && email != null) {
             val user = UserModel(
-                userId = id.toString(),
-                email = email.toString(),
+                userId = id,
+                email = email,
                 username = username,
                 password = password,
+                gameMap = GameMap(
+                    CP = mutableListOf(),
+                    PTP = mutableListOf(),
+                    DR = mutableListOf(),
+                    OH = mutableListOf(),
+                    CTD = mutableListOf()
+                ).toMutableMap()
             )
-            writeToLog("Usuario guardado con éxito")
-            // DCS - Añade el usuario a la colección "Users" en la base de datos Firestore
-            firestore.collection("users").document(id ?: "").set(user)
-                .addOnSuccessListener { Log.d("GUARDAR OK", "Se guardó el usuario correctamente en Firestore") }
-                .addOnFailureListener { Log.d("ERROR AL GUARDAR", "ERROR al guardar en Firestore") }
+
+            viewModelScope.launch(Dispatchers.IO) {
+                // Guardar el usuario en la colección "Users"
+                firestore.collection("users").document(id).set(user)
+                    .addOnSuccessListener {
+                        Log.d("GUARDAR OK", "Se guardó el usuario correctamente en Firestore")
+                    }
+                    .addOnFailureListener { exception ->
+                        Log.d("ERROR AL GUARDAR", "ERROR al guardar en Firestore: $exception")
+                    }
+            }
+        } else {
+            Log.d("ERROR GUARDAR USUARIO", "El ID de usuario o el correo electrónico son nulos.")
+        }
+    }
+
+    /**
+     * Añade videojuegos (su id) a las 5 listas disponibles
+     */
+
+    suspend fun addGameIdToUser(userId: String, gameId: Int, gameType: String) {
+        try {
+            // Obtener el usuario de Firestore
+            val userDocument = firestore.collection("users").document(userId).get().await()
+            if (userDocument.exists()) {
+                val userModel = userDocument.toObject(UserModel::class.java)
+                if (userModel != null) {
+                    // Actualizar el mapa de juegos agregando el nuevo gameId a la lista existente
+                    val updatedGameMap = when (gameType) {
+                        "CP" -> userModel.gameMap.copy(CP = userModel.gameMap.CP.toMutableList().apply { add(gameId) })
+                        "PTP" -> userModel.gameMap.copy(PTP = userModel.gameMap.PTP.toMutableList().apply { add(gameId) })
+                        "DR" -> userModel.gameMap.copy(DR = userModel.gameMap.DR.toMutableList().apply { add(gameId) })
+                        "OH" -> userModel.gameMap.copy(OH = userModel.gameMap.OH.toMutableList().apply { add(gameId) })
+                        "CTD" -> userModel.gameMap.copy(CTD = userModel.gameMap.CTD.toMutableList().apply { add(gameId) })
+                        else -> userModel.gameMap // Si el tipo de juego no es válido, no se realiza ninguna modificación
+                    }
+
+                    // Actualizar el objeto UserModel con el nuevo mapa de juegos
+                    val updatedUser = userModel.copy(gameMap = updatedGameMap)
+
+                    // Guardar el usuario actualizado en Firestore
+                    firestore.collection("users").document(userId).set(updatedUser)
+                        .addOnSuccessListener {
+                            Log.d("ACTUALIZACIÓN EXITOSA", "Se agregó el gameId al usuario correctamente en Firestore")
+                        }
+                        .addOnFailureListener { exception ->
+                            Log.e("ERROR AL ACTUALIZAR", "ERROR al actualizar en Firestore", exception)
+                        }
+                }
+            } else {
+                Log.d("USUARIO NO ENCONTRADO", "No se encontró ningún usuario con el ID proporcionado")
+            }
+        } catch (e: Exception) {
+            Log.e("ERROR AL AGREGAR GAME ID", "ERROR: ${e.localizedMessage}", e)
+        }
+    }
+
+    /**
+     * Elimina videojuegos (su id) de las 5 listas disponibles
+     */
+
+    suspend fun removeGameIdFromUser(userId: String, gameId: Int, gameType: String) {
+        try {
+            // Obtener el usuario de Firestore
+            val userDocument = firestore.collection("users").document(userId).get().await()
+            if (userDocument.exists()) {
+                val userModel = userDocument.toObject(UserModel::class.java)
+                if (userModel != null) {
+                    // Actualizar el mapa de juegos eliminando el gameId de la lista correspondiente
+                    val updatedGameMap = when (gameType) {
+                        "CP" -> userModel.gameMap.copy(CP = userModel.gameMap.CP.toMutableList().apply { remove(gameId) })
+                        "PTP" -> userModel.gameMap.copy(PTP = userModel.gameMap.PTP.toMutableList().apply { remove(gameId) })
+                        "DR" -> userModel.gameMap.copy(DR = userModel.gameMap.DR.toMutableList().apply { remove(gameId) })
+                        "OH" -> userModel.gameMap.copy(OH = userModel.gameMap.OH.toMutableList().apply { remove(gameId) })
+                        "CTD" -> userModel.gameMap.copy(CTD = userModel.gameMap.CTD.toMutableList().apply { remove(gameId) })
+                        else -> userModel.gameMap // Si el tipo de juego no es válido, no se realiza ninguna modificación
+                    }
+
+                    // Actualizar el objeto UserModel con el nuevo mapa de juegos
+                    val updatedUser = userModel.copy(gameMap = updatedGameMap)
+
+                    // Guardar el usuario actualizado en Firestore
+                    firestore.collection("users").document(userId).set(updatedUser)
+                        .addOnSuccessListener {
+                            Log.d("ACTUALIZACIÓN EXITOSA", "Se eliminó el gameId del usuario correctamente en Firestore")
+                        }
+                        .addOnFailureListener { exception ->
+                            Log.e("ERROR AL ACTUALIZAR", "ERROR al actualizar en Firestore", exception)
+                        }
+                }
+            } else {
+                Log.d("USUARIO NO ENCONTRADO", "No se encontró ningún usuario con el ID proporcionado")
+            }
+        } catch (e: Exception) {
+            Log.e("ERROR AL ELIMINAR GAME ID", "ERROR: ${e.localizedMessage}", e)
         }
     }
 
@@ -281,6 +381,14 @@ class loginViewModel: ViewModel() {
             writeToLog("El ID del usuario actual es null")
             callback(null)
         }
+    }
+
+    fun getUserIdFromFirestore(callback: (String?) -> Unit) {
+        // Obtener el ID del usuario actualmente autenticado
+        val userId = auth.currentUser?.uid
+
+        // Llamar al callback con el ID de usuario obtenido
+        callback(userId)
     }
 
 }

@@ -14,6 +14,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,6 +31,7 @@ import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel, id: Int, gameVM: VideojuegosViewModel) {
@@ -41,6 +43,8 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
     val gamePlaytime = gameVM.getGamePlayTimeById(id)
     val gameDateReleased = gameVM.getGameDateById(id)
     var username by remember { mutableStateOf("") }
+    var userid by remember { mutableStateOf("") }
+    val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
         loginVM.getUsernameFromFirestore { retrievedUsername ->
@@ -48,10 +52,14 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                 username = it
             }
         }
+        loginVM.getUserIdFromFirestore { userId ->
+            if (userId != null) {
+                userid = userId // Actualizar el valor de userid con el ID del usuario obtenido
+            } else {
+                println("El usuario no está autenticado o no se pudo obtener su ID")
+            }
+        }
     }
-
-
-    // Para esta pantalla, me gustaria extraer el tiempo de juego (playtime) y el rating de metacritic
 
 
     Box(modifier = Modifier
@@ -72,8 +80,14 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                 metacriticScoretextcontent = "Metacritic Score: $gameMetacriticScore/100",
                 gameHourstextcontent = "Hours to beat:\n$gamePlaytime horas",
                 releasedtextcontent = "Fecha de Lanzamiento: $gameDateReleased",
-            ){
-            }
+                onAddButtonClicked = {
+                    scope.launch {
+                        // loginVM.addGameIdToUser(userid, id, "OH") Esta es la llamada para la introduccion de juegos a las listas
+                        // loginVM.removeGameIdFromUser(userid, id, "OH") Esta es la llamada para la eliminación de juegos de las listas
+                        // Sería interesante poner un menu (Dropdownmenu o algo parecido) para elegir a que lista añadirlo
+                    }
+                }
+            )
         }
 
         FooterNavTab(

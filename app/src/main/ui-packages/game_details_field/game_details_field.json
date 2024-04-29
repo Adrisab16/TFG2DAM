@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "107:31",
-    "version": "5620247618",
+    "version": "5659224930",
     "component-id": "a6221c13f0de37dd9366e4776c6f24c100e207ac"
   },
   "default": "GameDetailsField",
@@ -35,10 +35,6 @@
       {
         "type": "group",
         "id": "ReleasedField"
-      },
-      {
-        "type": "group",
-        "id": "ScoreButton"
       },
       {
         "type": "vector",
@@ -107,14 +103,6 @@
       {
         "type": "text",
         "id": "FechaLanzamiento"
-      },
-      {
-        "type": "vector",
-        "id": "ScoreButton1"
-      },
-      {
-        "type": "text",
-        "id": "Boton score"
       }
     ],
     "modes": {
@@ -128,8 +116,7 @@
               "GamePhoto",
               "DetailsScreen",
               "SynopsisField",
-              "ReleasedField",
-              "ScoreButton"
+              "ReleasedField"
             ],
             "clip-content": "false"
           },
@@ -266,37 +253,6 @@
             "clip-content": "false"
           },
           {
-            "id": "ScoreButton",
-            "border-radius": "5.0",
-            "alignment": {
-              "horizontal": {
-                "attachment": "start",
-                "offset": "244.0"
-              },
-              "vertical": {
-                "attachment": "start",
-                "offset": "213.0"
-              }
-            },
-            "tap-handler": "$onScoreButtonClicked",
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "fixed",
-                "value": "84.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "fixed",
-                "value": "47.0"
-              }
-            },
-            "is-structured": "false",
-            "children": [
-              "ScoreButton1",
-              "Boton score"
-            ],
-            "clip-content": "false"
-          },
-          {
             "id": "GameTitle",
             "size-constraints": {
               "width-constraints": {
@@ -353,7 +309,7 @@
             "alignment": {
               "horizontal": {
                 "attachment": "start",
-                "offset": "0.0"
+                "offset": "19.0"
               },
               "vertical": {
                 "attachment": "start",
@@ -363,7 +319,7 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "84.0"
+                "value": "146.0"
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
@@ -402,7 +358,7 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "84.0"
+                "value": "146.0"
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
@@ -436,17 +392,17 @@
             "alignment": {
               "horizontal": {
                 "attachment": "start",
-                "offset": "2.4705867767333984"
+                "offset": "4.2940673828125"
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "7.833343505859375"
+                "offset": "7.83331298828125"
               }
             },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "79.05882263183594"
+                "value": "137.41175842285156"
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
@@ -631,7 +587,7 @@
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "5.714285850524902"
+                "offset": "5.71429443359375"
               }
             },
             "size-constraints": {
@@ -710,58 +666,6 @@
             "text-size": "15.0",
             "line-height": "1.2569999694824219",
             "typeface": "Merriweather"
-          },
-          {
-            "id": "ScoreButton1",
-            "border-radius": "5.0",
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              }
-            },
-            "vector-content": "score_button.svg"
-          },
-          {
-            "id": "Boton score",
-            "alignment": {
-              "horizontal": {
-                "attachment": "start",
-                "offset": "2.4705886840820312"
-              },
-              "vertical": {
-                "attachment": "start",
-                "offset": "7.8333282470703125"
-              }
-            },
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "fixed",
-                "value": "79.0588150024414"
-              },
-              "height-constraints": {
-                "sizing-mode": "fixed",
-                "value": "31.33333969116211"
-              }
-            },
-            "font-weight": "700.0",
-            "color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "1.0"
-            },
-            "text-content": "Boton score",
-            "overflow": "visible",
-            "max-lines": "-1",
-            "text-align-vertical": "center",
-            "text-size": "15.0",
-            "line-height": "1.2569999694824219",
-            "typeface": "Merriweather"
           }
         ]
       }
@@ -770,11 +674,6 @@
   "parameters": {
     "GamePhotoimagecontent": {
       "data-type": "image",
-      "required": false,
-      "description": ""
-    },
-    "onScoreButtonClicked": {
-      "data-type": "void-callback",
       "required": false,
       "description": ""
     },
