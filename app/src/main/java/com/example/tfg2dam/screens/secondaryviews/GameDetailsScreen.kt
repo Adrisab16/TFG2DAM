@@ -1,5 +1,7 @@
 package com.example.tfg2dam.screens.secondaryviews
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
@@ -9,6 +11,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -21,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
@@ -36,6 +44,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel, id: Int, gameVM: VideojuegosViewModel) {
     var isMenuVisible by remember { mutableStateOf(false) }
+    var isAddButtonMenuVisible by remember { mutableStateOf(false) }
     val gameName = gameVM.getGameNameById(id)
     val gameImage = gameVM.getGameImageById(id)
     val gameImagePainter: Painter = rememberAsyncImagePainter(model = gameImage, contentScale = ContentScale.Crop)
@@ -45,6 +54,7 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
     var username by remember { mutableStateOf("") }
     var userid by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         loginVM.getUsernameFromFirestore { retrievedUsername ->
@@ -82,12 +92,74 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                 releasedtextcontent = "Fecha de Lanzamiento: $gameDateReleased",
                 onAddButtonClicked = {
                     scope.launch {
-                        // loginVM.addGameIdToUser(userid, id, "OH") Esta es la llamada para la introduccion de juegos a las listas
-                        // loginVM.removeGameIdFromUser(userid, id, "OH") Esta es la llamada para la eliminación de juegos de las listas
-                        // Sería interesante poner un menu (Dropdownmenu o algo parecido) para elegir a que lista añadirlo
+                        isAddButtonMenuVisible = !isAddButtonMenuVisible
                     }
                 }
             )
+            if (isAddButtonMenuVisible) { // Mostrar el menú desplegable solo si isAddButtonMenuVisible es true
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .padding(top = 355.dp, end = 50.dp)
+                ) {
+                    DropdownMenu(
+                        expanded = isAddButtonMenuVisible,
+                        onDismissRequest = {
+                            isAddButtonMenuVisible = false // Ocultar el menú al hacer clic en cualquier parte de la pantalla
+                        },
+                        modifier = Modifier
+                            .width(150.dp) // Ancho del menú desplegable
+                            .wrapContentHeight() // Alto del menú desplegable
+                            .align(Alignment.BottomStart) // Alineación del menú desplegable
+                    ) {
+                        listOf("Oh Hold", "Completed", "Dropped", "Play to play", "Playing").forEach { option ->
+                            DropdownMenuItem(
+                                text = { Text(option) },
+                                onClick = {
+                                    // Realizar acción según la opción seleccionada
+                                    when(option) {
+                                        "Oh Hold" -> {
+                                            // Acción para On Hold
+                                            scope.launch {
+                                                loginVM.addGameIdToUser(userid, id, "OH")
+                                            }
+                                            showToast("Juego añadido a la lista On-Hold", context)
+                                        }
+                                        "Completed" -> {
+                                            // Acción para Completed
+                                            scope.launch {
+                                                loginVM.addGameIdToUser(userid, id, "CTD")
+                                            }
+                                            showToast("Juego añadido a la lista Completed", context)
+                                        }
+                                        "Dropped" -> {
+                                            // Acción para Dropped
+                                            scope.launch {
+                                                loginVM.addGameIdToUser(userid, id, "DR")
+                                            }
+                                            showToast("Juego añadido a la lista Dropped", context)
+                                        }
+                                        "Play to play" -> {
+                                            // Acción para Play to play
+                                            scope.launch {
+                                                loginVM.addGameIdToUser(userid, id, "PTP")
+                                            }
+                                            showToast("Juego añadido a la lista Plan To Play", context)
+                                        }
+                                        "Playing" -> {
+                                            // Acción para Playing
+                                            scope.launch {
+                                                loginVM.addGameIdToUser(userid, id, "CP")
+                                            }
+                                            showToast("Juego añadido a la lista Currently Playing", context)
+                                        }
+                                    }
+                                }
+                            )
+                        }
+                    }
+                }
+            }
         }
 
         FooterNavTab(
@@ -117,4 +189,8 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
             }
         }
     }
+}
+
+fun showToast(message: String, context: Context) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
