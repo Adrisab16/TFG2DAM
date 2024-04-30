@@ -1,0 +1,501 @@
+{
+  "name": "my_list_top_nav_bar",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "EtSmXEVNWeabOV1W1xAYhc",
+    "node": "154:32",
+    "version": "5666878336",
+    "component-id": "e904adb5a1445f4550002a24de5114af7b3b8292"
+  },
+  "default": "MyListTopNavBar",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "MyListTopField"
+      },
+      {
+        "type": "group",
+        "id": "MyListBottomField"
+      },
+      {
+        "type": "group",
+        "id": "PlayingButton"
+      },
+      {
+        "type": "group",
+        "id": "OnHoldButton"
+      },
+      {
+        "type": "group",
+        "id": "DroppedButton"
+      },
+      {
+        "type": "vector",
+        "id": "PlayingBackground"
+      },
+      {
+        "type": "text",
+        "id": "PlayingTxt"
+      },
+      {
+        "type": "vector",
+        "id": "OnHoldBackground"
+      },
+      {
+        "type": "text",
+        "id": "OnHoldTxt"
+      },
+      {
+        "type": "vector",
+        "id": "DroppedBackground"
+      },
+      {
+        "type": "text",
+        "id": "DroppedTxt"
+      },
+      {
+        "type": "group",
+        "id": "PlanToPlayButton"
+      },
+      {
+        "type": "group",
+        "id": "CompletedButton"
+      },
+      {
+        "type": "vector",
+        "id": "PlanToPlayBackground"
+      },
+      {
+        "type": "text",
+        "id": "PlantoplayTxt"
+      },
+      {
+        "type": "vector",
+        "id": "CompletedBackground"
+      },
+      {
+        "type": "text",
+        "id": "CompletedTxt"
+      }
+    ],
+    "modes": {
+      "MyListTopNavBar": {
+        "rules": [
+          {
+            "id": "top_level",
+            "padding": 16.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "main-axis-align": "start",
+            "children": [
+              "MyListTopField",
+              "MyListBottomField"
+            ],
+            "item-spacing": 16.0,
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.4666666666666667
+            }
+          },
+          {
+            "id": "MyListTopField",
+            "border-radius": 5.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 328.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 32.46154022216797
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "PlayingButton",
+              "OnHoldButton",
+              "DroppedButton"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "MyListBottomField",
+            "border-radius": 5.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 312.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 32.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "PlanToPlayButton",
+              "CompletedButton"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "PlayingButton",
+            "margin": {
+              "right": 240.0
+            },
+            "border-radius": 5.0,
+            "tap-handler": "$onPlayingButtonClicked",
+            "is-structured": false,
+            "children": [
+              "PlayingBackground",
+              "PlayingTxt"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "OnHoldButton",
+            "margin": {
+              "left": 232.0
+            },
+            "border-radius": 5.0,
+            "tap-handler": "$onOnHoldButtonClicked",
+            "is-structured": false,
+            "children": [
+              "OnHoldBackground",
+              "OnHoldTxt"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "DroppedButton",
+            "margin": {
+              "left": 104.0,
+              "right": 112.0
+            },
+            "border-radius": 5.0,
+            "tap-handler": "$onDroppedButtonClicked",
+            "is-structured": false,
+            "children": [
+              "DroppedBackground",
+              "DroppedTxt"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "PlayingBackground",
+            "border-radius": 5.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "vector-content": "playing_background.svg"
+          },
+          {
+            "id": "PlayingTxt",
+            "margin": {
+              "top": 4.05767822265625,
+              "bottom": 4.057708740234375
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "font-weight": 700.0,
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            },
+            "text-content": "Playing",
+            "overflow": "visible",
+            "max-lines": -1,
+            "text-align-vertical": "center",
+            "text-size": 20.0,
+            "line-height": 1.2569999694824219,
+            "typeface": "Merriweather"
+          },
+          {
+            "id": "OnHoldBackground",
+            "border-radius": 5.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "vector-content": "on_hold_background.svg"
+          },
+          {
+            "id": "OnHoldTxt",
+            "margin": {
+              "top": 3.04327392578125,
+              "bottom": 3.0432662963867188
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "font-weight": 700.0,
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            },
+            "text-content": "On Hold",
+            "overflow": "visible",
+            "max-lines": -1,
+            "text-align-vertical": "center",
+            "text-size": 20.0,
+            "line-height": 1.2569999694824219,
+            "typeface": "Merriweather"
+          },
+          {
+            "id": "DroppedBackground",
+            "border-radius": 5.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "vector-content": "dropped_background.svg"
+          },
+          {
+            "id": "DroppedTxt",
+            "margin": {
+              "top": 3.04327392578125,
+              "bottom": 4.057689666748047
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "font-weight": 700.0,
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            },
+            "text-content": "Dropped",
+            "overflow": "visible",
+            "max-lines": -1,
+            "text-align-vertical": "center",
+            "text-size": 20.0,
+            "line-height": 1.2569999694824219,
+            "typeface": "Merriweather"
+          },
+          {
+            "id": "PlanToPlayButton",
+            "margin": {
+              "left": 176.0
+            },
+            "border-radius": 5.0,
+            "tap-handler": "$onPlanToPlayButtonClicked",
+            "is-structured": false,
+            "children": [
+              "PlanToPlayBackground",
+              "PlantoplayTxt"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "CompletedButton",
+            "margin": {
+              "top": 1.0,
+              "right": 184.0
+            },
+            "border-radius": 5.0,
+            "tap-handler": "$onCompletedButtonClicked",
+            "is-structured": false,
+            "children": [
+              "CompletedBackground",
+              "CompletedTxt"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "PlanToPlayBackground",
+            "border-radius": 5.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "vector-content": "plan_to_play_background.svg"
+          },
+          {
+            "id": "PlantoplayTxt",
+            "margin": {
+              "top": 4.0,
+              "bottom": 4.000001907348633
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "font-weight": 700.0,
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            },
+            "text-content": "Plan to play",
+            "overflow": "visible",
+            "max-lines": -1,
+            "text-align-vertical": "center",
+            "text-size": 20.0,
+            "line-height": 1.2569999694824219,
+            "typeface": "Merriweather"
+          },
+          {
+            "id": "CompletedBackground",
+            "border-radius": 5.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "vector-content": "completed_background.svg"
+          },
+          {
+            "id": "CompletedTxt",
+            "margin": {
+              "top": 4.0,
+              "bottom": 4.0
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "font-weight": 700.0,
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            },
+            "text-content": "Completed",
+            "overflow": "visible",
+            "max-lines": -1,
+            "text-align-vertical": "center",
+            "text-size": 20.0,
+            "line-height": 1.2569999694824219,
+            "typeface": "Merriweather"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "onPlayingButtonClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onOnHoldButtonClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onDroppedButtonClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onPlanToPlayButtonClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onCompletedButtonClicked": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "MyListTopNavBar",
+      "size": {
+        "width": 360.0,
+        "height": 112.46154022216797
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

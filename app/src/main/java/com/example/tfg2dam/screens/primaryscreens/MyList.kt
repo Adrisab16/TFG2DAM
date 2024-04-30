@@ -24,6 +24,7 @@ import com.example.tfg2dam.footernavtab.FooterNavTab
 import com.example.tfg2dam.footernavtab.Property1
 import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
+import com.example.tfg2dam.mylisttopnavbar.MyListTopNavBar
 import com.example.tfg2dam.viewmodel.loginViewModel
 
 @Composable
@@ -39,13 +40,21 @@ fun MyList(navController: NavController, loginVM: loginViewModel){
         }
     }
 
-    Box(Modifier.fillMaxSize().background(Color(android.graphics.Color.parseColor("#141414")))) {
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(Color(android.graphics.Color.parseColor("#141414")))) {
         Header(
             modifier = Modifier
-                .padding(bottom = 700.dp)
-                .align(Alignment.Center)
+                .align(Alignment.TopCenter)
             , // Agregar espacio superior
             onUserIconClicked = { isMenuVisible = true },
+        )
+
+        MyListTopNavBar(
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top=100.dp)
         )
 
         FooterNavTab(
