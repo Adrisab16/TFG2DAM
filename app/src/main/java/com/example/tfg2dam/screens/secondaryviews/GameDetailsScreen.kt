@@ -39,10 +39,11 @@ import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
+import com.example.tfg2dam.viewmodel.userVideogameViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel, id: Int, gameVM: VideojuegosViewModel) {
+fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel, userVideogameVM: userVideogameViewModel, id: Int, gameVM: VideojuegosViewModel) {
     var isMenuVisible by remember { mutableStateOf(false) }
     var isAddButtonMenuVisible by remember { mutableStateOf(false) }
     val gameName = gameVM.getGameNameById(id)
@@ -121,35 +122,35 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                                         "Oh Hold" -> {
                                             // Acción para On Hold
                                             scope.launch {
-                                                loginVM.addGameIdToUser(userid, id, "OH")
+                                                userVideogameVM.addGameIdToUser(userid, id, "OH")
                                             }
                                             showToast("Juego añadido a la lista On-Hold", context)
                                         }
                                         "Completed" -> {
                                             // Acción para Completed
                                             scope.launch {
-                                                loginVM.addGameIdToUser(userid, id, "CTD")
+                                                userVideogameVM.addGameIdToUser(userid, id, "CTD")
                                             }
                                             showToast("Juego añadido a la lista Completed", context)
                                         }
                                         "Dropped" -> {
                                             // Acción para Dropped
                                             scope.launch {
-                                                loginVM.addGameIdToUser(userid, id, "DR")
+                                                userVideogameVM.addGameIdToUser(userid, id, "DR")
                                             }
                                             showToast("Juego añadido a la lista Dropped", context)
                                         }
                                         "Play to play" -> {
                                             // Acción para Play to play
                                             scope.launch {
-                                                loginVM.addGameIdToUser(userid, id, "PTP")
+                                                userVideogameVM.addGameIdToUser(userid, id, "PTP")
                                             }
                                             showToast("Juego añadido a la lista Plan To Play", context)
                                         }
                                         "Playing" -> {
                                             // Acción para Playing
                                             scope.launch {
-                                                loginVM.addGameIdToUser(userid, id, "CP")
+                                                userVideogameVM.addGameIdToUser(userid, id, "CP")
                                             }
                                             showToast("Juego añadido a la lista Currently Playing", context)
                                         }

@@ -19,6 +19,7 @@ data class GameMap(
     @get:PropertyName("OH") val OH: MutableList<Int> = mutableListOf(),
     @get:PropertyName("CTD") val CTD: MutableList<Int> = mutableListOf()
 ) {
+
     constructor() : this(mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf())
 }
 

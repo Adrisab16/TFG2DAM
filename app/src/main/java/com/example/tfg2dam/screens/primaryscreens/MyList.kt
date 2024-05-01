@@ -9,6 +9,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -25,10 +27,12 @@ import com.example.tfg2dam.footernavtab.Property1
 import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
 import com.example.tfg2dam.mylisttopnavbar.MyListTopNavBar
+import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
+import com.example.tfg2dam.viewmodel.userVideogameViewModel
 
 @Composable
-fun MyList(navController: NavController, loginVM: loginViewModel){
+fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameVM:userVideogameViewModel, videoGameVM:VideojuegosViewModel){
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
 
@@ -54,7 +58,12 @@ fun MyList(navController: NavController, loginVM: loginViewModel){
         MyListTopNavBar(
             modifier = Modifier
                 .align(Alignment.TopCenter)
-                .padding(top=100.dp)
+                .padding(top=100.dp),
+            onCompletedButtonClicked = {},
+            onDroppedButtonClicked = {},
+            onOnHoldButtonClicked = {},
+            onPlanToPlayButtonClicked = {},
+            onPlayingButtonClicked = {},
         )
 
         FooterNavTab(

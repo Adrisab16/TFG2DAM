@@ -79,14 +79,14 @@ fun CardJuego(
 
 @Composable
 fun GameImage(imagen: String){
-    val imagenPainter = rememberAsyncImagePainter(model = imagen)
+        val imagenPainter = rememberAsyncImagePainter(model = imagen)
 
-    Image (
-        painter = imagenPainter,
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(250.dp)
-    )
+        Image (
+            painter = imagenPainter,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(250.dp)
+        )
 }

@@ -16,11 +16,14 @@ import com.example.tfg2dam.screens.login_signupscreens.SignUp
 import com.example.tfg2dam.screens.secondaryviews.GameDetailsScreen
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
+import com.example.tfg2dam.viewmodel.userVideogameViewModel
 
 @Composable
 fun NavManager(
     loginVM: loginViewModel, /*gameVM: VideogamesViewModel*/
-    gameVM: VideojuegosViewModel, ) {
+    gameVM: VideojuegosViewModel,
+    userVideogameVM: userVideogameViewModel
+    ) {
     // DCS - Configuración del sistema de navegación y definición de las rutas.
 
     // Se crea el controlador de navegación que recordará el estado de la navegación.
@@ -50,7 +53,7 @@ fun NavManager(
         }
         composable("MyList") {
             // Muestra la vista correspondiente a la pantalla principal (Home).
-            MyList(navController, loginVM)
+            MyList(navController, loginVM, userVideogameVM, gameVM)
         }
         composable(
             "GameDetailsScreen/{gameId}",
@@ -58,7 +61,7 @@ fun NavManager(
         ) { backStackEntry ->
             val gameId = backStackEntry.arguments?.getInt("gameId")
             if (gameId != null) {
-                GameDetailsScreen(navController, loginVM, gameId, gameVM)
+                GameDetailsScreen(navController, loginVM, userVideogameVM, gameId, gameVM)
             } else {
                 // Manejar caso en el que no se recibe el ID del juego
             }

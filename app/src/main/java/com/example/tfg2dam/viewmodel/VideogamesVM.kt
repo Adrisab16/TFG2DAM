@@ -67,7 +67,6 @@ class VideojuegosViewModel : ViewModel() {
         return juego?.gamedesc ?: ""
     }
     */
-
 }
 
 

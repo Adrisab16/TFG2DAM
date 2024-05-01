@@ -14,6 +14,7 @@ import com.example.tfg2dam.ui.theme.TFG2DAMTheme
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 //import com.example.tfg2dam.viewmodel.VideogamesViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
+import com.example.tfg2dam.viewmodel.userVideogameViewModel
 import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
@@ -22,6 +23,7 @@ class MainActivity : ComponentActivity() {
         FirebaseApp.initializeApp(this)
         val loginVM : loginViewModel by viewModels()
         val gameVM : VideojuegosViewModel by viewModels()
+        val userVideogameVM: userVideogameViewModel by viewModels()
         setContent {
             TFG2DAMTheme {
                 // A surface container using the 'background' color from the theme
@@ -29,7 +31,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NavManager(loginVM, gameVM) // Activar luego de termianr el test
+                    NavManager(loginVM, gameVM, userVideogameVM) // Activar luego de termianr el test
 
                 }
             }
