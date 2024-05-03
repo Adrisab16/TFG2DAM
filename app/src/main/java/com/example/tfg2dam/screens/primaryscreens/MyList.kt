@@ -7,13 +7,14 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -27,6 +28,7 @@ import com.example.tfg2dam.footernavtab.Property1
 import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
 import com.example.tfg2dam.mylisttopnavbar.MyListTopNavBar
+import com.example.tfg2dam.screens.viewresources.ContenidoListView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
 import com.example.tfg2dam.viewmodel.userVideogameViewModel
@@ -35,6 +37,7 @@ import com.example.tfg2dam.viewmodel.userVideogameViewModel
 fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameVM:userVideogameViewModel, videoGameVM:VideojuegosViewModel){
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
+    var countlist by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(Unit) {
         loginVM.getUsernameFromFirestore { retrievedUsername ->
@@ -58,14 +61,59 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
         MyListTopNavBar(
             modifier = Modifier
                 .align(Alignment.TopCenter)
-                .padding(top=100.dp),
-            onCompletedButtonClicked = {},
-            onDroppedButtonClicked = {},
-            onOnHoldButtonClicked = {},
-            onPlanToPlayButtonClicked = {},
-            onPlayingButtonClicked = {},
+                .padding(top = 100.dp),
+            onPlayingButtonClicked = {countlist = 1},
+            onDroppedButtonClicked = {countlist = 2},
+            onOnHoldButtonClicked = {countlist = 3},
+            onCompletedButtonClicked = {countlist = 4},
+            onPlanToPlayButtonClicked = {countlist = 5},
+
         )
 
+        // Listview con videoojuegos filtrados
+
+        Box(modifier = Modifier
+            .align(Alignment.Center)
+            .padding(top=225.dp, bottom = 50.dp)
+        ){
+            when (countlist){
+                // Default
+                0->{
+                    Text(text = "Elige una lista")}
+
+                // Lista Currently PLaying
+                1->{
+                    ContenidoListView(
+                        navController = navController,
+                        gametype = "CP",
+                        pad = PaddingValues(10.dp),
+                        userVideogameVM = userVideoGameVM,
+                        viewModel = VideojuegosViewModel()
+                    )
+                }
+
+                // Lista Dropped
+                2->{
+
+                }
+
+                // Lista On-Hold
+                3->{
+
+                }
+
+                // Lista Completed
+                4->{
+
+                }
+
+                // Lista Plan to Play
+                5->{
+
+                }
+            }
+        }
+        
         FooterNavTab(
             modifier = Modifier.align(Alignment.BottomCenter),
             property1 = Property1.MyListClicked,
