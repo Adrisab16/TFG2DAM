@@ -99,15 +99,18 @@ class userVideogameViewModel: ViewModel() {
             val userDocument = firestore.collection("users").document(userId).get().await()
             if (userDocument.exists()) {
                 val userModel = userDocument.toObject(UserModel::class.java)
-                userModel?.gameMap?.let { map ->
+                if (userModel?.gameMap != null) {
                     when (gameType) {
-                        "CP" -> map.CP
-                        "PTP" -> map.PTP
-                        "DR" -> map.DR
-                        "OH" -> map.OH
-                        "CTD" -> map.CTD
+                        "CP" -> userModel.gameMap.CP
+                        "PTP" -> userModel.gameMap.PTP
+                        "DR" -> userModel.gameMap.DR
+                        "OH" -> userModel.gameMap.OH
+                        "CTD" -> userModel.gameMap.CTD
                         else -> null
                     }
+                } else {
+                    Log.d("USUARIO INCORRECTO", "El modelo de usuario o el mapa de juegos es nulo")
+                    null
                 }
             } else {
                 Log.d("USUARIO NO ENCONTRADO", "No se encontró ningún usuario con el ID proporcionado")

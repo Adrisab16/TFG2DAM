@@ -1,5 +1,6 @@
 package com.example.tfg2dam.screens.viewresources
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,8 +23,12 @@ import androidx.compose.material.icons.filled.DeleteForever
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -46,18 +51,27 @@ fun ContenidoListView(
     viewModel: VideojuegosViewModel,
     userVideogameVM: userVideogameViewModel,
     pad: PaddingValues,
-    gametype: String
+    gametype: String,
+    userId: String // Agregar el parámetro userId
 ){
     val juegos by viewModel.juegos.collectAsState()
+    var filteredJuegos by remember { mutableStateOf<List<VideojuegosLista>>(emptyList()) }
 
+    LaunchedEffect(juegos) {
+        val gameIds = userVideogameVM.getVideoGamesByType(gameType = gametype, userId = userId)
+        filteredJuegos = juegos.filter { it.id in gameIds.orEmpty() }
+        Log.i("GAMEIDS", "$gameIds")
+        Log.i("FILTEREDJUEGOS", "$filteredJuegos")
+    }
 
     LazyColumn(
         modifier = Modifier
             .padding(pad)
             .background(Color(android.graphics.Color.parseColor("#141414"))),
+        verticalArrangement = Arrangement.Top
     ){
-        items(juegos) {
-            CardJuegoListView(navController = navController, juego = it, gametype = gametype, userVideogameVM = userVideogameVM)
+        items(filteredJuegos) {
+            CardJuegoListView(navController = navController, juego = it)
         }
     }
 }
@@ -65,10 +79,8 @@ fun ContenidoListView(
 @Composable
 fun CardJuegoListView(
     navController: NavController,
-    juego: VideojuegosLista,
-    gametype: String,
-    userVideogameVM: userVideogameViewModel,
-    ) {
+    juego: VideojuegosLista
+) {
     Row(
         modifier = Modifier
             .padding(8.dp)
@@ -76,16 +88,15 @@ fun CardJuegoListView(
             .background(Color.LightGray)
             .fillMaxWidth()
             .clickable {
-                // Cuando se hace clic en el juego, navegamos a GameDetailsScreen pasando el ID del juego
                 navController.navigate("GameDetailsScreen/${juego.id}")
             }
     ){
-        GameImageListView(imagen = juego.image) // Gameimage
+        GameImageListView(imagen = juego.image)
         Spacer(modifier = Modifier.width(10.dp))
         Column {
             Box(modifier = Modifier.align(Alignment.CenterHorizontally)){
                 Text(text = juego.name, color = Color.Black, fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center)
-            } // Gametitle}
+            }
             Spacer(modifier = Modifier.height(10.dp))
             Text(text = "Nota Metacritic: ${juego.mcscore}/100", color = Color.Black)
             Spacer(modifier = Modifier.height(10.dp))
@@ -100,10 +111,9 @@ fun CardJuegoListView(
             .height(150.dp)
             .size(20.dp)
             .clickable{
-                      // Aqui llamo a la funcion que eliminará el videojuego de la lista
-                      // userVideogameVM.removeGameIdFromUser(userId = "",juego.id, gametype
-            }
-            ,
+                // Aquí puedes llamar a la función para eliminar el juego de la lista
+                // userVideogameVM.removeGameIdFromUser(userId = "",juego.id, gametype)
+            },
             Arrangement.Center,
             Alignment.CenterHorizontally
         ) {

@@ -303,12 +303,26 @@ class loginViewModel: ViewModel() {
         }
     }
 
-    fun getUserIdFromFirestore(callback: (String?) -> Unit) {
+    fun getUserIdFromFirestore(callback: (String) -> Unit) {
         // Obtener el ID del usuario actualmente autenticado
         val userId = auth.currentUser?.uid
-
-        // Llamar al callback con el ID de usuario obtenido
-        callback(userId)
+        try {
+            // Verificar si el usuario está autenticado y tiene un ID válido
+            if (userId != null) {
+                // Llamar al callback con el ID de usuario obtenido
+                callback(userId)
+            } else {
+                // Si el usuario no está autenticado o no tiene un ID válido, lanzar una excepción
+                Log.e("ERROR", "El usuario no está autenticado o no tiene un ID válido")
+                throw IllegalStateException("El usuario no está autenticado o no tiene un ID válido")
+            }
+        } catch (e: Exception) {
+            // Manejar cualquier excepción que pueda ocurrir dentro del bloque try
+            Log.e("ERROR", "Error al obtener el ID del usuario: ${e.localizedMessage}", e)
+            // Aquí puedes manejar el error de la manera que desees
+            // Por ejemplo, puedes lanzar otra excepción, proporcionar un valor predeterminado, o no hacer nada
+        }
     }
+
 
 }

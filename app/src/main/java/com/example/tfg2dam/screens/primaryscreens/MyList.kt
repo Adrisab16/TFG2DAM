@@ -1,5 +1,6 @@
 package com.example.tfg2dam.screens.primaryscreens
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
@@ -38,14 +39,23 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
     var countlist by remember { mutableIntStateOf(0) }
+    var userId by remember { mutableStateOf("") } // Estado para almacenar el ID de usuario
 
     LaunchedEffect(Unit) {
+        loginVM.getUserIdFromFirestore { retrievedUsername ->
+            retrievedUsername.let {
+                userId  = it
+                Log.i("USERID", userId)
+            }
+        }
+
         loginVM.getUsernameFromFirestore { retrievedUsername ->
             retrievedUsername?.let {
                 username = it
             }
         }
     }
+
 
     Box(
         Modifier
@@ -70,7 +80,7 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
 
         )
 
-        // Listview con videoojuegos filtrados
+        // Listview con videojuegos filtrados
 
         Box(modifier = Modifier
             .align(Alignment.Center)
@@ -88,28 +98,57 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
                         gametype = "CP",
                         pad = PaddingValues(10.dp),
                         userVideogameVM = userVideoGameVM,
-                        viewModel = VideojuegosViewModel()
+                        viewModel = VideojuegosViewModel(),
+                        userId = userId // Pasar el userId aquí
                     )
                 }
 
                 // Lista Dropped
                 2->{
-
+                    ContenidoListView(
+                        navController = navController,
+                        gametype = "DR",
+                        pad = PaddingValues(10.dp),
+                        userVideogameVM = userVideoGameVM,
+                        viewModel = VideojuegosViewModel(),
+                        userId = userId // Pasar el userId aquí
+                    )
                 }
 
                 // Lista On-Hold
                 3->{
-
+                    ContenidoListView(
+                        navController = navController,
+                        gametype = "OH",
+                        pad = PaddingValues(10.dp),
+                        userVideogameVM = userVideoGameVM,
+                        viewModel = VideojuegosViewModel(),
+                        userId = userId // Pasar el userId aquí
+                    )
                 }
 
                 // Lista Completed
                 4->{
-
+                    ContenidoListView(
+                        navController = navController,
+                        gametype = "CTD",
+                        pad = PaddingValues(10.dp),
+                        userVideogameVM = userVideoGameVM,
+                        viewModel = VideojuegosViewModel(),
+                        userId = userId // Pasar el userId aquí
+                    )
                 }
 
                 // Lista Plan to Play
                 5->{
-
+                    ContenidoListView(
+                        navController = navController,
+                        gametype = "PTP",
+                        pad = PaddingValues(10.dp),
+                        userVideogameVM = userVideoGameVM,
+                        viewModel = VideojuegosViewModel(),
+                        userId = userId // Pasar el userId aquí
+                    )
                 }
             }
         }
