@@ -1,8 +1,11 @@
 package com.example.tfg2dam.viewmodel
 
 import android.util.Log
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.tfg2dam.model.UserModel
+import com.example.tfg2dam.model.VideojuegosLista
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.tasks.await
@@ -10,6 +13,9 @@ import kotlinx.coroutines.tasks.await
 class userVideogameViewModel: ViewModel() {
 
     private val firestore = Firebase.firestore
+    private val _currentlyPlayingGames = mutableStateOf<List<VideojuegosLista>>(emptyList())
+    val currentlyPlayingGames: State<List<VideojuegosLista>> = _currentlyPlayingGames
+
     /**
      * Añade videojuegos (su id) a las 5 listas disponibles
      */
@@ -55,8 +61,8 @@ class userVideogameViewModel: ViewModel() {
      * Elimina videojuegos (su id) de las 5 listas disponibles
      */
 
-    suspend fun removeGameIdFromUser(userId: String, gameId: Int, gameType: String) {
-        try {
+    suspend fun removeGameIdFromUser(userId: String, gameId: Int, gameType: String): Boolean {
+        return try {
             // Obtener el usuario de Firestore
             val userDocument = firestore.collection("users").document(userId).get().await()
             if (userDocument.exists()) {
@@ -83,12 +89,17 @@ class userVideogameViewModel: ViewModel() {
                         .addOnFailureListener { exception ->
                             Log.e("ERROR AL ACTUALIZAR", "ERROR al actualizar en Firestore", exception)
                         }
+
+                    true // Indicar que la eliminación fue exitosa
+                } else {
+                    false // Indicar que el modelo de usuario es nulo
                 }
             } else {
-                Log.d("USUARIO NO ENCONTRADO", "No se encontró ningún usuario con el ID proporcionado")
+                false // Indicar que el documento de usuario no existe
             }
         } catch (e: Exception) {
             Log.e("ERROR AL ELIMINAR GAME ID", "ERROR: ${e.localizedMessage}", e)
+            false // Indicar que ocurrió un error al eliminar el gameId
         }
     }
 

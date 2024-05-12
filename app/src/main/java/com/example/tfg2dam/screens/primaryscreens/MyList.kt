@@ -1,6 +1,7 @@
 package com.example.tfg2dam.screens.primaryscreens
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
@@ -22,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.tfg2dam.footernavtab.FooterNavTab
@@ -99,7 +101,7 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
                         pad = PaddingValues(10.dp),
                         userVideogameVM = userVideoGameVM,
                         viewModel = VideojuegosViewModel(),
-                        userId = userId // Pasar el userId aquí
+                        userId = userId,
                     )
                 }
 

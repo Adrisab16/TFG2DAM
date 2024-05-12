@@ -1,6 +1,7 @@
 package com.example.tfg2dam.screens.viewresources
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,12 +29,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -42,6 +45,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.userVideogameViewModel
+import kotlinx.coroutines.launch
 
 
 // Este funciona:
@@ -52,16 +56,15 @@ fun ContenidoListView(
     userVideogameVM: userVideogameViewModel,
     pad: PaddingValues,
     gametype: String,
-    userId: String // Agregar el parámetro userId
-){
+    userId: String,
+) {
     val juegos by viewModel.juegos.collectAsState()
     var filteredJuegos by remember { mutableStateOf<List<VideojuegosLista>>(emptyList()) }
 
+    // Llamada a LaunchedEffect solo para actualizar la lista de juegos filtrados
     LaunchedEffect(juegos) {
         val gameIds = userVideogameVM.getVideoGamesByType(gameType = gametype, userId = userId)
         filteredJuegos = juegos.filter { it.id in gameIds.orEmpty() }
-        Log.i("GAMEIDS", "$gameIds")
-        Log.i("FILTEREDJUEGOS", "$filteredJuegos")
     }
 
     LazyColumn(
@@ -69,18 +72,34 @@ fun ContenidoListView(
             .padding(pad)
             .background(Color(android.graphics.Color.parseColor("#141414"))),
         verticalArrangement = Arrangement.Top
-    ){
-        items(filteredJuegos) {
-            CardJuegoListView(navController = navController, juego = it)
+    ) {
+        items(filteredJuegos) { juego ->
+            CardJuegoListView(
+                navController = navController,
+                juego = juego,
+                gametype = gametype,
+                userVideogameVM = userVideogameVM,
+                userId = userId,
+                gameId = juego.id
+            )
         }
     }
 }
 
+
 @Composable
 fun CardJuegoListView(
     navController: NavController,
-    juego: VideojuegosLista
-) {
+    juego: VideojuegosLista,
+    gametype: String,
+    gameId: Int,
+    userId: String,
+    userVideogameVM: userVideogameViewModel,
+    ) {
+    // Mantén un estado para controlar si se ha hecho clic en el botón de eliminación
+    val clickedState = remember { mutableStateOf(false) }
+    var nameGameType by remember { mutableStateOf("") }
+
     Row(
         modifier = Modifier
             .padding(8.dp)
@@ -105,14 +124,15 @@ fun CardJuegoListView(
             Text(text = "Fecha salida: ${juego.datereleased}",color = Color.Black)
         }
         Spacer(modifier = Modifier.width(10.dp))
+        // Verifica si se ha hecho clic en el botón de eliminación
+
         Column(modifier = Modifier
             .background(Color.Red)
             .fillMaxSize()
             .height(150.dp)
             .size(20.dp)
-            .clickable{
-                // Aquí puedes llamar a la función para eliminar el juego de la lista
-                // userVideogameVM.removeGameIdFromUser(userId = "",juego.id, gametype)
+            .clickable {
+                clickedState.value = true
             },
             Arrangement.Center,
             Alignment.CenterHorizontally
@@ -123,6 +143,36 @@ fun CardJuegoListView(
                 tint = Color.White
             )
         }
+    }
+    if(clickedState.value){
+        removeGameFromUser(userVideogameVM, userId, gameId, gametype)
+        when(gametype){
+            "CP" -> {nameGameType = "Currenty Playing"}
+            "DR" -> {nameGameType = "Dropped"}
+            "OH" -> {nameGameType = "On-Hold"}
+            "CTD" -> {nameGameType = "Completed"}
+            "PTP" -> {nameGameType = "Plan to Play"}
+        }
+        Toast.makeText(
+            LocalContext.current,
+            "${juego.name} ha sido eliminado de $nameGameType",
+            Toast.LENGTH_SHORT
+        ).show()
+        navController.navigate("MyList")
+    }
+}
+
+
+@Composable
+fun removeGameFromUser(
+    userVideogameVM: userVideogameViewModel,
+    userId: String,
+    gameId: Int,
+    gametype: String
+) {
+    // Lógica para eliminar el juego del usuario
+    LaunchedEffect(Unit) {
+        userVideogameVM.removeGameIdFromUser(userId, gameId, gametype)
     }
 }
 
