@@ -51,9 +51,9 @@ fun NavManager(
             // Muestra la vista correspondiente a la pantalla principal (Home).
             Discover(navController, loginVM, gameVM)
         }
-        composable("MyList") {
-            // Muestra la vista correspondiente a la pantalla principal (Home).
-            MyList(navController, loginVM, userVideogameVM, gameVM)
+        composable("MyList/{countlistout}") { backStackEntry ->
+            val countlistout = backStackEntry.arguments?.getString("countlistout") ?: "0"
+            MyList(navController, loginVM, userVideogameVM, gameVM, countlistout)
         }
         composable(
             "GameDetailsScreen/{gameId}",

@@ -1,5 +1,7 @@
 package com.example.tfg2dam.screens.viewresources
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -26,8 +28,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -43,6 +47,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.userVideogameViewModel
+import kotlinx.coroutines.launch
 
 
 // Este funciona:
@@ -84,6 +89,7 @@ fun ContenidoListView(
 }
 
 
+@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun CardJuegoListView(
     navController: NavController,
@@ -92,9 +98,9 @@ fun CardJuegoListView(
     gameId: Int,
     userId: String,
     userVideogameVM: userVideogameViewModel,
-    ) {
+) {
     // Mantén un estado para controlar si se ha hecho clic en el botón de eliminación
-    val clickedState = remember { mutableStateOf(false) }
+    var clickedState by remember { mutableStateOf(false) }
     var nameGameType by remember { mutableStateOf("") }
 
     Row(
@@ -122,17 +128,17 @@ fun CardJuegoListView(
         }
         Spacer(modifier = Modifier.width(10.dp))
         // Verifica si se ha hecho clic en el botón de eliminación
-
-        Column(modifier = Modifier
-            .background(Color.Red)
-            .fillMaxSize()
-            .height(150.dp)
-            .size(20.dp)
-            .clickable {
-                clickedState.value = true
-            },
-            Arrangement.Center,
-            Alignment.CenterHorizontally
+        Column(
+            modifier = Modifier
+                .background(Color.Red)
+                .fillMaxSize()
+                .height(150.dp)
+                .size(20.dp)
+                .clickable {
+                    clickedState = true
+                },
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Icon(
                 imageVector = Icons.Default.DeleteForever,
@@ -141,23 +147,33 @@ fun CardJuegoListView(
             )
         }
     }
-    if(clickedState.value){
-        removeGameFromUser(userVideogameVM, userId, gameId, gametype)
-        when(gametype){
-            "CP" -> {nameGameType = "Currenty Playing"}
-            "DR" -> {nameGameType = "Dropped"}
-            "OH" -> {nameGameType = "On-Hold"}
-            "CTD" -> {nameGameType = "Completed"}
-            "PTP" -> {nameGameType = "Plan to Play"}
+
+    val coroutineScope = rememberCoroutineScope()
+    var countlistout by remember { mutableIntStateOf(0) }
+    if (clickedState) {
+        coroutineScope.launch {
+            val success = userVideogameVM.removeGameIdFromUser(userId, gameId, gametype)
+            if (success) {
+                when(gametype){
+                    "CP" -> {nameGameType = "Currently Playing"; countlistout = 1}
+                    "DR" -> {nameGameType = "Dropped"; countlistout = 2}
+                    "OH" -> {nameGameType = "On-Hold"; countlistout = 3}
+                    "CTD" -> {nameGameType = "Completed"; countlistout = 4}
+                    "PTP" -> {nameGameType = "Plan to Play"; countlistout = 5}
+                }
+                navController.navigate("MyList/$countlistout")
+                // Restablecer el estado de clickedState
+                clickedState = false
+            }
         }
         Toast.makeText(
             LocalContext.current,
-            "${juego.name} ha sido eliminado de $nameGameType",
+            "${juego.name} has been removed from $nameGameType",
             Toast.LENGTH_SHORT
         ).show()
-        navController.navigate("MyList")
     }
 }
+
 
 
 @Composable
@@ -169,9 +185,21 @@ fun removeGameFromUser(
 ) {
     // Lógica para eliminar el juego del usuario
     LaunchedEffect(Unit) {
-        userVideogameVM.removeGameIdFromUser(userId, gameId, gametype)
+        try {
+            userVideogameVM.removeGameIdFromUser(userId, gameId, gametype)
+        } catch (e: Exception) {
+            // Manejar la excepción aquí
+            Log.e("ERROR AL ELIMINAR JUEGO", "Error al eliminar el juego: ${e.localizedMessage}", e)
+            // Puedes mostrar un mensaje de error si lo deseas
+            // Toast.makeText(
+            //     LocalContext.current,
+            //     "Error al eliminar el juego: ${e.localizedMessage}",
+            //     Toast.LENGTH_SHORT
+            // ).show()
+        }
     }
 }
+
 
 @Composable
 fun GameImageListView(imagen: String){

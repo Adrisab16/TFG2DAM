@@ -35,11 +35,14 @@ import com.example.tfg2dam.viewmodel.loginViewModel
 import com.example.tfg2dam.viewmodel.userVideogameViewModel
 
 @Composable
-fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameVM:userVideogameViewModel, videoGameVM:VideojuegosViewModel){
+fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameVM:userVideogameViewModel, videoGameVM:VideojuegosViewModel, countlistout: String){
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
-    var countlist by remember { mutableIntStateOf(0) }
+    var countlist by remember { mutableIntStateOf(countlistout.toInt()) }
     var userId by remember { mutableStateOf("") } // Estado para almacenar el ID de usuario
+
+    print(countlistout)
+    print(countlist)
 
     LaunchedEffect(Unit) {
         loginVM.getUserIdFromFirestore { retrievedUsername ->
@@ -175,7 +178,27 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
                     modifier = Modifier.clickable {  },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
                     onSettingsButtonClicked = {navController.navigate("Settings")},
-                    usernameTxttextcontent = "Hola,\n$username"
+                    usernameTxttextcontent = "Hola, $username",
+                    onCompletedListClicked = {
+                        val countlistout = 4
+                        navController.navigate("MyList/$countlistout")
+                    },
+                    onDroppedClicked = {
+                        val countlistout = 2
+                        navController.navigate("MyList/$countlistout")
+                    },
+                    onOnHoldListDailyChallengesClicked = {
+                        val countlistout = 3
+                        navController.navigate("MyList/$countlistout")
+                    },
+                    onPlanToPlayMyStadisticsClicked = {
+                        val countlistout = 5
+                        navController.navigate("MyList/$countlistout")
+                    },
+                    onPlayingListClicked = {
+                        val countlistout = 1
+                        navController.navigate("MyList/$countlistout")
+                    },
                 )
             }
         }

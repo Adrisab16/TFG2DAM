@@ -166,8 +166,9 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
         FooterNavTab(
             modifier = Modifier.align(Alignment.BottomCenter),
             property1 = Property1.DiscoverClicked,
-            onListButtonClicked = { navController.navigate("MyList") },
+            onListButtonClicked = { navController.navigate("MyList/0") },
             onDiscoverButtonClicked = { navController.navigate("Discover") },
+            onHomeButtonClicked = { navController.navigate("Home") }
         )
 
         AnimatedVisibility(
@@ -185,7 +186,27 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                     modifier = Modifier.clickable {  },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
                     onSettingsButtonClicked = {navController.navigate("Settings")},
-                    usernameTxttextcontent = "Hola,\n$username"
+                    usernameTxttextcontent = "Hola,\n$username",
+                    onCompletedListClicked = {
+                        val countlistout = 4
+                        navController.navigate("MyList/$countlistout")
+                    },
+                    onDroppedClicked = {
+                        val countlistout = 2
+                        navController.navigate("MyList/$countlistout")
+                    },
+                    onOnHoldListDailyChallengesClicked = {
+                        val countlistout = 3
+                        navController.navigate("MyList/$countlistout")
+                    },
+                    onPlanToPlayMyStadisticsClicked = {
+                        val countlistout = 5
+                        navController.navigate("MyList/$countlistout")
+                    },
+                    onPlayingListClicked = {
+                        val countlistout = 1
+                        navController.navigate("MyList/$countlistout")
+                    },
                 )
             }
         }

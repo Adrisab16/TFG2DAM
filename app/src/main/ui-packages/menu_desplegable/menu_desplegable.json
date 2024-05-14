@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "83:96",
-    "version": "5638487518",
+    "version": "5751164521",
     "component-id": "7f97870336519b0818cab18692b4b39acebf8f42"
   },
   "default": "MenuDesplegable",
@@ -45,10 +45,6 @@
         "id": "UsernameView"
       },
       {
-        "type": "group",
-        "id": "UserImageField"
-      },
-      {
         "type": "vector",
         "id": "UsernameViewBackground"
       },
@@ -57,24 +53,12 @@
         "id": "UsernameTxt"
       },
       {
-        "type": "vector",
-        "id": "UserProfileIconBackground"
-      },
-      {
-        "type": "image",
-        "id": "ProfileImageTemplate"
-      },
-      {
         "type": "group",
         "id": "AccountTitle"
       },
       {
         "type": "group",
         "id": "MenuDesplegableButtons"
-      },
-      {
-        "type": "group",
-        "id": "MenuDesplegableButtons1"
       },
       {
         "type": "vector",
@@ -98,23 +82,15 @@
       },
       {
         "type": "vector",
-        "id": "MyStadisticsButtonBackground"
-      },
-      {
-        "type": "image",
-        "id": "MyStadisticsIcon"
-      },
-      {
-        "type": "text",
-        "id": "MyStadisticsTxt"
-      },
-      {
-        "type": "vector",
         "id": "LineSpacer"
       },
       {
         "type": "group",
         "id": "ExtraContentTitle"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableButtons1"
       },
       {
         "type": "group",
@@ -130,7 +106,7 @@
       },
       {
         "type": "group",
-        "id": "MenuDesplegableButtons5"
+        "id": "PlanToPlay"
       },
       {
         "type": "vector",
@@ -139,6 +115,14 @@
       {
         "type": "text",
         "id": "ExtraContentTxt"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableButtons5"
+      },
+      {
+        "type": "image",
+        "id": "jugar 1"
       },
       {
         "type": "vector",
@@ -153,6 +137,14 @@
         "id": "GamePediaTxt"
       },
       {
+        "type": "group",
+        "id": "MenuDesplegableButtons6"
+      },
+      {
+        "type": "image",
+        "id": "completar 1"
+      },
+      {
         "type": "vector",
         "id": "GameNewsButtonBackground"
       },
@@ -163,6 +155,14 @@
       {
         "type": "text",
         "id": "GameNewsTxt"
+      },
+      {
+        "type": "group",
+        "id": "MenuDesplegableButtons7"
+      },
+      {
+        "type": "image",
+        "id": "rechazado 1"
       },
       {
         "type": "vector",
@@ -177,16 +177,44 @@
         "id": "MinigamesTxt"
       },
       {
+        "type": "group",
+        "id": "MenuDesplegableButtons8"
+      },
+      {
+        "type": "image",
+        "id": "boton-de-pausa 1"
+      },
+      {
         "type": "vector",
         "id": "DailyChallengesButtonBackground"
       },
       {
         "type": "image",
-        "id": "target 1"
+        "id": "Rectangle"
       },
       {
         "type": "text",
         "id": "DailyChallengesTxt"
+      },
+      {
+        "type": "group",
+        "id": "PlanToPlay1"
+      },
+      {
+        "type": "image",
+        "id": "controlador-de-neon 1"
+      },
+      {
+        "type": "vector",
+        "id": "MyStadisticsButtonBackground"
+      },
+      {
+        "type": "image",
+        "id": "MyStadisticsIcon"
+      },
+      {
+        "type": "text",
+        "id": "MyStadisticsTxt"
       },
       {
         "type": "vector",
@@ -198,15 +226,11 @@
       },
       {
         "type": "group",
-        "id": "MenuDesplegableButtons6"
+        "id": "MenuDesplegableButtons9"
       },
       {
         "type": "group",
-        "id": "MenuDesplegableButtons7"
-      },
-      {
-        "type": "group",
-        "id": "MenuDesplegableButtons8"
+        "id": "MenuDesplegableButtons10"
       },
       {
         "type": "vector",
@@ -227,18 +251,6 @@
       {
         "type": "text",
         "id": "HelpTxt"
-      },
-      {
-        "type": "vector",
-        "id": "FAQButtonBackground"
-      },
-      {
-        "type": "image",
-        "id": "FAQIcon"
-      },
-      {
-        "type": "text",
-        "id": "FAQTxt"
       },
       {
         "type": "vector",
@@ -294,7 +306,7 @@
               "MiscField",
               "MenuDesplegableFooter"
             ],
-            "item-spacing": "16.0",
+            "item-spacing": "19.0",
             "background-color": {
               "alpha": "1.0",
               "hue": "0.0",
@@ -317,8 +329,7 @@
             "is-structured": "false",
             "children": [
               "MenuDesplegableHeaderBackground",
-              "UsernameView",
-              "UserImageField"
+              "UsernameView"
             ],
             "clip-content": "false"
           },
@@ -331,14 +342,13 @@
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "129.0"
+                "value": "80.0"
               }
             },
             "is-structured": "false",
             "children": [
               "AccountTitle",
-              "MenuDesplegableButtons",
-              "MenuDesplegableButtons1"
+              "MenuDesplegableButtons"
             ],
             "clip-content": "false"
           },
@@ -351,17 +361,18 @@
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "272.0"
+                "value": "340.0"
               }
             },
             "is-structured": "false",
             "children": [
               "LineSpacer",
               "ExtraContentTitle",
+              "MenuDesplegableButtons1",
               "MenuDesplegableButtons2",
               "MenuDesplegableButtons3",
               "MenuDesplegableButtons4",
-              "MenuDesplegableButtons5"
+              "PlanToPlay"
             ],
             "clip-content": "false"
           },
@@ -374,16 +385,15 @@
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "184.0"
+                "value": "153.0"
               }
             },
             "is-structured": "false",
             "children": [
               "LineSpacer1",
               "MiscTitle",
-              "MenuDesplegableButtons6",
-              "MenuDesplegableButtons7",
-              "MenuDesplegableButtons8"
+              "MenuDesplegableButtons9",
+              "MenuDesplegableButtons10"
             ],
             "clip-content": "false"
           },
@@ -423,7 +433,7 @@
           {
             "id": "UsernameView",
             "margin": {
-              "left": "96.0",
+              "left": "10.0",
               "top": "12.86529541015625",
               "right": "8.0",
               "bottom": "12.0"
@@ -433,35 +443,6 @@
             "children": [
               "UsernameViewBackground",
               "UsernameTxt"
-            ],
-            "clip-content": "false"
-          },
-          {
-            "id": "UserImageField",
-            "alignment": {
-              "horizontal": {
-                "attachment": "start",
-                "offset": "10.0"
-              },
-              "vertical": {
-                "attachment": "start",
-                "offset": "10.0"
-              }
-            },
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "fixed",
-                "value": "80.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "fixed",
-                "value": "80.0"
-              }
-            },
-            "is-structured": "false",
-            "children": [
-              "UserProfileIconBackground",
-              "ProfileImageTemplate"
             ],
             "clip-content": "false"
           },
@@ -511,46 +492,6 @@
             "typeface": "Caladea"
           },
           {
-            "id": "UserProfileIconBackground",
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              }
-            },
-            "vector-content": "user_profile_icon_background.svg"
-          },
-          {
-            "id": "ProfileImageTemplate",
-            "border-radius": "100.0",
-            "alignment": {
-              "horizontal": {
-                "attachment": "start",
-                "offset": "3.0"
-              },
-              "vertical": {
-                "attachment": "start",
-                "offset": "3.0"
-              }
-            },
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "fixed",
-                "value": "74.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "fixed",
-                "value": "74.0"
-              }
-            },
-            "image-content": "$ProfileImageTemplateimagecontent",
-            "scale": "cover"
-          },
-          {
             "id": "AccountTitle",
             "border-radius": "5.0",
             "size-constraints": {
@@ -598,37 +539,6 @@
               "MyAccountButtonBackground",
               "profile 1",
               "MyAccountTxt"
-            ],
-            "clip-content": "false"
-          },
-          {
-            "id": "MenuDesplegableButtons1",
-            "alignment": {
-              "horizontal": {
-                "attachment": "start",
-                "offset": "0.0"
-              },
-              "vertical": {
-                "attachment": "start",
-                "offset": "89.0"
-              }
-            },
-            "tap-handler": "$onMyStadisticsClicked",
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "fixed",
-                "value": "256.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "fixed",
-                "value": "40.0"
-              }
-            },
-            "is-structured": "false",
-            "children": [
-              "MyStadisticsButtonBackground",
-              "MyStadisticsIcon",
-              "MyStadisticsTxt"
             ],
             "clip-content": "false"
           },
@@ -743,75 +653,6 @@
             "typeface": "Caladea"
           },
           {
-            "id": "MyStadisticsButtonBackground",
-            "border-radius": "5.0",
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              }
-            },
-            "vector-content": "my_stadistics_button_background.svg"
-          },
-          {
-            "id": "MyStadisticsIcon",
-            "margin": {
-              "left": "8.0",
-              "top": "8.0",
-              "right": "224.0",
-              "bottom": "8.0"
-            },
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              }
-            },
-            "image-content": "my_stadistics_icon.png",
-            "scale": "cover"
-          },
-          {
-            "id": "MyStadisticsTxt",
-            "margin": {
-              "left": "40.0",
-              "top": "2.0",
-              "right": "7.0",
-              "bottom": "3.0"
-            },
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              }
-            },
-            "color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "1.0"
-            },
-            "text-content": "My Stadistics",
-            "overflow": "visible",
-            "max-lines": "-1",
-            "text-align": "left",
-            "text-align-vertical": "center",
-            "text-size": "30.0",
-            "line-height": "1.171999994913737",
-            "typeface": "Caladea"
-          },
-          {
             "id": "LineSpacer",
             "border-radius": "10.0",
             "size-constraints": {
@@ -836,7 +677,7 @@
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "8.0"
+                "offset": "9.0"
               }
             },
             "size-constraints": {
@@ -857,7 +698,7 @@
             "clip-content": "false"
           },
           {
-            "id": "MenuDesplegableButtons2",
+            "id": "MenuDesplegableButtons1",
             "alignment": {
               "horizontal": {
                 "attachment": "start",
@@ -865,10 +706,9 @@
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "48.0"
+                "offset": "49.0"
               }
             },
-            "tap-handler": "$onGamePediaClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -881,9 +721,37 @@
             },
             "is-structured": "false",
             "children": [
-              "GamePediaButtonBackground",
-              "encyclopedia 1",
-              "GamePediaTxt"
+              "MenuDesplegableButtons5",
+              "jugar 1"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "MenuDesplegableButtons2",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "4.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "113.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "MenuDesplegableButtons6",
+              "completar 1"
             ],
             "clip-content": "false"
           },
@@ -896,10 +764,9 @@
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "108.0"
+                "offset": "177.0"
               }
             },
-            "tap-handler": "$onGameNewsClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -912,9 +779,8 @@
             },
             "is-structured": "false",
             "children": [
-              "GameNewsButtonBackground",
-              "newspaper-folded 1",
-              "GameNewsTxt"
+              "MenuDesplegableButtons7",
+              "rechazado 1"
             ],
             "clip-content": "false"
           },
@@ -927,10 +793,9 @@
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "172.0"
+                "offset": "241.0"
               }
             },
-            "tap-handler": "$onMinigamesClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -943,14 +808,13 @@
             },
             "is-structured": "false",
             "children": [
-              "MinigamesButtonBackground",
-              "game 1",
-              "MinigamesTxt"
+              "MenuDesplegableButtons8",
+              "boton-de-pausa 1"
             ],
             "clip-content": "false"
           },
           {
-            "id": "MenuDesplegableButtons5",
+            "id": "PlanToPlay",
             "alignment": {
               "horizontal": {
                 "attachment": "start",
@@ -958,10 +822,9 @@
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "232.0"
+                "offset": "300.0"
               }
             },
-            "tap-handler": "$onDailyChallengesClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -974,9 +837,8 @@
             },
             "is-structured": "false",
             "children": [
-              "DailyChallengesButtonBackground",
-              "target 1",
-              "DailyChallengesTxt"
+              "PlanToPlay1",
+              "controlador-de-neon 1"
             ],
             "clip-content": "false"
           },
@@ -1013,13 +875,59 @@
               "saturation": "0.0",
               "value": "1.0"
             },
-            "text-content": "Extra contents:",
+            "text-content": "Game Lists:",
             "overflow": "visible",
             "max-lines": "-1",
             "text-align-vertical": "center",
             "text-size": "15.0",
             "line-height": "1.171999994913737",
             "typeface": "Caladea"
+          },
+          {
+            "id": "MenuDesplegableButtons5",
+            "tap-handler": "$onPlayingListClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "GamePediaButtonBackground",
+              "encyclopedia 1",
+              "GamePediaTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "jugar 1",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "8.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "9.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "image-content": "jugar_1.png",
+            "scale": "cover"
           },
           {
             "id": "GamePediaButtonBackground",
@@ -1038,6 +946,7 @@
           },
           {
             "id": "encyclopedia 1",
+            "presence": "false",
             "margin": {
               "left": "8.0",
               "top": "8.0",
@@ -1054,7 +963,6 @@
                 "value": "1.0"
               }
             },
-            "image-content": "encyclopedia_1.png",
             "scale": "cover"
           },
           {
@@ -1081,7 +989,7 @@
               "saturation": "0.0",
               "value": "1.0"
             },
-            "text-content": "GamePedia",
+            "text-content": "Playing",
             "overflow": "visible",
             "max-lines": "-1",
             "text-align": "left",
@@ -1089,6 +997,52 @@
             "text-size": "30.0",
             "line-height": "1.171999994913737",
             "typeface": "Caladea"
+          },
+          {
+            "id": "MenuDesplegableButtons6",
+            "tap-handler": "$onCompletedListClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "GameNewsButtonBackground",
+              "newspaper-folded 1",
+              "GameNewsTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "completar 1",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "8.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "9.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "image-content": "completar_1.png",
+            "scale": "cover"
           },
           {
             "id": "GameNewsButtonBackground",
@@ -1107,6 +1061,7 @@
           },
           {
             "id": "newspaper-folded 1",
+            "presence": "false",
             "margin": {
               "left": "8.0",
               "top": "8.0",
@@ -1123,7 +1078,6 @@
                 "value": "1.0"
               }
             },
-            "image-content": "newspaper_folded_1.png",
             "scale": "cover"
           },
           {
@@ -1150,7 +1104,7 @@
               "saturation": "0.0",
               "value": "1.0"
             },
-            "text-content": "Game News",
+            "text-content": "Completed",
             "overflow": "visible",
             "max-lines": "-1",
             "text-align": "left",
@@ -1158,6 +1112,52 @@
             "text-size": "30.0",
             "line-height": "1.171999994913737",
             "typeface": "Caladea"
+          },
+          {
+            "id": "MenuDesplegableButtons7",
+            "tap-handler": "$onDroppedClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "MinigamesButtonBackground",
+              "game 1",
+              "MinigamesTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "rechazado 1",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "8.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "9.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "image-content": "rechazado_1.png",
+            "scale": "cover"
           },
           {
             "id": "MinigamesButtonBackground",
@@ -1176,6 +1176,7 @@
           },
           {
             "id": "game 1",
+            "presence": "false",
             "margin": {
               "left": "8.0",
               "top": "8.0",
@@ -1192,7 +1193,6 @@
                 "value": "1.0"
               }
             },
-            "image-content": "game_1.png",
             "scale": "cover"
           },
           {
@@ -1219,7 +1219,7 @@
               "saturation": "0.0",
               "value": "1.0"
             },
-            "text-content": "Minigames",
+            "text-content": "Dropped",
             "overflow": "visible",
             "max-lines": "-1",
             "text-align": "left",
@@ -1227,6 +1227,52 @@
             "text-size": "30.0",
             "line-height": "1.171999994913737",
             "typeface": "Caladea"
+          },
+          {
+            "id": "MenuDesplegableButtons8",
+            "tap-handler": "$onOnHoldListDailyChallengesClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "DailyChallengesButtonBackground",
+              "Rectangle",
+              "DailyChallengesTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "boton-de-pausa 1",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "8.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "9.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "image-content": "boton_de_pausa_1.png",
+            "scale": "cover"
           },
           {
             "id": "DailyChallengesButtonBackground",
@@ -1244,7 +1290,8 @@
             "vector-content": "daily_challenges_button_background.svg"
           },
           {
-            "id": "target 1",
+            "id": "Rectangle",
+            "presence": "false",
             "margin": {
               "left": "8.0",
               "top": "8.0",
@@ -1261,7 +1308,6 @@
                 "value": "1.0"
               }
             },
-            "image-content": "target_1.png",
             "scale": "cover"
           },
           {
@@ -1287,13 +1333,128 @@
               "saturation": "0.0",
               "value": "1.0"
             },
-            "text-content": "Daily Challenges",
+            "text-content": "On-Hold",
             "overflow": "visible",
             "max-lines": "-1",
             "text-align": "left",
             "text-align-vertical": "center",
             "text-size": "28.0",
             "line-height": "1.1720000675746374",
+            "typeface": "Caladea"
+          },
+          {
+            "id": "PlanToPlay1",
+            "tap-handler": "$onPlanToPlayMyStadisticsClicked",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "256.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "MyStadisticsButtonBackground",
+              "MyStadisticsIcon",
+              "MyStadisticsTxt"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "controlador-de-neon 1",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "8.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "8.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "image-content": "controlador_de_neon_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "MyStadisticsButtonBackground",
+            "border-radius": "5.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "my_stadistics_button_background.svg"
+          },
+          {
+            "id": "MyStadisticsIcon",
+            "presence": "false",
+            "margin": {
+              "left": "8.0",
+              "top": "8.0",
+              "right": "224.0",
+              "bottom": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "scale": "cover"
+          },
+          {
+            "id": "MyStadisticsTxt",
+            "margin": {
+              "left": "40.0",
+              "top": "2.0",
+              "right": "7.0",
+              "bottom": "3.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Plan To Play",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": "30.0",
+            "line-height": "1.171999994913737",
             "typeface": "Caladea"
           },
           {
@@ -1342,7 +1503,7 @@
             "clip-content": "false"
           },
           {
-            "id": "MenuDesplegableButtons6",
+            "id": "MenuDesplegableButtons9",
             "alignment": {
               "horizontal": {
                 "attachment": "start",
@@ -1350,7 +1511,7 @@
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "48.0"
+                "offset": "57.0"
               }
             },
             "tap-handler": "$onHelpClicked",
@@ -1373,7 +1534,7 @@
             "clip-content": "false"
           },
           {
-            "id": "MenuDesplegableButtons7",
+            "id": "MenuDesplegableButtons10",
             "alignment": {
               "horizontal": {
                 "attachment": "start",
@@ -1381,38 +1542,7 @@
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "97.0"
-              }
-            },
-            "tap-handler": "$onFAQButtonClicked",
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "fixed",
-                "value": "256.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "fixed",
-                "value": "40.0"
-              }
-            },
-            "is-structured": "false",
-            "children": [
-              "FAQButtonBackground",
-              "FAQIcon",
-              "FAQTxt"
-            ],
-            "clip-content": "false"
-          },
-          {
-            "id": "MenuDesplegableButtons8",
-            "alignment": {
-              "horizontal": {
-                "attachment": "start",
-                "offset": "4.0"
-              },
-              "vertical": {
-                "attachment": "start",
-                "offset": "144.0"
+                "offset": "113.0"
               }
             },
             "tap-handler": "$onSettingsButtonClicked",
@@ -1536,75 +1666,6 @@
               "value": "1.0"
             },
             "text-content": "Help",
-            "overflow": "visible",
-            "max-lines": "-1",
-            "text-align": "left",
-            "text-align-vertical": "center",
-            "text-size": "30.0",
-            "line-height": "1.171999994913737",
-            "typeface": "Caladea"
-          },
-          {
-            "id": "FAQButtonBackground",
-            "border-radius": "5.0",
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              }
-            },
-            "vector-content": "faqbutton_background.svg"
-          },
-          {
-            "id": "FAQIcon",
-            "margin": {
-              "left": "8.0",
-              "top": "8.0",
-              "right": "224.0",
-              "bottom": "8.0"
-            },
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              }
-            },
-            "image-content": "faqicon.png",
-            "scale": "cover"
-          },
-          {
-            "id": "FAQTxt",
-            "margin": {
-              "left": "40.0",
-              "top": "2.0",
-              "right": "7.0",
-              "bottom": "3.0"
-            },
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": "1.0"
-              }
-            },
-            "color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "1.0"
-            },
-            "text-content": "FAQ",
             "overflow": "visible",
             "max-lines": "-1",
             "text-align": "left",
@@ -1762,9 +1823,9 @@
           {
             "id": "LogOutIcon",
             "margin": {
-              "left": "3.3214111328125",
+              "left": "3.3214263916015625",
               "top": "5.997802734375",
-              "right": "89.6785888671875",
+              "right": "89.67857360839844",
               "bottom": "2.9989051818847656"
             },
             "size-constraints": {
@@ -1790,47 +1851,37 @@
       "required": false,
       "description": ""
     },
-    "ProfileImageTemplateimagecontent": {
-      "data-type": "image",
-      "required": false,
-      "description": ""
-    },
     "onMyAccountClicked": {
       "data-type": "void-callback",
       "required": false,
       "description": ""
     },
-    "onMyStadisticsClicked": {
+    "onPlayingListClicked": {
       "data-type": "void-callback",
       "required": false,
       "description": ""
     },
-    "onGamePediaClicked": {
+    "onCompletedListClicked": {
       "data-type": "void-callback",
       "required": false,
       "description": ""
     },
-    "onGameNewsClicked": {
+    "onDroppedClicked": {
       "data-type": "void-callback",
       "required": false,
       "description": ""
     },
-    "onMinigamesClicked": {
+    "onOnHoldListDailyChallengesClicked": {
       "data-type": "void-callback",
       "required": false,
       "description": ""
     },
-    "onDailyChallengesClicked": {
+    "onPlanToPlayMyStadisticsClicked": {
       "data-type": "void-callback",
       "required": false,
       "description": ""
     },
     "onHelpClicked": {
-      "data-type": "void-callback",
-      "required": false,
-      "description": ""
-    },
-    "onFAQButtonClicked": {
       "data-type": "void-callback",
       "required": false,
       "description": ""
@@ -1854,8 +1905,7 @@
         "height": 792.982421875
       },
       "parameters": {
-        "UsernameTxttextcontent": "Hola,",
-        "ProfileImageTemplateimagecontent": "profile_image_template.png"
+        "UsernameTxttextcontent": "Hola,"
       }
     }
   ],

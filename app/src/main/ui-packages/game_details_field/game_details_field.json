@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "107:31",
-    "version": "5659224930",
+    "version": "5760574982",
     "component-id": "a6221c13f0de37dd9366e4776c6f24c100e207ac"
   },
   "default": "GameDetailsField",
@@ -27,10 +27,6 @@
       {
         "type": "group",
         "id": "DetailsScreen"
-      },
-      {
-        "type": "group",
-        "id": "SynopsisField"
       },
       {
         "type": "group",
@@ -90,14 +86,6 @@
       },
       {
         "type": "vector",
-        "id": "GameDescription"
-      },
-      {
-        "type": "text",
-        "id": "Synopsis"
-      },
-      {
-        "type": "vector",
         "id": "ReleasedBackground"
       },
       {
@@ -115,7 +103,6 @@
               "GameTitleField",
               "GamePhoto",
               "DetailsScreen",
-              "SynopsisField",
               "ReleasedField"
             ],
             "clip-content": "false"
@@ -145,11 +132,11 @@
             "alignment": {
               "horizontal": {
                 "attachment": "start",
-                "offset": "8.0"
+                "offset": "4.0"
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "76.0"
+                "offset": "73.0"
               }
             },
             "size-constraints": {
@@ -170,11 +157,11 @@
             "alignment": {
               "horizontal": {
                 "attachment": "start",
-                "offset": "144.0"
+                "offset": "140.0"
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "76.0"
+                "offset": "73.0"
               }
             },
             "size-constraints": {
@@ -195,35 +182,6 @@
             "clip-content": "false"
           },
           {
-            "id": "SynopsisField",
-            "alignment": {
-              "horizontal": {
-                "attachment": "start",
-                "offset": "0.0"
-              },
-              "vertical": {
-                "attachment": "start",
-                "offset": "288.0"
-              }
-            },
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "fixed",
-                "value": "328.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "fixed",
-                "value": "160.0"
-              }
-            },
-            "is-structured": "false",
-            "children": [
-              "GameDescription",
-              "Synopsis"
-            ],
-            "clip-content": "false"
-          },
-          {
             "id": "ReleasedField",
             "alignment": {
               "horizontal": {
@@ -232,7 +190,7 @@
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "476.0"
+                "offset": "282.0"
               }
             },
             "size-constraints": {
@@ -565,57 +523,6 @@
             "typeface": "Merriweather"
           },
           {
-            "id": "GameDescription",
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "fixed",
-                "value": "328.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "fixed",
-                "value": "160.0"
-              }
-            },
-            "vector-content": "game_description.svg"
-          },
-          {
-            "id": "Synopsis",
-            "alignment": {
-              "horizontal": {
-                "attachment": "start",
-                "offset": "8.0"
-              },
-              "vertical": {
-                "attachment": "start",
-                "offset": "5.71429443359375"
-              }
-            },
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "fixed",
-                "value": "312.0"
-              },
-              "height-constraints": {
-                "sizing-mode": "fixed",
-                "value": "148.57142639160156"
-              }
-            },
-            "font-weight": "700.0",
-            "color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "1.0"
-            },
-            "text-content": "$Synopsistextcontent",
-            "overflow": "visible",
-            "max-lines": "-1",
-            "text-align": "left",
-            "text-size": "15.0",
-            "line-height": "1.2569999694824219",
-            "typeface": "Merriweather"
-          },
-          {
             "id": "ReleasedBackground",
             "size-constraints": {
               "width-constraints": {
@@ -697,11 +604,6 @@
       "required": false,
       "description": ""
     },
-    "Synopsistextcontent": {
-      "data-type": "text",
-      "required": false,
-      "description": ""
-    },
     "Releasedtextcontent": {
       "data-type": "text",
       "required": false,
@@ -713,14 +615,13 @@
       "design": "GameDetailsField",
       "size": {
         "width": 328.0,
-        "height": 524.0
+        "height": 330.0
       },
       "parameters": {
         "GamePhotoimagecontent": "game_photo.png",
         "Titletxtextcontent": "Title",
         "GameHourstextcontent": "Hours to beat: \n0 horas",
         "MetacriticScoretextcontent": "Metacritic Score: 1/100",
-        "Synopsistextcontent": "Synopsis",
         "Releasedtextcontent": "Fecha Lanzamiento: "
       }
     }

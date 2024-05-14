@@ -31,8 +31,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NavManager(loginVM, gameVM, userVideogameVM) // Activar luego de termianr el test
-
+                    NavManager(loginVM, gameVM, userVideogameVM)
                 }
             }
         }
