@@ -22,6 +22,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DeleteForever
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,6 +48,8 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.userVideogameViewModel
+import com.google.relay.compose.BoxScopeInstanceImpl.align
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -61,29 +64,46 @@ fun ContenidoListView(
     userId: String,
 ) {
     val juegos by viewModel.juegos.collectAsState()
+    var isLoading by remember { mutableStateOf(true) }
     var filteredJuegos by remember { mutableStateOf<List<VideojuegosLista>>(emptyList()) }
 
     // Llamada a LaunchedEffect solo para actualizar la lista de juegos filtrados
     LaunchedEffect(juegos) {
         val gameIds = userVideogameVM.getVideoGamesByType(gameType = gametype, userId = userId)
         filteredJuegos = juegos.filter { it.id in gameIds.orEmpty() }
+        isLoading = true
+        // Esperar 5 segundos antes de cambiar isLoading a falso
+        delay(1000)
+        isLoading = false
     }
 
-    LazyColumn(
-        modifier = Modifier
-            .padding(pad)
-            .background(Color(android.graphics.Color.parseColor("#141414"))),
-        verticalArrangement = Arrangement.Top
-    ) {
-        items(filteredJuegos) { juego ->
-            CardJuegoListView(
-                navController = navController,
-                juego = juego,
-                gametype = gametype,
-                userVideogameVM = userVideogameVM,
-                userId = userId,
-                gameId = juego.id
+    if (isLoading) {
+        CircularProgressIndicator(
+            modifier = Modifier.align(Alignment.Center)
+        )
+    } else {
+        if (filteredJuegos.isEmpty()) {
+            Text(
+                text = "La lista está vacía",
+                color = Color.White,
+                modifier = Modifier.align(Alignment.Center)
             )
+        } else {
+            LazyColumn(
+                modifier = Modifier
+                    .padding(pad)
+            ) {
+                items(filteredJuegos) { juego ->
+                    CardJuegoListView(
+                        navController = navController,
+                        juego = juego,
+                        gametype = gametype,
+                        userVideogameVM = userVideogameVM,
+                        userId = userId,
+                        gameId = juego.id
+                    )
+                }
+            }
         }
     }
 }
