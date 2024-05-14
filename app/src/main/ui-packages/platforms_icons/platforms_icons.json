@@ -1,11 +1,11 @@
 {
   "name": "platforms_icons",
-  "version": 32,
+  "version": 33,
   "source-key": {
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "11:540",
-    "version": "5559455288",
+    "version": "5762369026",
     "component-id": "8abfca6ef75dc9be62fd7a7b4e6ba082c1491fe3"
   },
   "default": "PlatformsIcons",
@@ -50,19 +50,19 @@
               "NintendoToadIcon",
               "estacion-de-juegos 1"
             ],
-            "item-spacing": "41.0",
-            "clip-content": "false"
+            "item-spacing": 41.0,
+            "clip-content": false
           },
           {
             "id": "xboxIcon",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "55.11111068725586"
+                "value": 55.11111068725586
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "56.0"
+                "value": 56.0
               }
             },
             "image-content": "xbox_icon.png",
@@ -73,11 +73,11 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "55.11111068725586"
+                "value": 55.11111068725586
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "56.0"
+                "value": 56.0
               }
             },
             "image-content": "nintendo_toad_icon.png",
@@ -88,11 +88,11 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "55.11111068725586"
+                "value": 55.11111068725586
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "56.0"
+                "value": 56.0
               }
             },
             "image-content": "estacion_de_juegos_1.png",

@@ -1,11 +1,11 @@
 {
   "name": "sign_up_background",
-  "version": 32,
+  "version": 33,
   "source-key": {
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "11:516",
-    "version": "5559455288",
+    "version": "5762369026",
     "component-id": "ede802979e934da5c4f41d9c485c97dd08d1da4e"
   },
   "default": "SignUpBackground",
@@ -32,19 +32,19 @@
             "children": [
               "image 1"
             ],
-            "item-spacing": "10.0",
-            "clip-content": "false"
+            "item-spacing": 10.0,
+            "clip-content": false
           },
           {
             "id": "image 1",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "360.0"
+                "value": 360.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "800.0"
+                "value": 800.0
               }
             },
             "image-content": "image_1.png",

@@ -1,11 +1,11 @@
 {
   "name": "log_in_field",
-  "version": 32,
+  "version": 33,
   "source-key": {
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "11:527",
-    "version": "5559455288",
+    "version": "5762690277",
     "component-id": "03db92038cd0682bee199838c9aed51182ae9ce4"
   },
   "default": "LogInField",
@@ -40,20 +40,21 @@
             "children": [
               "Rectangle 4"
             ],
-            "item-spacing": "10.0",
-            "clip-content": "false"
+            "item-spacing": 10.0,
+            "clip-content": false
           },
           {
             "id": "Rectangle 4",
-            "border-radius": "10.0",
+            "opacity": 0.8500000238418579,
+            "border-radius": 10.0,
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "339.0"
+                "value": 339.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "567.0"
+                "value": 567.0
               }
             },
             "image-content": "rectangle_4.png",

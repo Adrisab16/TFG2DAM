@@ -11,7 +11,6 @@ import com.example.tfg2dam.screens.primaryscreens.Discover
 import com.example.tfg2dam.screens.primaryscreens.Home
 import com.example.tfg2dam.screens.login_signupscreens.LogIn
 import com.example.tfg2dam.screens.primaryscreens.MyList
-import com.example.tfg2dam.screens.secondaryviews.Settings
 import com.example.tfg2dam.screens.login_signupscreens.SignUp
 import com.example.tfg2dam.screens.secondaryviews.GameDetailsScreen
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
@@ -65,10 +64,6 @@ fun NavManager(
             } else {
                 // Manejar caso en el que no se recibe el ID del juego
             }
-        }
-        composable("Settings") {
-            // Muestra la vista correspondiente a la pantalla principal (Home).
-            Settings(navController, loginVM)
         }
     }
 }

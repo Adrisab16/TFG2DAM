@@ -67,27 +67,29 @@ class loginViewModel: ViewModel() {
      *
      * @param onSuccess Acción a ejecutar si el inicio de sesión es exitoso.
      */
-    fun login(onSuccess: () -> Unit){
+    fun login(onSuccess: () -> Unit, onError: (String) -> Unit) {
         viewModelScope.launch {
             try {
-                // DCS - Utiliza el servicio de autenticación de Firebase para validar al usuario
-                // por email y contraseña
+                // Intenta iniciar sesión con Firebase Auth
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+                            // Si el inicio de sesión es exitoso, llama a onSuccess
                             writeToLog("Inicio de sesión exitoso")
                             onSuccess()
                         } else {
-                            writeToLog("Error al iniciar sesion")
-                            Log.d("ERROR EN FIREBASE","Usuario y/o contrasena incorrectos")
-                            //showAlert = true
+                            // Si el inicio de sesión falla, llama a onError con un mensaje de error
+                            writeToLog("Error al iniciar sesión")
+                            Log.d("ERROR EN FIREBASE", "Usuario y/o contraseña incorrectos")
+                            onError("Error al iniciar sesión. Usuario y/o contraseña incorrectos.")
                         }
                     }
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 Log.d("ERROR EN JETPACK", "ERROR: ${e.localizedMessage}")
             }
         }
     }
+
 
     /**
      * Crea un nuevo usuario con el email y la contraseña proporcionados.
@@ -323,6 +325,4 @@ class loginViewModel: ViewModel() {
             // Por ejemplo, puedes lanzar otra excepción, proporcionar un valor predeterminado, o no hacer nada
         }
     }
-
-
 }

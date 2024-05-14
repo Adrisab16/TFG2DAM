@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
@@ -56,6 +58,8 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
     var userid by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
+    var showDialog by remember { mutableStateOf(false) }
+
 
     LaunchedEffect(Unit) {
         loginVM.getUsernameFromFirestore { retrievedUsername ->
@@ -185,8 +189,8 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                 MenuDesplegable(
                     modifier = Modifier.clickable {  },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
-                    onSettingsButtonClicked = {navController.navigate("Settings")},
                     usernameTxttextcontent = "Hola,\n$username",
+                    onDeleteButtonClicked = { showDialog = true },
                     onCompletedListClicked = {
                         val countlistout = 4
                         navController.navigate("MyList/$countlistout")
@@ -209,6 +213,31 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                     },
                 )
             }
+        }
+        if (showDialog) {
+            AlertDialog(
+                onDismissRequest = { showDialog = false },
+                title = { Text("Eliminar cuenta") },
+                text = { Text("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.") },
+                confirmButton = {
+                    Button(
+                        onClick = {
+                            loginVM.deleteAccount {
+                                navController.navigate("Login")
+                            }
+                        }
+                    ) {
+                        Text("Confirmar")
+                    }
+                },
+                dismissButton = {
+                    Button(
+                        onClick = { showDialog = false }
+                    ) {
+                        Text("Cancelar")
+                    }
+                }
+            )
         }
     }
 }

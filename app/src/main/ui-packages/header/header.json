@@ -1,11 +1,11 @@
 {
   "name": "header",
-  "version": 32,
+  "version": 33,
   "source-key": {
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "3:41",
-    "version": "5559583799",
+    "version": "5762369026",
     "component-id": "8011c1415fa0d7452c35d23a48f02b8edf9da818"
   },
   "default": "Header",
@@ -31,10 +31,10 @@
           {
             "id": "top_level",
             "padding": {
-              "left": "10.0",
-              "top": "10.0",
-              "right": "5.0",
-              "bottom": "10.0"
+              "left": 10.0,
+              "top": 10.0,
+              "right": 5.0,
+              "bottom": 10.0
             },
             "size-constraints": {
               "width-constraints": {
@@ -50,12 +50,12 @@
               "UserIcon",
               "AppTitle"
             ],
-            "item-spacing": "20.0",
+            "item-spacing": 20.0,
             "background-color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "0.0784313725490196"
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.0784313725490196
             }
           },
           {
@@ -64,11 +64,11 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "52.0"
+                "value": 52.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "52.0"
+                "value": 52.0
               }
             },
             "image-content": "user_icon.png",
@@ -80,26 +80,26 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "273.0"
+                "value": 273.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "56.0"
+                "value": 56.0
               }
             },
-            "font-weight": "700.0",
+            "font-weight": 700.0,
             "color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "1.0"
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
             },
             "text-content": "Ocio & Geek",
             "overflow": "visible",
-            "max-lines": "-1",
+            "max-lines": -1,
             "text-align-vertical": "center",
-            "text-size": "40.0",
-            "line-height": "1.2569999694824219",
+            "text-size": 40.0,
+            "line-height": 1.2569999694824219,
             "typeface": "Merriweather"
           }
         ]

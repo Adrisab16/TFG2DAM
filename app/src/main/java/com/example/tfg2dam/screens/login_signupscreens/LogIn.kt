@@ -1,5 +1,6 @@
 package com.example.tfg2dam.screens.login_signupscreens
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,11 +13,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -30,10 +33,13 @@ import com.example.tfg2dam.platformsicons.PlatformsIcons
 import com.example.tfg2dam.uiresources.EmailField
 import com.example.tfg2dam.uiresources.PasswordField
 import com.example.tfg2dam.viewmodel.loginViewModel
+import kotlinx.coroutines.launch
 
 
 @Composable
 fun LogIn(navController: NavController, loginVM: loginViewModel) {
+    val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     Box(Modifier.fillMaxSize()) {
         Image(
@@ -96,7 +102,17 @@ fun LogIn(navController: NavController, loginVM: loginViewModel) {
                     Spacer(modifier = Modifier.height(40.dp))
 
                     // Botón Login:
-                    LogInButton(onLogInButtonClicked =  {loginVM.login { navController.navigate("Home") }})
+                    LogInButton(onLogInButtonClicked = {
+                        loginVM.login(
+                            onSuccess = { navController.navigate("Home") },
+                            onError = { errorMessage ->
+                                // Muestra el Toast en caso de error
+                                coroutineScope.launch {
+                                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        )
+                    })
                     Spacer(modifier = Modifier.height(20.dp))
 
                     // Botón para ir al SignUp:
@@ -106,5 +122,3 @@ fun LogIn(navController: NavController, loginVM: loginViewModel) {
         }
     }
 }
-
-

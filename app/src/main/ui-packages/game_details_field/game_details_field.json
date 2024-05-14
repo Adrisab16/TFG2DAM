@@ -1,11 +1,11 @@
 {
   "name": "game_details_field",
-  "version": 32,
+  "version": 33,
   "source-key": {
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "107:31",
-    "version": "5760574982",
+    "version": "5762489237",
     "component-id": "a6221c13f0de37dd9366e4776c6f24c100e207ac"
   },
   "default": "GameDetailsField",
@@ -98,55 +98,55 @@
         "rules": [
           {
             "id": "top_level",
-            "is-structured": "false",
+            "is-structured": false,
             "children": [
               "GameTitleField",
               "GamePhoto",
               "DetailsScreen",
               "ReleasedField"
             ],
-            "clip-content": "false"
+            "clip-content": false
           },
           {
             "id": "GameTitleField",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "328.0"
+                "value": 328.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "48.0"
+                "value": 48.0
               }
             },
-            "is-structured": "false",
+            "is-structured": false,
             "children": [
               "GameTitle",
               "Titletxt"
             ],
-            "clip-content": "false"
+            "clip-content": false
           },
           {
             "id": "GamePhoto",
-            "border-radius": "10.0",
+            "border-radius": 10.0,
             "alignment": {
               "horizontal": {
                 "attachment": "start",
-                "offset": "4.0"
+                "offset": 4.0
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "73.0"
+                "offset": 73.0
               }
             },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "120.0"
+                "value": 120.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "184.0"
+                "value": 184.0
               }
             },
             "image-content": "$GamePhotoimagecontent",
@@ -157,69 +157,69 @@
             "alignment": {
               "horizontal": {
                 "attachment": "start",
-                "offset": "140.0"
+                "offset": 140.0
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "73.0"
+                "offset": 73.0
               }
             },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "184.0"
+                "value": 184.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "184.0"
+                "value": 184.0
               }
             },
-            "is-structured": "false",
+            "is-structured": false,
             "children": [
               "AddAndScoreButton",
               "HoursAndMetacriticFields"
             ],
-            "clip-content": "false"
+            "clip-content": false
           },
           {
             "id": "ReleasedField",
             "alignment": {
               "horizontal": {
                 "attachment": "start",
-                "offset": "0.0"
+                "offset": 0.0
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "282.0"
+                "offset": 282.0
               }
             },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "328.0"
+                "value": 328.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "48.0"
+                "value": 48.0
               }
             },
-            "is-structured": "false",
+            "is-structured": false,
             "children": [
               "ReleasedBackground",
               "FechaLanzamiento"
             ],
-            "clip-content": "false"
+            "clip-content": false
           },
           {
             "id": "GameTitle",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "328.0"
+                "value": 328.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "48.0"
+                "value": 48.0
               }
             },
             "vector-content": "game_title.svg"
@@ -229,118 +229,118 @@
             "alignment": {
               "horizontal": {
                 "attachment": "start",
-                "offset": "8.0"
+                "offset": 8.0
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "8.0"
+                "offset": 8.0
               }
             },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "312.0"
+                "value": 312.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "32.0"
+                "value": 32.0
               }
             },
-            "font-weight": "700.0",
+            "font-weight": 700.0,
             "color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "1.0"
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
             },
             "text-content": "$Titletxtextcontent",
             "overflow": "visible",
-            "max-lines": "-1",
+            "max-lines": -1,
             "text-align-vertical": "center",
-            "text-size": "20.0",
-            "line-height": "1.2569999694824219",
+            "text-size": 20.0,
+            "line-height": 1.2569999694824219,
             "typeface": "Merriweather"
           },
           {
             "id": "AddAndScoreButton",
-            "border-radius": "5.0",
+            "border-radius": 5.0,
             "alignment": {
               "horizontal": {
                 "attachment": "start",
-                "offset": "19.0"
+                "offset": 19.0
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "137.0"
+                "offset": 137.0
               }
             },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "146.0"
+                "value": 146.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "47.0"
+                "value": 47.0
               }
             },
-            "is-structured": "false",
+            "is-structured": false,
             "children": [
               "AddButton"
             ],
-            "clip-content": "false"
+            "clip-content": false
           },
           {
             "id": "HoursAndMetacriticFields",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "184.0"
+                "value": 184.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "128.0"
+                "value": 128.0
               }
             },
-            "is-structured": "false",
+            "is-structured": false,
             "children": [
               "HoursField",
               "MetacriticField"
             ],
-            "clip-content": "false"
+            "clip-content": false
           },
           {
             "id": "AddButton",
-            "border-radius": "5.0",
+            "border-radius": 5.0,
             "tap-handler": "$onAddButtonClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "146.0"
+                "value": 146.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "47.0"
+                "value": 47.0
               }
             },
-            "is-structured": "false",
+            "is-structured": false,
             "children": [
               "AddToListButton",
               "Boton anadir"
             ],
-            "clip-content": "false"
+            "clip-content": false
           },
           {
             "id": "AddToListButton",
-            "border-radius": "5.0",
+            "border-radius": 5.0,
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "proportional",
-                "value": "1.0"
+                "value": 1.0
               },
               "height-constraints": {
                 "sizing-mode": "proportional",
-                "value": "1.0"
+                "value": 1.0
               }
             },
             "vector-content": "add_to_list_button.svg"
@@ -350,36 +350,36 @@
             "alignment": {
               "horizontal": {
                 "attachment": "start",
-                "offset": "4.2940673828125"
+                "offset": 4.2940673828125
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "7.83331298828125"
+                "offset": 7.83331298828125
               }
             },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "137.41175842285156"
+                "value": 137.41175842285156
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "33.29166793823242"
+                "value": 33.29166793823242
               }
             },
-            "font-weight": "700.0",
+            "font-weight": 700.0,
             "color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "1.0"
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
             },
             "text-content": "Boton anadir",
             "overflow": "visible",
-            "max-lines": "-1",
+            "max-lines": -1,
             "text-align-vertical": "center",
-            "text-size": "15.0",
-            "line-height": "1.2569999694824219",
+            "text-size": 15.0,
+            "line-height": 1.2569999694824219,
             "typeface": "Merriweather"
           },
           {
@@ -387,59 +387,59 @@
             "alignment": {
               "horizontal": {
                 "attachment": "start",
-                "offset": "0.0"
+                "offset": 0.0
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "76.0"
+                "offset": 76.0
               }
             },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "184.0"
+                "value": 184.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "52.0"
+                "value": 52.0
               }
             },
-            "is-structured": "false",
+            "is-structured": false,
             "children": [
               "HoursToBeatField",
               "Hours to beat: 0 horas"
             ],
-            "clip-content": "false"
+            "clip-content": false
           },
           {
             "id": "MetacriticField",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "184.0"
+                "value": 184.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "68.0"
+                "value": 68.0
               }
             },
-            "is-structured": "false",
+            "is-structured": false,
             "children": [
               "MetacriticScoreBackground",
               "Metacritic Score: 1/100"
             ],
-            "clip-content": "false"
+            "clip-content": false
           },
           {
             "id": "HoursToBeatField",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "proportional",
-                "value": "1.0"
+                "value": 1.0
               },
               "height-constraints": {
                 "sizing-mode": "proportional",
-                "value": "1.0"
+                "value": 1.0
               }
             },
             "vector-content": "hours_to_beat_field.svg"
@@ -449,26 +449,26 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "184.0"
+                "value": 184.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "52.0"
+                "value": 52.0
               }
             },
-            "font-weight": "700.0",
+            "font-weight": 700.0,
             "color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "1.0"
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
             },
             "text-content": "$GameHourstextcontent",
             "overflow": "visible",
-            "max-lines": "-1",
+            "max-lines": -1,
             "text-align-vertical": "center",
-            "text-size": "20.0",
-            "line-height": "1.2569999694824219",
+            "text-size": 20.0,
+            "line-height": 1.2569999694824219,
             "typeface": "Merriweather"
           },
           {
@@ -476,11 +476,11 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "proportional",
-                "value": "1.0"
+                "value": 1.0
               },
               "height-constraints": {
                 "sizing-mode": "proportional",
-                "value": "1.0"
+                "value": 1.0
               }
             },
             "vector-content": "metacritic_score_background.svg"
@@ -490,36 +490,36 @@
             "alignment": {
               "horizontal": {
                 "attachment": "start",
-                "offset": "0.0"
+                "offset": 0.0
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "4.0"
+                "offset": 4.0
               }
             },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "184.0"
+                "value": 184.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "60.0"
+                "value": 60.0
               }
             },
-            "font-weight": "700.0",
+            "font-weight": 700.0,
             "color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "1.0"
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
             },
             "text-content": "$MetacriticScoretextcontent",
             "overflow": "visible",
-            "max-lines": "-1",
+            "max-lines": -1,
             "text-align-vertical": "center",
-            "text-size": "20.0",
-            "line-height": "1.2569999694824219",
+            "text-size": 20.0,
+            "line-height": 1.2569999694824219,
             "typeface": "Merriweather"
           },
           {
@@ -527,11 +527,11 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "328.0"
+                "value": 328.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "48.0"
+                "value": 48.0
               }
             },
             "vector-content": "released_background.svg"
@@ -541,37 +541,37 @@
             "alignment": {
               "horizontal": {
                 "attachment": "start",
-                "offset": "8.0"
+                "offset": 8.0
               },
               "vertical": {
                 "attachment": "start",
-                "offset": "8.0"
+                "offset": 8.0
               }
             },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "312.0"
+                "value": 312.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "32.0"
+                "value": 32.0
               }
             },
-            "font-weight": "700.0",
+            "font-weight": 700.0,
             "color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "1.0"
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
             },
             "text-content": "$Releasedtextcontent",
             "overflow": "visible",
-            "max-lines": "-1",
+            "max-lines": -1,
             "text-align": "left",
             "text-align-vertical": "center",
-            "text-size": "15.0",
-            "line-height": "1.2569999694824219",
+            "text-size": 15.0,
+            "line-height": 1.2569999694824219,
             "typeface": "Merriweather"
           }
         ]

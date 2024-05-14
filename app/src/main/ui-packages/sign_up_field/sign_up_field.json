@@ -1,11 +1,11 @@
 {
   "name": "sign_up_field",
-  "version": 32,
+  "version": 33,
   "source-key": {
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "11:539",
-    "version": "5559455288",
+    "version": "5762684064",
     "component-id": "2502f3269d4c08e9e5824391a9dfeae51991625a"
   },
   "default": "SignUpField",
@@ -29,7 +29,7 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "proportional",
-                "value": "1.0"
+                "value": 1.0
               },
               "height-constraints": {
                 "sizing-mode": "shrink"
@@ -41,20 +41,21 @@
             "children": [
               "image 2"
             ],
-            "item-spacing": "10.0",
-            "clip-content": "false"
+            "item-spacing": 10.0,
+            "clip-content": false
           },
           {
             "id": "image 2",
-            "border-radius": "10.0",
+            "opacity": 0.699999988079071,
+            "border-radius": 10.0,
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "339.0"
+                "value": 339.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "627.0"
+                "value": 627.0
               }
             },
             "image-content": "image_2.png",

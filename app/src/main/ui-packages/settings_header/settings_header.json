@@ -1,11 +1,11 @@
 {
   "name": "settings_header",
-  "version": 32,
+  "version": 33,
   "source-key": {
     "type": "figma",
     "file": "EtSmXEVNWeabOV1W1xAYhc",
     "node": "105:185",
-    "version": "5620437525",
+    "version": "5762369026",
     "component-id": "7216cd57a8902def12719e0142279ee60bc43235"
   },
   "default": "SettingsHeader",
@@ -34,7 +34,7 @@
         "rules": [
           {
             "id": "top_level",
-            "padding": "16.0",
+            "padding": 16.0,
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "shrink"
@@ -47,10 +47,10 @@
               "SettingsHeaderTxt"
             ],
             "background-color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "0.0784313725490196"
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.0784313725490196
             }
           },
           {
@@ -58,56 +58,56 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "328.0"
+                "value": 328.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "96.0"
+                "value": 96.0
               }
             },
-            "is-structured": "false",
+            "is-structured": false,
             "children": [
               "SettingsTitle",
               "SettingsSubtitle"
             ],
-            "clip-content": "false"
+            "clip-content": false
           },
           {
             "id": "SettingsTitle",
             "alignment": {
               "horizontal": {
                 "attachment": "center",
-                "offset": "0.0"
+                "offset": 0.0
               },
               "vertical": {
                 "attachment": "center",
-                "offset": "-16.0"
+                "offset": -16.0
               }
             },
             "tap-handler": "$onSettingsTitleClicked",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "328.0"
+                "value": 328.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "64.0"
+                "value": 64.0
               }
             },
-            "font-weight": "700.0",
+            "font-weight": 700.0,
             "color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "1.0"
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
             },
             "text-content": "Ocio & Geek",
             "overflow": "visible",
-            "max-lines": "-1",
+            "max-lines": -1,
             "text-align-vertical": "center",
-            "text-size": "45.0",
-            "line-height": "1.2569999694824219",
+            "text-size": 45.0,
+            "line-height": 1.2569999694824219,
             "typeface": "Merriweather"
           },
           {
@@ -115,37 +115,37 @@
             "alignment": {
               "horizontal": {
                 "attachment": "center",
-                "offset": "0.0"
+                "offset": 0.0
               },
               "vertical": {
                 "attachment": "center",
-                "offset": "32.0"
+                "offset": 32.0
               }
             },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": "232.0"
+                "value": 232.0
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": "32.0"
+                "value": 32.0
               }
             },
-            "font-weight": "700.0",
+            "font-weight": 700.0,
             "color": {
-              "alpha": "1.0",
-              "hue": "0.0",
-              "saturation": "0.0",
-              "value": "1.0"
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
             },
             "text-content": "Settings",
-            "italic": "true",
+            "italic": true,
             "overflow": "visible",
-            "max-lines": "-1",
+            "max-lines": -1,
             "text-align-vertical": "center",
-            "text-size": "30.0",
-            "line-height": "1.2569999694824219",
+            "text-size": 30.0,
+            "line-height": 1.2569999694824219,
             "typeface": "Merriweather"
           }
         ]
