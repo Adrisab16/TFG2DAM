@@ -66,6 +66,7 @@ fun ContenidoListView(
     val juegos by viewModel.juegos.collectAsState()
     var isLoading by remember { mutableStateOf(true) }
     var filteredJuegos by remember { mutableStateOf<List<VideojuegosLista>>(emptyList()) }
+    var gamename by remember { mutableStateOf("") }
 
     // Llamada a LaunchedEffect solo para actualizar la lista de juegos filtrados
     LaunchedEffect(juegos) {
@@ -73,7 +74,7 @@ fun ContenidoListView(
         filteredJuegos = juegos.filter { it.id in gameIds.orEmpty() }
         isLoading = true
         // Esperar 5 segundos antes de cambiar isLoading a falso
-        delay(1000)
+        delay(2000)
         isLoading = false
     }
 
@@ -94,13 +95,15 @@ fun ContenidoListView(
                     .padding(pad)
             ) {
                 items(filteredJuegos) { juego ->
+                    gamename = viewModel.getShortGameNameById(juego.id)
                     CardJuegoListView(
                         navController = navController,
                         juego = juego,
                         gametype = gametype,
                         userVideogameVM = userVideogameVM,
                         userId = userId,
-                        gameId = juego.id
+                        gameId = juego.id,
+                        gamename = gamename
                     )
                 }
             }
@@ -118,6 +121,7 @@ fun CardJuegoListView(
     gameId: Int,
     userId: String,
     userVideogameVM: userVideogameViewModel,
+    gamename: String,
 ) {
     // Mantén un estado para controlar si se ha hecho clic en el botón de eliminación
     var clickedState by remember { mutableStateOf(false) }
@@ -137,7 +141,7 @@ fun CardJuegoListView(
         Spacer(modifier = Modifier.width(10.dp))
         Column {
             Box(modifier = Modifier.align(Alignment.CenterHorizontally)){
-                Text(text = juego.name, color = Color.Black, fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center)
+                Text(text = gamename /* juego.name */, color = Color.Black, fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center)
             }
             Spacer(modifier = Modifier.height(10.dp))
             Text(text = "Nota Metacritic: ${juego.mcscore}/100", color = Color.Black)

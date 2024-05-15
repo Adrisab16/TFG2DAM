@@ -53,6 +53,25 @@ class VideojuegosViewModel : ViewModel() {
     }
 
     /**
+     * Obtiene el nombre corto del juego por su ID, limitado a las dos primeras palabras.
+     *
+     * @param id ID del juego.
+     * @return Nombre corto del juego si se encuentra, de lo contrario, una cadena vacía.
+     */
+    fun getShortGameNameById(id: Int): String {
+        val listaJuegos = _juegos.value
+        val juego = listaJuegos.find { it.id == id }
+        val fullName = juego?.name ?: ""
+        // Cortar el nombre a las dos primeras palabras
+        val words = fullName.split(" ")
+        return if (words.size >= 2) {
+            "${words[0]} ${words[1]}"
+        } else {
+            fullName
+        }
+    }
+
+    /**
      * Obtiene la imagen de un juego por su ID.
      *
      * @param id ID del juego.
@@ -100,16 +119,3 @@ class VideojuegosViewModel : ViewModel() {
         return juego?.datereleased ?: ""
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

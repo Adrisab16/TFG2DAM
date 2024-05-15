@@ -54,7 +54,7 @@ fun NavManager(
 
         // Muestra la vista correspondiente a la pantalla principal (Home).
         composable("Home") {
-            Home(navController, loginVM)
+            Home(navController, loginVM, gameVM)
         }
 
         // Muestra la vista correspondiente a la pantalla de busqueda de videojuegos (Discover).

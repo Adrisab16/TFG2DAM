@@ -8,9 +8,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -21,17 +23,23 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tfg2dam.footernavtab.FooterNavTab
 import com.example.tfg2dam.footernavtab.Property1
 import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
+import com.example.tfg2dam.screens.viewresources.ContenidoGridView
+import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
 
 
 @Composable
-fun Home(navController: NavController, loginVM: loginViewModel) {
+fun Home(navController: NavController, loginVM: loginViewModel, gameVM: VideojuegosViewModel) {
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
     var showDialog by remember { mutableStateOf(false) }
@@ -44,7 +52,39 @@ fun Home(navController: NavController, loginVM: loginViewModel) {
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize().background(Color(android.graphics.Color.parseColor("#141414")))) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Color(android.graphics.Color.parseColor("#141414")))) {
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 100.dp)
+                .align(Alignment.TopCenter),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "TOP RATING GAMES",
+                style = TextStyle(
+                    fontWeight = FontWeight.Bold, // Negrita
+                    fontSize = 24.sp, // Tamaño grande
+                    fontFamily = FontFamily.Serif // Fuente bonita (puedes cambiar a la que desees)
+                )
+            )
+        }
+
+
+        Box(modifier = Modifier
+            .padding(top = 160.dp, bottom = 60.dp)){
+            Scaffold {
+                ContenidoGridView(
+                    viewModel = gameVM,
+                    pad = it,
+                    navController = navController
+                )
+            }
+        }
+
         Header(
             modifier = Modifier
                 .padding(bottom = 700.dp)
