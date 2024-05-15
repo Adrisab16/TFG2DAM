@@ -10,6 +10,9 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.tasks.await
 
+/**
+ * ViewModel para manejar los videojuegos del usuario.
+ */
 class userVideogameViewModel: ViewModel() {
 
     private val firestore = Firebase.firestore
@@ -17,7 +20,11 @@ class userVideogameViewModel: ViewModel() {
     val currentlyPlayingGames: State<List<VideojuegosLista>> = _currentlyPlayingGames
 
     /**
-     * Añade videojuegos (su id) a las 5 listas disponibles
+     * Añade videojuegos (su id) a las 5 listas disponibles del usuario
+     *
+     * @param userId ID del usuario.
+     * @param gameId ID del videojuego a añadir.
+     * @param gameType Tipo de lista de videojuegos a la que añadir el juego.
      */
 
     suspend fun addGameIdToUser(userId: String, gameId: Int, gameType: String) {
@@ -59,6 +66,11 @@ class userVideogameViewModel: ViewModel() {
 
     /**
      * Elimina videojuegos (su id) de las 5 listas disponibles
+     *
+     * @param userId ID del usuario.
+     * @param gameId ID del videojuego a eliminar.
+     * @param gameType Tipo de lista de videojuegos de la que eliminar el juego.
+     * @return Booleano que indica si la eliminación fue exitosa.
      */
 
     suspend fun removeGameIdFromUser(userId: String, gameId: Int, gameType: String): Boolean {
@@ -103,8 +115,15 @@ class userVideogameViewModel: ViewModel() {
         }
     }
 
-    // Función para obtener los videojuegos de un tipo específico para el usuario actual.
-    // RECUERDA: Solo obtiene los gameid, ni los muestra ni nada, ahora esto hay que pasarselo a la vista y llamar a la API para que los busque
+    /**
+     * Obtiene los videojuegos de una lista específica para el usuario actual.
+     *
+     * IMPORTANTE: Solo obtiene los gameid, ni los muestra ni nada, esta info se le pasa a la vista y se llama a la API para que se muestre
+     *
+     * @param userId ID del usuario.
+     * @param gameType Tipo de lista de videojuegos a obtener.
+     * @return Lista de IDs de videojuegos de la lista que me pase por aprámetro o null si ocurre un error.
+     */
     suspend fun getVideoGamesByType(userId: String, gameType: String): List<Int>? {
         return try {
             val userDocument = firestore.collection("users").document(userId).get().await()

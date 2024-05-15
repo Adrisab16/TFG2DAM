@@ -21,30 +21,40 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
+/**
+ * Función composable que muestra un Textfield de usuario con un icono de persona.
+ *
+ * @param modifier El modificador que se aplica al campo de entrada.
+ * @param textFieldValue El valor actual del campo de entrada.
+ * @param onTextFieldValueChanged La lambda que se llama cuando cambia el valor del campo de entrada.
+ */
 @Composable
 fun UserField(
     modifier: Modifier = Modifier,
     textFieldValue: String,
     onTextFieldValueChanged: (String) -> Unit
 ) {
+    // Fila que contiene el icono y el campo de entrada de usuario
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+        // Icono de persona
         Icon(
             imageVector = Icons.Default.Person,
             contentDescription = null,
             tint = Color.White, // Configurar el color del icono
             modifier = Modifier.padding(end = 10.dp, start = 10.dp).size(35.dp)
         )
-        // Zona para introducir datos
+
+        // Textfield para el nombre de usuario
         TextField(
             value = textFieldValue,
-            label = { Text(text = "Username") },
-            onValueChange = onTextFieldValueChanged,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            label = { Text(text = "Username") }, // Etiqueta del campo de entrada
+            onValueChange = onTextFieldValueChanged, // Lambda para manejar cambios en el valor
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text), // Configuración del teclado para tipo de texto
             modifier = Modifier
                 .padding(vertical = 8.dp)
                 .width(250.dp)
                 .padding(end = 10.dp, top = 5.dp, bottom = 5.dp)
-                .background(Color.Transparent, shape = RoundedCornerShape(10.dp)),
+                .background(Color.Transparent, shape = RoundedCornerShape(10.dp)), // Estilo del campo de entrada
             singleLine = true // Para evitar que el texto se desborde
         )
     }

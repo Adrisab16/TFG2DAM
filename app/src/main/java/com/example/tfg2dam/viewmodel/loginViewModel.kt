@@ -23,23 +23,27 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-
+/**
+ * ViewModel que gestiona el inicio de sesión y registro de usuarios.
+ */
 class loginViewModel: ViewModel() {
-    // DCS - Definición de variables y funciones para manejar el inicio de sesión y registro de usuarios.
+    // Definición de variables y funciones para manejar el inicio de sesión y registro de usuarios.
 
+    // Instancias de Firebase Auth y Firestore
     private val auth: FirebaseAuth = Firebase.auth
     private val firestore = Firebase.firestore
 
+    // Estado para mostrar una alerta
     var showAlert by mutableStateOf(false)
         private set
+
+    // Variables para el email, contraseña y nombre de usuario
     var email by mutableStateOf("")
         private set
     var password by mutableStateOf("")
         private set
     var userName by mutableStateOf("")
         private set
-    //private var selectedTab by mutableIntStateOf(0)
-        //private set
 
 
 
@@ -47,11 +51,15 @@ class loginViewModel: ViewModel() {
 
     /**
      * Método privado para escribir en el archivo de registro.
+     *
+     * @param action La acción realizada para escribir en el archivo de registro.
      */
     private fun writeToLog(action: String) {
+        // Registro de la acción con su marca de tiempo
         val timeStamp = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
         val logMessage = "[$timeStamp] $action"
         try {
+            // Escritura en el archivo de registro
             FileWriter("F:\\MyProjects\\TFG2DAM", true).use { writer ->
                 writer.appendLine(logMessage)
             }
@@ -66,19 +74,20 @@ class loginViewModel: ViewModel() {
      * En caso de error, actualiza el estado para mostrar una alerta.
      *
      * @param onSuccess Acción a ejecutar si el inicio de sesión es exitoso.
+     * @param onError Acción a ejecutar si hay un error en el inicio de sesión.
      */
     fun login(onSuccess: () -> Unit, onError: (String) -> Unit) {
         viewModelScope.launch {
             try {
-                // Intenta iniciar sesión con Firebase Auth
+                // Intento de inicio de sesión con Firebase Auth
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            // Si el inicio de sesión es exitoso, llama a onSuccess
+                            // Si el inicio de sesión es exitoso, ejecuta onSuccess
                             writeToLog("Inicio de sesión exitoso")
                             onSuccess()
                         } else {
-                            // Si el inicio de sesión falla, llama a onError con un mensaje de error
+                            // Si el inicio de sesión falla, ejecuta onError con un mensaje de error
                             writeToLog("Error al iniciar sesión")
                             Log.d("ERROR EN FIREBASE", "Usuario y/o contraseña incorrectos")
                             onError("Error al iniciar sesión. Usuario y/o contraseña incorrectos.")
@@ -101,13 +110,13 @@ class loginViewModel: ViewModel() {
     fun createUser(onSuccess: () -> Unit){
         viewModelScope.launch {
             try {
-                // DCS - Utiliza el servicio de autenticación de Firebase para registrar al usuario
+                // Utiliza el servicio de autenticación de Firebase para registrar al usuario
                 // por email y contraseña
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             writeToLog("Usuario creado con éxito")
-                            // DCS - Si se realiza con éxito, almacenamos el usuario en la colección "Users"
+                            // Si el registro es exitoso, guarda la información del usuario en la colección "Users" y ejecuta onSuccess
                             saveUser(userName, password)
                             onSuccess()
                         } else {
@@ -126,14 +135,16 @@ class loginViewModel: ViewModel() {
      * Guarda la información del usuario recién registrado en Firestore.
      *
      * @param username Nombre de usuario a guardar.
-     *
      */
     @SuppressLint("SuspiciousIndentation")
     private fun saveUser(username: String, password: String) {
+        // Obtención del ID y el email del usuario actual
         val id = auth.currentUser?.uid
         val email = auth.currentUser?.email
 
+        // Verificación de la existencia de un ID y email válidos
         if (id != null && email != null) {
+            // Creación del objeto UserModel
             val user = UserModel(
                 userId = id,
                 email = email,
@@ -149,7 +160,7 @@ class loginViewModel: ViewModel() {
             )
 
             viewModelScope.launch(Dispatchers.IO) {
-                // Guardar el usuario en la colección "Users"
+                // Guardar el usuario en la colección "Users" en Firestore
                 firestore.collection("users").document(id).set(user)
                     .addOnSuccessListener {
                         Log.d("GUARDAR OK", "Se guardó el usuario correctamente en Firestore")
@@ -200,19 +211,6 @@ class loginViewModel: ViewModel() {
         this.userName = userName
     }
 
-    /*
-
-    Codigo sin uso (puede que sea eliminado):
-
-    /**
-     * Cambia la pestaña seleccionada en la UI.
-     *
-     * @param selectedTab Índice de la nueva pestaña seleccionada.
-     */
-    fun changeSelectedTab(selectedTab: Int) {
-        this.selectedTab = selectedTab
-    }*/
-
     /**
      * Cierra la sesión del usuario actual.
      */
@@ -226,9 +224,10 @@ class loginViewModel: ViewModel() {
     }
 
     /**
-     * Elimina la cuenta del usuario actual, tanto de firestore como de authentication
+     * Elimina la cuenta del usuario actual, tanto de firestore como de authentication.
+     *
+     * @param onSuccess Acción a ejecutar si la eliminación de la cuenta es exitosa.
      */
-
     fun deleteAccount(onSuccess: () -> Unit) {
         val user = auth.currentUser
         val userId = user?.uid
@@ -271,7 +270,11 @@ class loginViewModel: ViewModel() {
             }
     }
 
-
+    /**
+     * Obtiene el nombre de usuario del usuario actualmente autenticado en Firestore.
+     *
+     * @param callback Función de retorno que recibe el nombre de usuario como parámetro.
+     */
     fun getUsernameFromFirestore(callback: (String?) -> Unit) {
         // Obtener el ID del usuario actualmente autenticado
         val userId = auth.currentUser?.uid
@@ -305,6 +308,11 @@ class loginViewModel: ViewModel() {
         }
     }
 
+    /**
+     * Obtiene el ID de usuario del usuario actualmente autenticado en Firestore.
+     *
+     * @param callback Función de retorno que recibe el ID de usuario como parámetro.
+     */
     fun getUserIdFromFirestore(callback: (String) -> Unit) {
         // Obtener el ID del usuario actualmente autenticado
         val userId = auth.currentUser?.uid

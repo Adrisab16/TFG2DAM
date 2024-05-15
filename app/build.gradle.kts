@@ -75,12 +75,11 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    // DCS - Firebase
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
-    // DCS - Servicio de Autenticación
+    // Servicio de Autenticación
     implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
-    // DCS - Base de datos Firestore
+    // Base de datos Firestore
     implementation("com.google.firebase:firebase-firestore-ktx:24.11.1")
     // Uso de Google Analytics
     implementation("com.google.firebase:firebase-analytics")

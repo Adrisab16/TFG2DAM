@@ -35,13 +35,24 @@ import com.example.tfg2dam.uiresources.PasswordField
 import com.example.tfg2dam.viewmodel.loginViewModel
 import kotlinx.coroutines.launch
 
-
+/**
+ * Composable que muestra la pantalla de inicio de sesión (Login) con campos de entrada de email y contraseña.
+ *
+ * @param navController Controlador de navegación utilizado para cambiar entre pantallas.
+ * @param loginVM ViewModel para la autenticación y gestión de sesiones de usuario.
+ */
 @Composable
 fun LogIn(navController: NavController, loginVM: loginViewModel) {
+
+    // Alcance de la corrutina para la gestión de operaciones asíncronas
     val coroutineScope = rememberCoroutineScope()
+
+    // Contexto de la aplicación obtenido del LocalContext
     val context = LocalContext.current
 
+    // Contenedor principal
     Box(Modifier.fillMaxSize()) {
+        // Fondo de pantalla de inicio de sesión
         Image(
             painter = painterResource(id = R.drawable.login_background_login_background_photo),
             contentDescription = null,
@@ -49,22 +60,25 @@ fun LogIn(navController: NavController, loginVM: loginViewModel) {
             contentScale = ContentScale.FillBounds // Esto ajustará la escala de contenido para que la imagen ocupe tod0 el espacio disponible sin recortarla
         )
 
-        // Titulo de la pantalla de LogIn
+        // Título de la pantalla de inicio de sesión
         LoginHeader(property1 = Property1.Default, modifier = Modifier
             .align(Alignment.TopCenter)
             .padding(top = 10.dp))
 
+        // Contenedor principal de la pantalla de inicio de sesión
         Box(modifier = Modifier.align(Alignment.Center).padding(top=60.dp)) {
 
+            // Campo de entrada de inicio de sesión
             LogInField()
 
-            // Iconos de plataformas de arriba
+            // Iconos decorativos de las plataformas de consolas que aparecen en la parte de arriba
             Box(modifier = Modifier
                 .align(Alignment.TopCenter)
                 .padding(top = 20.dp)) {
                 PlatformsIcons()
             }
 
+            // Contenedor central
             Box(
                 modifier = Modifier.align(Alignment.Center),
                 contentAlignment = Alignment.Center
@@ -75,7 +89,7 @@ fun LogIn(navController: NavController, loginVM: loginViewModel) {
                 ) {
                     Spacer(modifier = Modifier.height(40.dp))
 
-                    // Introduccion de email:
+                    // Campo de entrada de email
                     Box(modifier =  Modifier
                         .background(Color.DarkGray, shape = RoundedCornerShape(10.dp))
                         .clip(RoundedCornerShape(10.dp))
@@ -88,7 +102,7 @@ fun LogIn(navController: NavController, loginVM: loginViewModel) {
                     }
                     Spacer(modifier = Modifier.height(30.dp))
 
-                    // Introduccion de contraseña:
+                    // Campo de entrada de contraseña
                     Box(modifier =  Modifier
                         .background(Color.DarkGray, shape = RoundedCornerShape(10.dp))
                         .clip(RoundedCornerShape(10.dp))
@@ -101,7 +115,7 @@ fun LogIn(navController: NavController, loginVM: loginViewModel) {
                     }
                     Spacer(modifier = Modifier.height(40.dp))
 
-                    // Botón Login:
+                    // Botón de inicio de sesión
                     LogInButton(onLogInButtonClicked = {
                         loginVM.login(
                             onSuccess = { navController.navigate("Home") },
@@ -115,7 +129,7 @@ fun LogIn(navController: NavController, loginVM: loginViewModel) {
                     })
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    // Botón para ir al SignUp:
+                    // Botón para ir a la pantalla de registro (SignUp)
                     NavSignUpButton(onNavButtonSignUpClicked = {navController.navigate("SignUp")})
                 }
             }

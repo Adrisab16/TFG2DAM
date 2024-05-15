@@ -5,12 +5,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
- * Objeto singleton que proporciona una instancia de la API de videojuegos mediante Retrofit.
+ * Objeto que proporciona una instancia única de Retrofit para interactuar con la API de videojuegos.
  */
 object RetrofitClient {
 
     /**
-     * Propiedad lazy que representa la instancia de la API de videojuegos.
+     * Instancia única de la interfaz APIVideojuegos creada con Retrofit.
+     * Utiliza lazy initialization para crear la instancia solo cuando se accede por primera vez.
      */
     val retrofit: APIVideojuegos by lazy {
         Retrofit
