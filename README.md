@@ -13,7 +13,9 @@ Tecnologías usadas:
 
   1. Lenguaje de programación y framework principal:
 
-    - Kotlin y Jetpack Compose
+    - Kotlin
+    
+    - Jetpack Compose
 
   2. Entorno de desarrollo integrado principal:
 
