@@ -15,17 +15,19 @@ Tecnologías usadas:
 
     - Kotlin y Jetpack Compose
 
+  2. Entorno de desarrollo integrado principal:
+
     - Android Studio Hedgehog Patch 2
 
-  2. Gestion de autenticación y bases de datos:
+  3. Gestion de autenticación y bases de datos:
 
     - Firebase (Firestore y Authentication)
 
-  3. Herramienta de diseño:
+  4. Herramienta de diseño:
 
     - Figma
 
-  4. Plugins, librerías y dependencias: 
+  5. Plugins, librerías y dependencias: 
 
     - Relay for Android Studio
 
