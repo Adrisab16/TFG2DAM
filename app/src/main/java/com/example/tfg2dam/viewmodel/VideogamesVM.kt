@@ -1,11 +1,13 @@
 package com.example.tfg2dam.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.network.RetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -18,6 +20,12 @@ class VideojuegosViewModel : ViewModel() {
     private val _juegos = MutableStateFlow<List<VideojuegosLista>>(emptyList())
     val juegos = _juegos.asStateFlow() // Convertir la lista mutable en un flujo de estado inmutable
 
+    private val _searchResults = MutableStateFlow<List<VideojuegosLista>>(emptyList())
+    val searchResults = _searchResults.asStateFlow() // Lista de juegos buscados
+
+    private val _isSearching = MutableStateFlow(false)
+    val isSearching: StateFlow<Boolean> = _isSearching.asStateFlow()
+
     /**
      * Inicializa el ViewModel y llama a la función para obtener la lista de videojuegos.
      */
@@ -28,9 +36,9 @@ class VideojuegosViewModel : ViewModel() {
     /**
      * Función para obtener la lista de videojuegos desde un servicio web utilizando Retrofit.
      */
-    private fun obtenerJuegos(){
+    private fun obtenerJuegos() {
         viewModelScope.launch(Dispatchers.IO) {
-            withContext((Dispatchers.Main)) {
+            withContext(Dispatchers.Main) {
                 val response = RetrofitClient.retrofit.obtenerJuegos()
                 _juegos.value = response.body()?.listaVideojuegos ?: emptyList()
             }
@@ -117,5 +125,20 @@ class VideojuegosViewModel : ViewModel() {
         val listaJuegos = _juegos.value
         val juego = listaJuegos.find { it.id == id }
         return juego?.datereleased ?: ""
+    }
+
+    fun buscarJuegos(query: String) {
+        viewModelScope.launch {
+            try {
+                _isSearching.value = true
+                val response = RetrofitClient.retrofit.buscarJuegos(query)
+                _searchResults.value = response.body()?.listaVideojuegos ?: emptyList()
+            } catch (e: Exception) {
+                Log.e("ERROR", "Error al buscar juegos: ${e.localizedMessage}")
+                _searchResults.value = emptyList()
+            } finally {
+                _isSearching.value = false
+            }
+        }
     }
 }

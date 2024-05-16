@@ -9,6 +9,7 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -25,6 +26,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,6 +44,7 @@ import com.example.tfg2dam.footernavtab.Property1
 import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
 import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
+import com.example.tfg2dam.screens.viewresources.ContenidoGridDiscoverView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
 import kotlinx.coroutines.launch
@@ -49,13 +52,14 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: VideojuegosViewModel){
+fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: VideojuegosViewModel) {
     var isMenuVisible by remember { mutableStateOf(false) }
-    //val games by gameVM.games.collectAsState()
     var username by remember { mutableStateOf("") }
     var showDeleteDialog by remember { mutableStateOf(false) }
     var showChangePasswordDialog by remember { mutableStateOf(false) }
-
+    var text by remember { mutableStateOf("") }
+    val isSearching by gameVM.isSearching.collectAsState()
+    val focusManager = LocalFocusManager.current
 
     LaunchedEffect(Unit) {
         loginVM.getUsernameFromFirestore { retrievedUsername ->
@@ -65,12 +69,11 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
         }
     }
 
-
     Box(
         Modifier
             .fillMaxSize()
-            .background(Color(android.graphics.Color.parseColor("#141414")))) {
-
+            .background(Color(android.graphics.Color.parseColor("#141414")))
+    ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -78,30 +81,19 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
                 .align(Alignment.TopCenter),
             contentAlignment = Alignment.Center
         ) {
-            var text by remember { mutableStateOf("") }
-            val focusManager = LocalFocusManager.current
-
             TextField(
                 value = text,
-                onValueChange = { newText ->
-                    text = newText
-                },
+                onValueChange = { newText -> text = newText },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
-                placeholder = {
-                    Text("Buscar")
-                },
-                leadingIcon = {
-                    Icon(Icons.Default.Search, contentDescription = "Search")
-                },
+                placeholder = { Text("Buscar") },
+                leadingIcon = { Icon(Icons.Default.Search, contentDescription = "Search") },
                 trailingIcon = {
                     IconButton(
                         onClick = {
-                            // Realiza la acción de búsqueda
-                            // Por ejemplo, puedes enviar una solicitud de búsqueda aquí
                             focusManager.clearFocus()
-                            // Aquí puedes realizar la acción de búsqueda
+                            gameVM.buscarJuegos(text)
                         }
                     ) {
                         Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Search")
@@ -116,23 +108,32 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
             )
         }
 
+        Box(
+            modifier = Modifier
+                .align(Alignment.Center),
+            contentAlignment = Alignment.Center
+        ) {
+            ContenidoGridDiscoverView(
+                navController = navController,
+                viewModel = gameVM,
+                pad = PaddingValues(top = 100.dp)
+            )
+        }
 
         Header(
             modifier = Modifier
                 .padding(bottom = 700.dp)
-                .align(Alignment.Center)
-            , // Agregar espacio superior
+                .align(Alignment.Center),
             onUserIconClicked = { isMenuVisible = true },
         )
 
-        // Footer:
-        FooterNavTab(modifier = Modifier.align(Alignment.BottomCenter),
+        FooterNavTab(
+            modifier = Modifier.align(Alignment.BottomCenter),
             property1 = Property1.DiscoverClicked,
-            onHomeButtonClicked = {navController.navigate("Home")},
-            onListButtonClicked = {navController.navigate("MyList/0")},
-            )
+            onHomeButtonClicked = { navController.navigate("Home") },
+            onListButtonClicked = { navController.navigate("MyList/0") }
+        )
 
-        // El codigo respectivo para la visualización del menu desplegable:
         AnimatedVisibility(
             visible = isMenuVisible,
             enter = slideInHorizontally(initialOffsetX = { -it }, animationSpec = tween(durationMillis = 300)),
@@ -141,15 +142,15 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
             Box(
                 Modifier
                     .fillMaxSize()
-                    .background(Color(0x99000000)) // Fondo semitransparente
-                    .clickable { isMenuVisible = false } // Ocultar el menú al hacer clic fuera de él
+                    .background(Color(0x99000000))
+                    .clickable { isMenuVisible = false }
             ) {
                 MenuDesplegable(
-                    modifier = Modifier.clickable {  },
+                    modifier = Modifier.clickable { },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
                     usernameTxttextcontent = "Hola, $username",
                     onDeleteButtonClicked = { showDeleteDialog = true },
-                    onChangePasswordClicked = {showChangePasswordDialog = true},
+                    onChangePasswordClicked = { showChangePasswordDialog = true },
                     onCompletedListClicked = {
                         val countlistout = 4
                         navController.navigate("MyList/$countlistout")
@@ -169,10 +170,11 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
                     onPlayingListClicked = {
                         val countlistout = 1
                         navController.navigate("MyList/$countlistout")
-                    },
+                    }
                 )
             }
         }
+
         if (showDeleteDialog) {
             AlertDialog(
                 onDismissRequest = { showDeleteDialog = false },
@@ -190,17 +192,14 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
                     }
                 },
                 dismissButton = {
-                    Button(
-                        onClick = { showDeleteDialog = false }
-                    ) {
+                    Button(onClick = { showDeleteDialog = false }) {
                         Text("Cancelar")
                     }
                 }
             )
         }
 
-        val coroutineScope = rememberCoroutineScope() // Obtener el ámbito de la coroutine
-
+        val coroutineScope = rememberCoroutineScope()
         if (showChangePasswordDialog) {
             val context = LocalContext.current
             ChangePasswordDialog(
@@ -208,7 +207,6 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
                 onConfirm = { oldPassword, newPassword ->
                     loginVM.changePassword(oldPassword, newPassword,
                         onError = { errorMessage ->
-                            // Ejecutar la llamada al Toast dentro de una coroutine
                             coroutineScope.launch {
                                 Toast.makeText(context, "Contraseña antigua incorrecta", Toast.LENGTH_LONG).show()
                             }
@@ -221,3 +219,7 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
         }
     }
 }
+
+
+
+

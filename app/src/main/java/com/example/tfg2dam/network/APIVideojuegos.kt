@@ -32,6 +32,15 @@ interface APIVideojuegos {
         @Query("page_size") pageSize: Int = 40 // Doble del tamaño de página actual
 
     ): Response<VideoJuegoModel>
+
+    @GET("games${Const.API_KEY}")
+    suspend fun buscarJuegos(
+        @Query("search") query: String,
+        @Query("search_precise") precise: Boolean = true,
+        @Query("search_exact") exact: Boolean = true,
+        @Query("platforms") platforms: String = "4",
+        @Query("page_size") pageSize: Int = 4
+    ): Response<VideoJuegoModel>
 }
 
 
