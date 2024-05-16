@@ -1,6 +1,7 @@
 package com.example.tfg2dam.screens.secondaryviews
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -39,6 +40,7 @@ import com.example.tfg2dam.footernavtab.Property1
 import com.example.tfg2dam.gamedetailsfield.GameDetailsField
 import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
+import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
 import com.example.tfg2dam.viewmodel.userVideogameViewModel
@@ -58,7 +60,8 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
     var userid by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
-    var showDialog by remember { mutableStateOf(false) }
+    var showDeleteDialog by remember { mutableStateOf(false) }
+    var showChangePasswordDialog by remember { mutableStateOf(false) }
 
 
     LaunchedEffect(Unit) {
@@ -190,7 +193,8 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                     modifier = Modifier.clickable {  },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
                     usernameTxttextcontent = "Hola,\n$username",
-                    onDeleteButtonClicked = { showDialog = true },
+                    onDeleteButtonClicked = { showDeleteDialog = true },
+                    onChangePasswordClicked = {showChangePasswordDialog = true},
                     onCompletedListClicked = {
                         val countlistout = 4
                         navController.navigate("MyList/$countlistout")
@@ -214,9 +218,9 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                 )
             }
         }
-        if (showDialog) {
+        if (showDeleteDialog) {
             AlertDialog(
-                onDismissRequest = { showDialog = false },
+                onDismissRequest = { showDeleteDialog = false },
                 title = { Text("Eliminar cuenta") },
                 text = { Text("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.") },
                 confirmButton = {
@@ -232,10 +236,31 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                 },
                 dismissButton = {
                     Button(
-                        onClick = { showDialog = false }
+                        onClick = { showDeleteDialog = false }
                     ) {
                         Text("Cancelar")
                     }
+                }
+            )
+        }
+
+        val coroutineScope = rememberCoroutineScope() // Obtener el ámbito de la coroutine
+
+        if (showChangePasswordDialog) {
+            val context = LocalContext.current
+            ChangePasswordDialog(
+                onDismiss = { showChangePasswordDialog = false },
+                onConfirm = { oldPassword, newPassword ->
+                    loginVM.changePassword(oldPassword, newPassword,
+                        onError = { errorMessage ->
+                            // Ejecutar la llamada al Toast dentro de una coroutine
+                            coroutineScope.launch {
+                                Toast.makeText(context, "Contraseña antigua incorrecta", Toast.LENGTH_LONG).show()
+                            }
+                            Log.e("ChangePassword", errorMessage)
+                        },
+                        navController = navController
+                    )
                 }
             )
         }

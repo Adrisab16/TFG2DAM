@@ -2,22 +2,25 @@ package com.example.tfg2dam.viewmodel
 
 import android.annotation.SuppressLint
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-// import androidx.compose.runtime.mutableIntStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
 import com.example.tfg2dam.model.GameMap
 import com.example.tfg2dam.model.UserModel
 import com.example.tfg2dam.model.toMutableMap
 import com.google.firebase.Firebase
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.io.FileWriter
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -333,4 +336,56 @@ class loginViewModel: ViewModel() {
             // Por ejemplo, puedes lanzar otra excepción, proporcionar un valor predeterminado, o no hacer nada
         }
     }
+
+    fun changePassword(
+        oldPassword: String,
+        newPassword: String,
+        onError: (String) -> Unit,
+        navController: NavController,
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val user = auth.currentUser
+                if (user != null && user.email != null) {
+                    val credential = EmailAuthProvider.getCredential(user.email!!, oldPassword)
+
+                    // Reauthenticate the user
+                    user.reauthenticate(credential).await()
+
+                    // Update the password in Firebase Auth
+                    user.updatePassword(newPassword).await()
+
+                    // Update the password in Firestore
+                    val userId = user.uid
+                    val userDocRef = firestore.collection("users").document(userId)
+                    userDocRef.update("password", newPassword).await()
+
+                    // Actualizar la interfaz de usuario en el hilo principal
+                    withContext(Dispatchers.Main) {
+                        navController.navigate("Login")
+                    }
+
+                    // También debes llamar al método logout en el hilo principal
+                    withContext(Dispatchers.Main) {
+                        logout()
+                    }
+
+                    Log.d("Cambio contraseña", "Cambio de contraseña exitoso")
+
+                } else {
+                    // Llama a onError en el hilo principal
+                    withContext(Dispatchers.Main) {
+                        onError("User is not authenticated")
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("ERROR", "Error changing password: ${e.localizedMessage}")
+                // Llama a onError en el hilo principal
+                withContext(Dispatchers.Main) {
+                    onError(e.localizedMessage ?: "Unknown error")
+                }
+            }
+        }
+    }
+
 }

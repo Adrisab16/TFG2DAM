@@ -1,6 +1,8 @@
 package com.example.tfg2dam.screens.primaryscreens
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
@@ -8,11 +10,15 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -20,10 +26,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.tfg2dam.footernavtab.FooterNavTab
@@ -31,10 +39,13 @@ import com.example.tfg2dam.footernavtab.Property1
 import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
 import com.example.tfg2dam.mylisttopnavbar.MyListTopNavBar
+import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.screens.viewresources.ContenidoListView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
 import com.example.tfg2dam.viewmodel.userVideogameViewModel
+import kotlinx.coroutines.launch
+
 
 @Composable
 fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameVM:userVideogameViewModel, videoGameVM:VideojuegosViewModel, countlistout: String){
@@ -42,7 +53,8 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
     var username by remember { mutableStateOf("") }
     var countlist by remember { mutableIntStateOf(countlistout.toInt()) }
     var userId by remember { mutableStateOf("") } // Estado para almacenar el ID de usuario
-    var showDialog by remember { mutableStateOf(false) }
+    var showDeleteDialog by remember { mutableStateOf(false) }
+    var showChangePasswordDialog by remember { mutableStateOf(false) }
 
     print(countlistout)
     print(countlist)
@@ -158,7 +170,7 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
                 }
             }
         }
-        
+
         FooterNavTab(
             modifier = Modifier.align(Alignment.BottomCenter),
             property1 = Property1.MyListClicked,
@@ -181,7 +193,8 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
                     modifier = Modifier.clickable {  },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
                     usernameTxttextcontent = "Hola, $username",
-                    onDeleteButtonClicked = { showDialog = true },
+                    onDeleteButtonClicked = { showDeleteDialog = true },
+                    onChangePasswordClicked = {showChangePasswordDialog = true},
                     onCompletedListClicked = {
                         val countlistout = 4
                         navController.navigate("MyList/$countlistout")
@@ -205,9 +218,9 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
                 )
             }
         }
-        if (showDialog) {
+        if (showDeleteDialog) {
             AlertDialog(
-                onDismissRequest = { showDialog = false },
+                onDismissRequest = { showDeleteDialog = false },
                 title = { Text("Eliminar cuenta") },
                 text = { Text("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.") },
                 confirmButton = {
@@ -223,10 +236,30 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
                 },
                 dismissButton = {
                     Button(
-                        onClick = { showDialog = false }
+                        onClick = { showDeleteDialog = false }
                     ) {
                         Text("Cancelar")
                     }
+                }
+            )
+        }
+        val coroutineScope = rememberCoroutineScope() // Obtener el ámbito de la coroutine
+
+        if (showChangePasswordDialog) {
+            val context = LocalContext.current
+            ChangePasswordDialog(
+                onDismiss = { showChangePasswordDialog = false },
+                onConfirm = { oldPassword, newPassword ->
+                    loginVM.changePassword(oldPassword, newPassword,
+                        onError = { errorMessage ->
+                            // Ejecutar la llamada al Toast dentro de una coroutine
+                            coroutineScope.launch {
+                                Toast.makeText(context, "Contraseña antigua incorrecta", Toast.LENGTH_LONG).show()
+                            }
+                            Log.e("ChangePassword", errorMessage)
+                        },
+                        navController = navController
+                    )
                 }
             )
         }
