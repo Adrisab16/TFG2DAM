@@ -17,6 +17,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -38,23 +40,27 @@ fun ContenidoGridView(
 ){
     val juegos by viewModel.juegos.collectAsState()
 
+    val primeros40Juegos = juegos.take(40) // Tomar solo los primeros 40 juegos
+
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         modifier = Modifier
             .padding(pad)
             .background(Color(android.graphics.Color.parseColor("#141414"))),
     ){
-        items(juegos) {
+        items(primeros40Juegos) {
             CardJuego(navController = navController, juego = it)
         }
     }
 }
+
 
 @Composable
 fun CardJuego(
     navController: NavController,
     juego: VideojuegosLista,
 ) {
+    val searched by remember { mutableStateOf(false) }
     Card(
         shape = RoundedCornerShape(4.dp),
         modifier = Modifier
@@ -62,7 +68,7 @@ fun CardJuego(
             .shadow(40.dp)
             .clickable {
                 // Cuando se hace clic en el juego, navegamos a GameDetailsScreen pasando el ID del juego
-                navController.navigate("GameDetailsScreen/${juego.id}")
+                navController.navigate("GameDetailsScreen/${juego.id}/$searched")
             }
     ){
         Column {

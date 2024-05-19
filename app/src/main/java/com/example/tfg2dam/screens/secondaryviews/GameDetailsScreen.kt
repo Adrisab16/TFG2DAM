@@ -47,15 +47,15 @@ import com.example.tfg2dam.viewmodel.userVideogameViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel, userVideogameVM: userVideogameViewModel, id: Int, gameVM: VideojuegosViewModel) {
+fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel, userVideogameVM: userVideogameViewModel, id: Int, gameVM: VideojuegosViewModel, searched: Boolean) {
     var isMenuVisible by remember { mutableStateOf(false) }
     var isAddButtonMenuVisible by remember { mutableStateOf(false) }
-    val gameName = gameVM.getGameNameById(id)
-    val gameImage = gameVM.getGameImageById(id)
+    val gameName = gameVM.getGameNameById(id, searched)
+    val gameImage = gameVM.getGameImageById(id, searched)
     val gameImagePainter: Painter = rememberAsyncImagePainter(model = gameImage, contentScale = ContentScale.Crop)
-    val gameMetacriticScore = gameVM.getGameMcScoreById(id)
-    val gamePlaytime = gameVM.getGamePlayTimeById(id)
-    val gameDateReleased = gameVM.getGameDateById(id)
+    val gameMetacriticScore = gameVM.getGameMcScoreById(id, searched)
+    val gamePlaytime = gameVM.getGamePlayTimeById(id, searched)
+    val gameDateReleased = gameVM.getGameDateById(id, searched)
     var username by remember { mutableStateOf("") }
     var userid by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -65,6 +65,7 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
 
 
     LaunchedEffect(Unit) {
+        Log.i("Id recibido en GameDetailsScreen", "$id")
         loginVM.getUsernameFromFirestore { retrievedUsername ->
             retrievedUsername?.let {
                 username = it

@@ -66,36 +66,47 @@ fun ContenidoListView(
     val juegos by viewModel.juegos.collectAsState()
     var isLoading by remember { mutableStateOf(true) }
     var filteredJuegos by remember { mutableStateOf<List<VideojuegosLista>>(emptyList()) }
-    var gamename by remember { mutableStateOf("") }
 
     // Llamada a LaunchedEffect solo para actualizar la lista de juegos filtrados
     LaunchedEffect(juegos) {
+        Log.i("COMBINED_JUEGOS", "Juegos combinados: $juegos")
+
         val gameIds = userVideogameVM.getVideoGamesByType(gameType = gametype, userId = userId)
-        filteredJuegos = juegos.filter { it.id in gameIds.orEmpty() }
+        Log.i("GAMEIDS", "IDs de juegos: $gameIds")
+
+        filteredJuegos = if (gameIds != null) {
+            juegos.filter { it.id in gameIds }
+        } else {
+            emptyList()
+        }
+
+        Log.i("FILTERED_JUEGOS", "Juegos filtrados: $filteredJuegos")
+
         isLoading = true
-        // Esperar 5 segundos antes de cambiar isLoading a falso
+        // Esperar 2 segundos antes de cambiar isLoading a falso
         delay(2000)
         isLoading = false
     }
 
     if (isLoading) {
-        CircularProgressIndicator(
-            modifier = Modifier.align(Alignment.Center)
-        )
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            CircularProgressIndicator()
+        }
     } else {
         if (filteredJuegos.isEmpty()) {
-            Text(
-                text = "La lista está vacía",
-                color = Color.White,
-                modifier = Modifier.align(Alignment.Center)
-            )
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(
+                    text = "La lista está vacía",
+                    color = Color.White
+                )
+            }
         } else {
             LazyColumn(
                 modifier = Modifier
                     .padding(pad)
             ) {
                 items(filteredJuegos) { juego ->
-                    gamename = viewModel.getShortGameNameById(juego.id)
+                    val gamename = viewModel.getShortGameNameById(juego.id)
                     CardJuegoListView(
                         navController = navController,
                         juego = juego,
@@ -110,6 +121,8 @@ fun ContenidoListView(
         }
     }
 }
+
+
 
 
 @SuppressLint("CoroutineCreationDuringComposition")
@@ -134,7 +147,7 @@ fun CardJuegoListView(
             .background(Color.LightGray)
             .fillMaxWidth()
             .clickable {
-                navController.navigate("GameDetailsScreen/${juego.id}")
+                navController.navigate("GameDetailsScreen/${juego.id}/false")
             }
     ){
         GameImageListView(imagen = juego.image)

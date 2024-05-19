@@ -29,8 +29,8 @@ interface APIVideojuegos {
     suspend fun obtenerJuegos(
         @Query("ordering") ordering: String = "+rating",
         @Query("platforms") platforms: String = "4", // 4 es el ID de la plataforma PC en RAWG API
-        @Query("page_size") pageSize: Int = 40 // Doble del tamaño de página actual
-
+        @Query("page_size") pageSize: Int = 40, // Doble del tamaño de página actual
+        @Query("page") page: Int = 1
     ): Response<VideoJuegoModel>
 
     @GET("games${Const.API_KEY}")
