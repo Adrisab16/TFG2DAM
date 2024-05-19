@@ -44,7 +44,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameVM:userVideogameViewModel, videoGameVM:VideojuegosViewModel, countlistout: String){
+fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameVM:userVideogameViewModel, countlistout: String){
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
     var countlist by remember { mutableIntStateOf(countlistout.toInt()) }

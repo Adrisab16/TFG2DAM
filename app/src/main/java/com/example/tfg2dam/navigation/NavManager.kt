@@ -65,7 +65,7 @@ fun NavManager(
         // Muestra la vista correspondiente a la pantalla de visualización de listas (MyList), pasandole el parámetro countlistout
         composable("MyList/{countlistout}") { backStackEntry ->
             val countlistout = backStackEntry.arguments?.getString("countlistout") ?: "0"
-            MyList(navController, loginVM, userVideogameVM, gameVM, countlistout)
+            MyList(navController, loginVM, userVideogameVM, countlistout)
         }
 
         // Muestra la vista correspondiente a la pantalla de detalles de videojuegos (GameDetailsScreen), pasandole el gameId como parámetro

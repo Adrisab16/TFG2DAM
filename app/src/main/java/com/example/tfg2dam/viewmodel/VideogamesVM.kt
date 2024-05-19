@@ -52,6 +52,9 @@ class VideojuegosViewModel : ViewModel() {
     }
 
     /*
+
+    Este codigo habilita la busqueda de todos los juegos de la API, pero hace que la app se vuelva MUY lenta
+
     private fun obtenerJuegos() {
         viewModelScope.launch(Dispatchers.IO) {
             val allGames = obtenerTodosLosJuegos()
