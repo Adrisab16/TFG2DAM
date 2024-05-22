@@ -12,7 +12,7 @@
 
 - El proyecto ha sido desarrollado y probado con un Samsung Galaxy S10, con android 12.
 
-Tecnologías usadas:
+**Tecnologías usadas:**
 
   1. Lenguaje de programación y framework principal:
 
