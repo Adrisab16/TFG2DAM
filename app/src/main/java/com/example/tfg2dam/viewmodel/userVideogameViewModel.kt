@@ -1,11 +1,8 @@
 package com.example.tfg2dam.viewmodel
 
 import android.util.Log
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.tfg2dam.model.UserModel
-import com.example.tfg2dam.model.VideojuegosLista
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.tasks.await
@@ -16,8 +13,6 @@ import kotlinx.coroutines.tasks.await
 class userVideogameViewModel: ViewModel() {
 
     private val firestore = Firebase.firestore
-    private val _currentlyPlayingGames = mutableStateOf<List<VideojuegosLista>>(emptyList())
-    val currentlyPlayingGames: State<List<VideojuegosLista>> = _currentlyPlayingGames
 
     /**
      * Añade videojuegos (su id) a las 5 listas disponibles del usuario
