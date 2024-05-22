@@ -1,4 +1,4 @@
-**Para acceder a la documentación oficial de Ocio & Geek, pulse el siguiente enlace:** https://adrisab16.gitbook.io/tfg2dam
+**Documentación oficial de Ocio & Geek:** https://adrisab16.gitbook.io/tfg2dam
 
 **Avisos importantes para la ejecución de la aplicación:**
 
