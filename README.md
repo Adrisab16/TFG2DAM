@@ -1,5 +1,9 @@
 **Documentación oficial de Ocio & Geek:** https://adrisab16.gitbook.io/tfg2dam
 
+
+**Enlace a apk oficial:** 
+
+
 **Avisos importantes para la ejecución de la aplicación:**
 
 - Este proyecto solo compila con el plugin para Android Studio llamado "Relay For Figma"
@@ -10,7 +14,7 @@
 
 - Este proyecto se conecta a Firebase, haciendo uso de las funcionalidades: Authentication y Firestore
 
-- El proyecto ha sido desarrollado y probado con un Samsung Galaxy S10, con android 12.
+- El proyecto ha sido desarrollado y probado con un Samsung Galaxy S10+, con android 12.
 
 **Tecnologías usadas:**
 
