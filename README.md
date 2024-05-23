@@ -2,7 +2,7 @@
 
 
 
-**Enlace a apk oficial:** 
+**Enlace a apk oficial:** https://drive.google.com/file/d/1nINQDY3GIE-QworxSvdfLTCXmUilzKM4/view?usp=sharing
 
 
 
