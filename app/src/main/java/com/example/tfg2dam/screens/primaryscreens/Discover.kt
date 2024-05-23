@@ -37,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.tfg2dam.footernavtab.FooterNavTab
@@ -86,7 +87,8 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
                 onValueChange = { newText -> text = newText },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = 16.dp)
+                    .background(Color.DarkGray), // Cambiar el fondo a gris oscuro
                 placeholder = { Text("Buscar") },
                 leadingIcon = { Icon(Icons.Default.Search, contentDescription = "Search") },
                 trailingIcon = {
@@ -102,10 +104,11 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
                 singleLine = true,
                 colors = TextFieldDefaults.textFieldColors(
                     cursorColor = Color.White,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
-                )
+                    focusedIndicatorColor = Color.DarkGray,
+                    unfocusedIndicatorColor = Color.DarkGray
+                ),
             )
+
         }
 
         Box(

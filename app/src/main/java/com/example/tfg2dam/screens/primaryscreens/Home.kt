@@ -41,6 +41,7 @@ import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.screens.viewresources.ContenidoGridView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -76,14 +77,17 @@ fun Home(navController: NavController, loginVM: loginViewModel, gameVM: Videojue
                 style = TextStyle(
                     fontWeight = FontWeight.Bold, // Negrita
                     fontSize = 24.sp, // Tamaño grande
-                    fontFamily = FontFamily.Serif // Fuente bonita (puedes cambiar a la que desees)
-                )
+                    fontFamily = FontFamily.Serif, // Fuente bonita (puedes cambiar a la que desees)
+                    color = Color.White
+                ),
             )
         }
 
 
         Box(modifier = Modifier
-            .padding(top = 160.dp, bottom = 60.dp)){
+            .padding(top = 160.dp, bottom = 60.dp)
+            .background(Color(android.graphics.Color.parseColor("#141414")))
+        ){
             Scaffold {
                 ContenidoGridView(
                     viewModel = gameVM,

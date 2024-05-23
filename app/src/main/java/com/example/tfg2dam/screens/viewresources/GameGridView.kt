@@ -69,9 +69,9 @@ fun CardJuego(
             .clickable {
                 // Cuando se hace clic en el juego, navegamos a GameDetailsScreen pasando el ID del juego
                 navController.navigate("GameDetailsScreen/${juego.id}/$searched")
-            }
+            },
     ){
-        Column {
+        Column(modifier = Modifier.background(Color.DarkGray)) {
             GameImage(imagen = juego.image)
             Text(
                 text = juego.name,

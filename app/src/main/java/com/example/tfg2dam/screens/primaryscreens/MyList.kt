@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.tfg2dam.footernavtab.FooterNavTab
@@ -103,7 +104,7 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
             when (countlist){
                 // Default
                 0->{
-                    Text(text = "Elige una lista")}
+                    Text(text = "Elige una lista", style = TextStyle(color = Color.White))}
 
                 // Lista Currently PLaying
                 1->{
