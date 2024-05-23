@@ -1,7 +1,9 @@
 **Documentación oficial de Ocio & Geek:** https://adrisab16.gitbook.io/tfg2dam
 
 
+
 **Enlace a apk oficial:** 
+
 
 
 **Avisos importantes para la ejecución de la aplicación:**
@@ -10,11 +12,9 @@
 
 - Proyecto desarrollado con Android Studio Hedgehog Patch 2.
 
-- Este proyecto usa la API llamada RAWG
+- El proyecto ha sido testado con un Samsung Galaxy S10+, con Android 12.
+  
 
-- Este proyecto se conecta a Firebase, haciendo uso de las funcionalidades: Authentication y Firestore
-
-- El proyecto ha sido desarrollado y probado con un Samsung Galaxy S10+, con android 12.
 
 **Tecnologías usadas:**
 
@@ -36,13 +36,19 @@
 
     - Figma
 
-  5. Plugins, librerías y dependencias: 
+  5. API implementada:
+
+    - RAWG API  
+
+  6. Plugins, librerías y dependencias: 
 
     - Relay for Android Studio
 
     - Firebase SDK
 
     - Retrofit
+
+    - kotlinx-coroutines
 
     - Coil-compose
 
