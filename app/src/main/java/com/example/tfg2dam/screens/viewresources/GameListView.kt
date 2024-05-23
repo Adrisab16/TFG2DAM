@@ -86,7 +86,7 @@ fun ContenidoListView(
 
         isLoading = true
         // Esperar 2 segundos antes de cambiar isLoading a falso
-        delay(2000)
+        delay(3000)
         isLoading = false
     }
 
