@@ -9,9 +9,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -42,13 +44,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.userVideogameViewModel
-import com.google.relay.compose.BoxScopeInstanceImpl.align
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -106,7 +108,6 @@ fun ContenidoListView(
                     .padding(pad)
             ) {
                 items(filteredJuegos) { juego ->
-                    val gamename = viewModel.getShortGameNameById(juego.id)
                     CardJuegoListView(
                         navController = navController,
                         juego = juego,
@@ -114,16 +115,12 @@ fun ContenidoListView(
                         userVideogameVM = userVideogameVM,
                         userId = userId,
                         gameId = juego.id,
-                        gamename = gamename
                     )
                 }
             }
         }
     }
 }
-
-
-
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
@@ -134,7 +131,6 @@ fun CardJuegoListView(
     gameId: Int,
     userId: String,
     userVideogameVM: userVideogameViewModel,
-    gamename: String,
 ) {
     // Mantén un estado para controlar si se ha hecho clic en el botón de eliminación
     var clickedState by remember { mutableStateOf(false) }
@@ -143,34 +139,53 @@ fun CardJuegoListView(
     Row(
         modifier = Modifier
             .padding(8.dp)
-            .shadow(40.dp)
+            .shadow(8.dp)
             .background(Color.LightGray)
             .fillMaxWidth()
+            .height(IntrinsicSize.Min)
             .clickable {
                 navController.navigate("GameDetailsScreen/${juego.id}/false")
             }
-    ){
-        GameImageListView(imagen = juego.image)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxHeight()
+                .width(100.dp)
+        ) {
+            GameImageListView(imagen = juego.image)
+        }
+
         Spacer(modifier = Modifier.width(10.dp))
-        Column {
-            Box(modifier = Modifier.align(Alignment.CenterHorizontally)){
-                Text(text = gamename /* juego.name */, color = Color.Black, fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center)
-            }
+
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight(),
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = juego.name,
+                color = Color.Black,
+                fontWeight = FontWeight.ExtraBold,
+                textAlign = TextAlign.Center,
+                maxLines = 2,
+                overflow = TextOverflow.Clip
+            )
             Spacer(modifier = Modifier.height(10.dp))
             Text(text = "Nota Metacritic: ${juego.mcscore}/100", color = Color.Black)
             Spacer(modifier = Modifier.height(10.dp))
-            Text(text = "Tiempo de juego: ${juego.gameplaytime}h",color = Color.Black)
+            Text(text = "Tiempo de juego: ${juego.gameplaytime}h", color = Color.Black)
             Spacer(modifier = Modifier.height(10.dp))
-            Text(text = "Fecha salida: ${juego.datereleased}",color = Color.Black)
+            Text(text = "Fecha salida: ${juego.datereleased}", color = Color.Black)
         }
+
         Spacer(modifier = Modifier.width(10.dp))
-        // Verifica si se ha hecho clic en el botón de eliminación
+
         Column(
             modifier = Modifier
+                .fillMaxHeight()
+                .width(40.dp)
                 .background(Color.Red)
-                .fillMaxSize()
-                .height(150.dp)
-                .size(20.dp)
                 .clickable {
                     clickedState = true
                 },
@@ -185,18 +200,21 @@ fun CardJuegoListView(
         }
     }
 
+
+
+
     val coroutineScope = rememberCoroutineScope()
     var countlistout by remember { mutableIntStateOf(0) }
     if (clickedState) {
         coroutineScope.launch {
             val success = userVideogameVM.removeGameIdFromUser(userId, gameId, gametype)
             if (success) {
-                when(gametype){
-                    "CP" -> {nameGameType = "Currently Playing"; countlistout = 1}
-                    "DR" -> {nameGameType = "Dropped"; countlistout = 2}
-                    "OH" -> {nameGameType = "On-Hold"; countlistout = 3}
-                    "CTD" -> {nameGameType = "Completed"; countlistout = 4}
-                    "PTP" -> {nameGameType = "Plan to Play"; countlistout = 5}
+                when (gametype) {
+                    "CP" -> { nameGameType = "Currently Playing"; countlistout = 1 }
+                    "DR" -> { nameGameType = "Dropped"; countlistout = 2 }
+                    "OH" -> { nameGameType = "On-Hold"; countlistout = 3 }
+                    "CTD" -> { nameGameType = "Completed"; countlistout = 4 }
+                    "PTP" -> { nameGameType = "Plan to Play"; countlistout = 5 }
                 }
                 navController.navigate("MyList/$countlistout")
                 // Restablecer el estado de clickedState
@@ -211,43 +229,17 @@ fun CardJuegoListView(
     }
 }
 
-
-
 @Composable
-fun removeGameFromUser(
-    userVideogameVM: userVideogameViewModel,
-    userId: String,
-    gameId: Int,
-    gametype: String
-) {
-    // Lógica para eliminar el juego del usuario
-    LaunchedEffect(Unit) {
-        try {
-            userVideogameVM.removeGameIdFromUser(userId, gameId, gametype)
-        } catch (e: Exception) {
-            // Manejar la excepción aquí
-            Log.e("ERROR AL ELIMINAR JUEGO", "Error al eliminar el juego: ${e.localizedMessage}", e)
-            // Puedes mostrar un mensaje de error si lo deseas
-            // Toast.makeText(
-            //     LocalContext.current,
-            //     "Error al eliminar el juego: ${e.localizedMessage}",
-            //     Toast.LENGTH_SHORT
-            // ).show()
-        }
-    }
-}
-
-
-@Composable
-fun GameImageListView(imagen: String){
+fun GameImageListView(imagen: String) {
     val imagenPainter = rememberAsyncImagePainter(model = imagen)
 
-    Image (
+    Image(
         painter = imagenPainter,
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = Modifier
             .width(100.dp)
-            .height(150.dp)
+            .fillMaxHeight() // Ajustar la altura de la imagen a la altura del contenedor padre
     )
 }
+
