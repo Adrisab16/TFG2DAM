@@ -70,6 +70,7 @@ fun CardJuegoDiscoverView(juego: VideojuegosLista, navController: NavController)
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .background(Color.DarkGray)
         ) {
             if (!juego.image.isNullOrEmpty()) {
                 GameImageDiscoverView(imagen = juego.image)
