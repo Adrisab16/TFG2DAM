@@ -22,9 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -58,13 +55,12 @@ fun ContenidoGridDiscoverView(
 
 @Composable
 fun CardJuegoDiscoverView(juego: VideojuegosLista, navController: NavController) {
-    val searched by remember { mutableStateOf(true) }
     Card(
         modifier = Modifier
             .padding(8.dp)
             .clickable {
                 Log.i("Id enviado", "${juego.id}")
-                navController.navigate("GameDetailsScreen/${juego.id}/$searched")
+                navController.navigate("GameDetailsScreen/${juego.id}")
             }
     ) {
         Column(
@@ -72,7 +68,7 @@ fun CardJuegoDiscoverView(juego: VideojuegosLista, navController: NavController)
                 .fillMaxWidth()
                 .background(Color.DarkGray)
         ) {
-            if (!juego.image.isNullOrEmpty()) {
+            if (juego.image.isNotEmpty()) {
                 GameImageDiscoverView(imagen = juego.image)
             } else {
                 // Si la imagen es null, mostrar el marcador de posición
@@ -81,7 +77,7 @@ fun CardJuegoDiscoverView(juego: VideojuegosLista, navController: NavController)
             Text(
                 text = juego.name,
                 modifier = Modifier.padding(8.dp),
-                color = androidx.compose.ui.graphics.Color.White
+                color = Color.White
             )
         }
     }
@@ -104,7 +100,7 @@ fun GameImageDiscoverView(imagen: String) {
             modifier = Modifier
                 .fillMaxSize()
                 .clip(RoundedCornerShape(8.dp))
-                .background(androidx.compose.ui.graphics.Color.Gray),
+                .background(Color.Gray),
             contentAlignment = Alignment.Center
         ) {
             Icon(
