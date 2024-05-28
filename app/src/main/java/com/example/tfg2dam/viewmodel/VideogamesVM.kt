@@ -29,11 +29,6 @@ class VideojuegosViewModel : ViewModel() {
     private val _isSearching = MutableStateFlow(false)
     val isSearching: StateFlow<Boolean> = _isSearching.asStateFlow()
 
-    // Variable combinada de juegos y resultados de búsqueda
-    val combinedJuegos = combine(juegos, searchResults) { juegos, searchResults ->
-        juegos + searchResults
-    }.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
-
     /**
      * Inicializa el ViewModel y llama a la función para obtener la lista de videojuegos.
      */
@@ -50,6 +45,7 @@ class VideojuegosViewModel : ViewModel() {
             _juegos.value = response.body()?.listaVideojuegos ?: emptyList()
         }
     }
+
     // Nuevo método para obtener un juego por su ID
     fun obtenerJuegosPorIds(gameIds: List<Int>, onJuegosObtenidos: (List<VideojuegosLista>) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -71,119 +67,21 @@ class VideojuegosViewModel : ViewModel() {
         }
     }
 
-    /**
-     * Obtiene la imagen de un juego por su ID.
-     *
-     * @param id ID del juego.
-     * @return URL de la imagen del juego si se encuentra, de lo contrario, una cadena vacía.
-     */
-    fun getGameNameById(id: Int, searched: Boolean): String {
-        if(searched){
-            // Accede a la lista de juegos desde el StateFlow
-            val listaJuegos = _searchResults.value
-            // Buscar el juego en la lista por su ID
-            val juego = listaJuegos.find { it.id == id }
-            // Devolver el nombre del juego si se encuentra, de lo contrario, devolver una cadena vacía
-            return juego?.name ?: ""
-        }
-        else{
-            // Accede a la lista de juegos desde el StateFlow
-            val listaJuegos = _juegos.value
-            // Buscar el juego en la lista por su ID
-            val juego = listaJuegos.find { it.id == id }
-            // Devolver el nombre del juego si se encuentra, de lo contrario, devolver una cadena vacía
-            return juego?.name ?: ""
-        }
-    }
-
-    /**
-     * Obtiene el nombre corto del juego por su ID, limitado a las dos primeras palabras.
-     *
-     * @param id ID del juego.
-     * @return Nombre corto del juego si se encuentra, de lo contrario, una cadena vacía.
-     */
-    fun getShortGameNameById(id: Int): String {
-        val listaJuegos = _juegos.value
-        val juego = listaJuegos.find { it.id == id }
-        val fullName = juego?.name ?: ""
-        // Cortar el nombre a las dos primeras palabras
-        val words = fullName.split(" ")
-        return if (words.size >= 2) {
-            "${words[0]} ${words[1]}"
-        } else {
-            fullName
-        }
-    }
-
-    /**
-     * Obtiene la imagen de un juego por su ID.
-     *
-     * @param id ID del juego.
-     * @return URL de la imagen del juego si se encuentra, de lo contrario, una cadena vacía.
-     */
-    fun getGameImageById(id: Int, searched: Boolean): String {
-        return if(searched){
-            val listaJuegos = _searchResults.value
-            val juego = listaJuegos.find { it.id == id }
-            juego?.image ?: ""
-        }else{
-            val listaJuegos = _juegos.value
-            val juego = listaJuegos.find { it.id == id }
-            juego?.image ?: ""
-        }
-    }
-
-    /**
-     * Obtiene la puntuación Metacritic de un juego por su ID.
-     *
-     * @param id ID del juego.
-     * @return Puntuación Metacritic del juego si se encuentra, de lo contrario, 0.
-     */
-    fun getGameMcScoreById(id: Int, searched: Boolean): Int {
-        return if(searched) {
-            val listaJuegos = _searchResults.value
-            val juego = listaJuegos.find { it.id == id }
-            juego?.mcscore ?: 0
-        } else{
-            val listaJuegos = _juegos.value
-            val juego = listaJuegos.find { it.id == id }
-            juego?.mcscore ?: 0
-        }
-    }
-
-    /**
-     * Obtiene el tiempo de juego de un juego por su ID.
-     *
-     * @param id ID del juego.
-     * @return Tiempo de juego del juego si se encuentra, de lo contrario, 0.
-     */
-    fun getGamePlayTimeById(id: Int, searched: Boolean): Int {
-        return if(searched){
-            val listaJuegos = _searchResults.value
-            val juego = listaJuegos.find { it.id == id }
-            juego?.gameplaytime ?: 0
-        }else{
-            val listaJuegos = _juegos.value
-            val juego = listaJuegos.find { it.id == id }
-            juego?.gameplaytime ?: 0
-        }
-    }
-
-    /**
-     * Obtiene la fecha de lanzamiento de un juego por su ID.
-     *
-     * @param id ID del juego.
-     * @return Fecha de lanzamiento del juego si se encuentra, de lo contrario, una cadena vacía.
-     */
-    fun getGameDateById(id: Int, searched: Boolean): Comparable<*> {
-        return if(searched){
-            val listaJuegos = _searchResults.value
-            val juego = listaJuegos.find { it.id == id }
-            juego?.datereleased ?: ""
-        }else{
-            val listaJuegos = _juegos.value
-            val juego = listaJuegos.find { it.id == id }
-            juego?.datereleased ?: ""
+    fun obtenerJuegoPorId(gameId: Int, onJuegosObtenidos: (List<VideojuegosLista>) -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val juegosObtenidos = mutableListOf<VideojuegosLista>()
+            try {
+                val response = RetrofitClient.retrofit.obtenerJuegoPorId(gameId)
+                val juego = response.body()
+                if (juego != null) {
+                    juegosObtenidos.add(juego)
+                }
+            } catch (e: Exception) {
+                Log.e("ERROR", "Error al obtener juego por ID: ${e.localizedMessage}")
+            }
+            withContext(Dispatchers.Main) {
+                onJuegosObtenidos(juegosObtenidos)
+            }
         }
     }
 

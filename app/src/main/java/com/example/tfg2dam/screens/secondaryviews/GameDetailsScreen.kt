@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
@@ -40,6 +41,7 @@ import com.example.tfg2dam.footernavtab.Property1
 import com.example.tfg2dam.gamedetailsfield.GameDetailsField
 import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
+import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
@@ -47,15 +49,16 @@ import com.example.tfg2dam.viewmodel.userVideogameViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel, userVideogameVM: userVideogameViewModel, id: Int, gameVM: VideojuegosViewModel, searched: Boolean) {
+fun GameDetailsScreen(
+    navController: NavHostController,
+    loginVM: loginViewModel,
+    userVideogameVM: userVideogameViewModel,
+    id: Int,
+    gameVM: VideojuegosViewModel,
+) {
     var isMenuVisible by remember { mutableStateOf(false) }
     var isAddButtonMenuVisible by remember { mutableStateOf(false) }
-    val gameName = gameVM.getGameNameById(id, searched)
-    val gameImage = gameVM.getGameImageById(id, searched)
-    val gameImagePainter: Painter = rememberAsyncImagePainter(model = gameImage, contentScale = ContentScale.Crop)
-    val gameMetacriticScore = gameVM.getGameMcScoreById(id, searched)
-    val gamePlaytime = gameVM.getGamePlayTimeById(id, searched)
-    val gameDateReleased = gameVM.getGameDateById(id, searched)
+    var infojuego by remember { mutableStateOf<List<VideojuegosLista>>(emptyList()) }
     var username by remember { mutableStateOf("") }
     var userid by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -63,111 +66,121 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
     var showDeleteDialog by remember { mutableStateOf(false) }
     var showChangePasswordDialog by remember { mutableStateOf(false) }
 
-
     LaunchedEffect(Unit) {
         Log.i("Id recibido en GameDetailsScreen", "$id")
+
         loginVM.getUsernameFromFirestore { retrievedUsername ->
             retrievedUsername?.let {
                 username = it
             }
         }
         loginVM.getUserIdFromFirestore { userId ->
-            if (userId != null) {
-                userid = userId // Actualizar el valor de userid con el ID del usuario obtenido
-            } else {
-                println("El usuario no está autenticado o no se pudo obtener su ID")
-            }
+            userid = userId
+        }
+        gameVM.obtenerJuegoPorId(id) { juegosObtenidos ->
+            infojuego = juegosObtenidos
         }
     }
 
-
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color(android.graphics.Color.parseColor("#141414")))) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(android.graphics.Color.parseColor("#141414")))
+    ) {
         Header(
             modifier = Modifier
                 .padding(bottom = 700.dp)
-                .align(Alignment.Center)
-            , // Agregar espacio superior
+                .align(Alignment.Center),
             onUserIconClicked = { isMenuVisible = true },
         )
 
-        Box(modifier = Modifier.padding(top = 100.dp, start = 40.dp)){
-            GameDetailsField(
-                titletxtextcontent = gameName,
-                gamePhotoimagecontent = gameImagePainter,
-                metacriticScoretextcontent = "Metacritic Score: $gameMetacriticScore/100",
-                gameHourstextcontent = "Hours to beat:\n$gamePlaytime horas",
-                releasedtextcontent = "Fecha de Lanzamiento: $gameDateReleased",
-                onAddButtonClicked = {
-                    scope.launch {
-                        isAddButtonMenuVisible = !isAddButtonMenuVisible
+        if (infojuego.isNotEmpty()) {
+            Box(modifier = Modifier.padding(top = 100.dp, start = 40.dp)) {
+                val gameImagePainter: Painter = rememberAsyncImagePainter(model = infojuego[0].image, contentScale = ContentScale.Crop)
+                GameDetailsField(
+                    titletxtextcontent = infojuego[0].name,
+                    gamePhotoimagecontent = gameImagePainter,
+                    metacriticScoretextcontent = "Metacritic Score: ${infojuego[0].mcscore}/100",
+                    gameHourstextcontent = "Hours to beat:\n${infojuego[0].gameplaytime} horas",
+                    releasedtextcontent = "Fecha de Lanzamiento: ${infojuego[0].datereleased}",
+                    onAddButtonClicked = {
+                        scope.launch {
+                            isAddButtonMenuVisible = !isAddButtonMenuVisible
+                        }
                     }
-                }
-            )
-            if (isAddButtonMenuVisible) { // Mostrar el menú desplegable solo si isAddButtonMenuVisible es true
-                Box(
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .padding(top = 355.dp, end = 50.dp)
-                ) {
-                    DropdownMenu(
-                        expanded = isAddButtonMenuVisible,
-                        onDismissRequest = {
-                            isAddButtonMenuVisible = false // Ocultar el menú al hacer clic en cualquier parte de la pantalla
-                        },
+                )
+                if (isAddButtonMenuVisible) { // Mostrar el menú desplegable solo si isAddButtonMenuVisible es true
+                    Box(
                         modifier = Modifier
-                            .width(150.dp) // Ancho del menú desplegable
-                            .wrapContentHeight() // Alto del menú desplegable
-                            .align(Alignment.BottomStart) // Alineación del menú desplegable
+                            .align(Alignment.Center)
+                            .padding(top = 355.dp, end = 50.dp)
                     ) {
-                        listOf("Oh Hold", "Completed", "Dropped", "Play to play", "Playing").forEach { option ->
-                            DropdownMenuItem(
-                                text = { Text(option) },
-                                onClick = {
-                                    // Realizar acción según la opción seleccionada
-                                    when(option) {
-                                        "Oh Hold" -> {
-                                            // Acción para On Hold
-                                            scope.launch {
-                                                userVideogameVM.addGameIdToUser(userid, id, "OH")
+                        DropdownMenu(
+                            expanded = isAddButtonMenuVisible,
+                            onDismissRequest = {
+                                isAddButtonMenuVisible = false // Ocultar el menú al hacer clic en cualquier parte de la pantalla
+                            },
+                            modifier = Modifier
+                                .width(150.dp) // Ancho del menú desplegable
+                                .wrapContentHeight() // Alto del menú desplegable
+                                .align(Alignment.BottomStart) // Alineación del menú desplegable
+                        ) {
+                            listOf("On Hold", "Completed", "Dropped", "Plan to play", "Playing").forEach { option ->
+                                DropdownMenuItem(
+                                    text = { Text(option) },
+                                    onClick = {
+                                        // Realizar acción según la opción seleccionada
+                                        when (option) {
+                                            "On Hold" -> {
+                                                // Acción para On Hold
+                                                scope.launch {
+                                                    userVideogameVM.addGameIdToUser(userid, id, "OH")
+                                                }
+                                                showToast("Juego añadido a la lista On-Hold", context)
                                             }
-                                            showToast("Juego añadido a la lista On-Hold", context)
-                                        }
-                                        "Completed" -> {
-                                            // Acción para Completed
-                                            scope.launch {
-                                                userVideogameVM.addGameIdToUser(userid, id, "CTD")
+                                            "Completed" -> {
+                                                // Acción para Completed
+                                                scope.launch {
+                                                    userVideogameVM.addGameIdToUser(userid, id, "CTD")
+                                                }
+                                                showToast("Juego añadido a la lista Completed", context)
                                             }
-                                            showToast("Juego añadido a la lista Completed", context)
-                                        }
-                                        "Dropped" -> {
-                                            // Acción para Dropped
-                                            scope.launch {
-                                                userVideogameVM.addGameIdToUser(userid, id, "DR")
+                                            "Dropped" -> {
+                                                // Acción para Dropped
+                                                scope.launch {
+                                                    userVideogameVM.addGameIdToUser(userid, id, "DR")
+                                                }
+                                                showToast("Juego añadido a la lista Dropped", context)
                                             }
-                                            showToast("Juego añadido a la lista Dropped", context)
-                                        }
-                                        "Play to play" -> {
-                                            // Acción para Play to play
-                                            scope.launch {
-                                                userVideogameVM.addGameIdToUser(userid, id, "PTP")
+                                            "Plan to play" -> {
+                                                // Acción para Plan to play
+                                                scope.launch {
+                                                    userVideogameVM.addGameIdToUser(userid, id, "PTP")
+                                                }
+                                                showToast("Juego añadido a la lista Plan To Play", context)
                                             }
-                                            showToast("Juego añadido a la lista Plan To Play", context)
-                                        }
-                                        "Playing" -> {
-                                            // Acción para Playing
-                                            scope.launch {
-                                                userVideogameVM.addGameIdToUser(userid, id, "CP")
+                                            "Playing" -> {
+                                                // Acción para Playing
+                                                scope.launch {
+                                                    userVideogameVM.addGameIdToUser(userid, id, "CP")
+                                                }
+                                                showToast("Juego añadido a la lista Currently Playing", context)
                                             }
-                                            showToast("Juego añadido a la lista Currently Playing", context)
                                         }
                                     }
-                                }
-                            )
+                                )
+                            }
                         }
                     }
                 }
+            }
+        } else {
+            // Mostrar algún indicador de carga o un mensaje de que no hay datos
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator(color = Color.Blue)
             }
         }
 
@@ -191,11 +204,11 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                     .clickable { isMenuVisible = false } // Ocultar el menú al hacer clic fuera de él
             ) {
                 MenuDesplegable(
-                    modifier = Modifier.clickable {  },
+                    modifier = Modifier.clickable { },
                     onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
                     usernameTxttextcontent = "Hola,\n$username",
                     onDeleteButtonClicked = { showDeleteDialog = true },
-                    onChangePasswordClicked = {showChangePasswordDialog = true},
+                    onChangePasswordClicked = { showChangePasswordDialog = true },
                     onCompletedListClicked = {
                         val countlistout = 4
                         navController.navigate("MyList/$countlistout")
@@ -219,6 +232,7 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                 )
             }
         }
+
         if (showDeleteDialog) {
             AlertDialog(
                 onDismissRequest = { showDeleteDialog = false },
@@ -236,9 +250,7 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
                     }
                 },
                 dismissButton = {
-                    Button(
-                        onClick = { showDeleteDialog = false }
-                    ) {
+                    Button(onClick = { showDeleteDialog = false }) {
                         Text("Cancelar")
                     }
                 }
@@ -269,5 +281,5 @@ fun GameDetailsScreen(navController: NavHostController, loginVM: loginViewModel,
 }
 
 fun showToast(message: String, context: Context) {
-    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 }

@@ -141,7 +141,7 @@ fun CardJuegoListView(
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
             .clickable {
-                navController.navigate("GameDetailsScreen/${juego.id}/false")
+                navController.navigate("GameDetailsScreen/${juego.id}")
             }
     ) {
         Box(

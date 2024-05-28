@@ -70,18 +70,16 @@ fun NavManager(
 
         // Muestra la vista correspondiente a la pantalla de detalles de videojuegos (GameDetailsScreen), pasandole el gameId como parámetro
         composable(
-            "GameDetailsScreen/{gameId}/{searched}",
+            "GameDetailsScreen/{gameId}",
             arguments = listOf(
                 navArgument("gameId") { type = NavType.IntType },
-                navArgument("searched") { type = NavType.BoolType }
             )
         ) { backStackEntry ->
             val gameId = backStackEntry.arguments?.getInt("gameId")
-            val searched = backStackEntry.arguments?.getBoolean("searched")
-            if (gameId != null && searched != null) {
-                GameDetailsScreen(navController, loginVM, userVideogameVM, gameId, gameVM, searched)
+            if (gameId != null) {
+                GameDetailsScreen(navController, loginVM, userVideogameVM, gameId, gameVM)
             } else {
-                GameDetailsScreen(navController, loginVM, userVideogameVM, 0, gameVM, false)
+                GameDetailsScreen(navController, loginVM, userVideogameVM, 0, gameVM)
             }
         }
 
