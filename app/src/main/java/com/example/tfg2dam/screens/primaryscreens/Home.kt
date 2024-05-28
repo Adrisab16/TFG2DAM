@@ -41,7 +41,6 @@ import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.screens.viewresources.ContenidoGridView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 

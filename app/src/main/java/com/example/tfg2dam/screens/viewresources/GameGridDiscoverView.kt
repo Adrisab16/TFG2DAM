@@ -28,7 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 
@@ -88,7 +88,7 @@ fun GameImageDiscoverView(imagen: String) {
     if (imagen.isNotEmpty()) {
         // Asumiendo que estás usando Coil o alguna otra biblioteca de carga de imágenes
         Image(
-            painter = rememberImagePainter(imagen),
+            painter = rememberAsyncImagePainter(imagen),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxSize()

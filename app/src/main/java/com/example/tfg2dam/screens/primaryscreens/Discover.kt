@@ -26,7 +26,6 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,7 +36,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.tfg2dam.footernavtab.FooterNavTab
@@ -59,7 +57,6 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
     var showDeleteDialog by remember { mutableStateOf(false) }
     var showChangePasswordDialog by remember { mutableStateOf(false) }
     var text by remember { mutableStateOf("") }
-    val isSearching by gameVM.isSearching.collectAsState()
     val focusManager = LocalFocusManager.current
 
     LaunchedEffect(Unit) {
