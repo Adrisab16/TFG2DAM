@@ -1,8 +1,7 @@
-**Documentación oficial de Ocio & Geek:** https://adrisab16.gitbook.io/tfg2dam
+**Documentación oficial de Ocio & Geek:** https://adrisab16.gitbook.io/tfg2dam/
 
 
-
-**Enlace a apk oficial:** 
+**Enlace a apk oficial:** https://drive.google.com/file/d/1nINQDY3GIE-QworxSvdfLTCXmUilzKM4/view?usp=sharing
 
 
 
