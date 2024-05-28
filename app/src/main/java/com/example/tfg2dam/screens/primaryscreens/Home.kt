@@ -149,7 +149,6 @@ fun Home(navController: NavController, loginVM: loginViewModel, gameVM: Videojue
                         val countlistout = 1
                         navController.navigate("MyList/$countlistout")
                     },
-                    onMyAccountClicked = {},
                 )
             }
         }

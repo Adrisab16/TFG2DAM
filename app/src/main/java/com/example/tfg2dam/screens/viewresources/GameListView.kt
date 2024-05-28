@@ -76,18 +76,15 @@ fun ContenidoListView(
         val gameIds = userVideogameVM.getVideoGamesByType(gameType = gametype, userId = userId)
         Log.i("GAMEIDS", "IDs de juegos: $gameIds")
 
-        filteredJuegos = if (gameIds != null) {
-            juegos.filter { it.id in gameIds }
+        if (gameIds != null) {
+            viewModel.obtenerJuegosPorIds(gameIds) { juegosObtenidos ->
+                filteredJuegos = juegosObtenidos
+                isLoading = false
+            }
         } else {
-            emptyList()
+            filteredJuegos = emptyList()
+            isLoading = false
         }
-
-        Log.i("FILTERED_JUEGOS", "Juegos filtrados: $filteredJuegos")
-
-        isLoading = true
-        // Esperar 2 segundos antes de cambiar isLoading a falso
-        delay(3000)
-        isLoading = false
     }
 
     if (isLoading) {
@@ -223,7 +220,8 @@ fun CardJuegoListView(
         }
         Toast.makeText(
             LocalContext.current,
-            "${juego.name} has been removed from $nameGameType",
+            //"${juego.name} has been removed from $nameGameType",
+            "${juego.name} ha sido eliminado",
             Toast.LENGTH_SHORT
         ).show()
     }

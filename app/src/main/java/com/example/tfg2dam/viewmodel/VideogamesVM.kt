@@ -50,34 +50,26 @@ class VideojuegosViewModel : ViewModel() {
             _juegos.value = response.body()?.listaVideojuegos ?: emptyList()
         }
     }
-
-    /*
-
-    Este codigo habilita la busqueda de todos los juegos de la API, pero hace que la app se vuelva MUY lenta
-
-    private fun obtenerJuegos() {
+    // Nuevo método para obtener un juego por su ID
+    fun obtenerJuegosPorIds(gameIds: List<Int>, onJuegosObtenidos: (List<VideojuegosLista>) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
-            val allGames = obtenerTodosLosJuegos()
-            _juegos.value = allGames
+            val juegosObtenidos = mutableListOf<VideojuegosLista>()
+            for (id in gameIds) {
+                try {
+                    val response = RetrofitClient.retrofit.obtenerJuegoPorId(id)
+                    val juego = response.body()
+                    if (juego != null) {
+                        juegosObtenidos.add(juego)
+                    }
+                } catch (e: Exception) {
+                    Log.e("ERROR", "Error al obtener juego por ID: ${e.localizedMessage}")
+                }
+            }
+            withContext(Dispatchers.Main) {
+                onJuegosObtenidos(juegosObtenidos)
+            }
         }
     }
-
-    private suspend fun obtenerTodosLosJuegos(): List<VideojuegosLista> {
-        val todosLosJuegos = mutableListOf<VideojuegosLista>()
-
-        var pagina = 1
-        var juegosEnPagina: List<VideojuegosLista>
-
-        do {
-            val response = RetrofitClient.retrofit.obtenerJuegos(page = pagina)
-            juegosEnPagina = response.body()?.listaVideojuegos ?: emptyList()
-            todosLosJuegos.addAll(juegosEnPagina)
-            pagina++
-        } while (juegosEnPagina.isNotEmpty())
-
-        Log.i("TODOS LOS JUEGOS", "$todosLosJuegos")
-        return todosLosJuegos
-    }*/
 
     /**
      * Obtiene la imagen de un juego por su ID.

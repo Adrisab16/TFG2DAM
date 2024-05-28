@@ -2,8 +2,10 @@ package com.example.tfg2dam.network
 
 //import com.example.tfg2dam.model.RawgResponse
 import com.example.tfg2dam.model.VideoJuegoModel
+import com.example.tfg2dam.model.VideojuegosLista
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -41,6 +43,15 @@ interface APIVideojuegos {
         @Query("platforms") platforms: String = "4",
         @Query("page_size") pageSize: Int = 4
     ): Response<VideoJuegoModel>
+
+    /**
+     * Método para obtener un juego específico por su ID desde la API.
+     *
+     * @param id ID del juego.
+     * @return Objeto Response que contiene el modelo de datos del videojuego.
+     */
+    @GET("games/{id}${Const.API_KEY}")
+    suspend fun obtenerJuegoPorId(@Path("id") id: Int): Response<VideojuegosLista>
 }
 
 
