@@ -46,7 +46,7 @@ fun ContenidoGridDiscoverView(
         if (isLoading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         } else {
-            val nonNullResults = searchResults.filterNotNull()
+            val nonNullResults = searchResults
             if (hasSearched && nonNullResults.isEmpty()) {
                 Text(
                     text = "No se encontraron resultados de búsqueda",
@@ -83,7 +83,7 @@ fun CardJuegoDiscoverView(juego: VideojuegosLista, navController: NavController)
                 .background(Color.DarkGray)
         ) {
             // Comprueba si la imagen no es null y no está vacía
-            val imageUrl = juego.image ?: ""
+            val imageUrl = juego.image ?: "" // Aunque el IDE diga que no es necesario, sin este operador elvis, la aplicación da un problema crítico de null pointer
             if (imageUrl.isNotEmpty()) {
                 GameImageDiscoverView(imagen = imageUrl)
             } else {
@@ -91,7 +91,7 @@ fun CardJuegoDiscoverView(juego: VideojuegosLista, navController: NavController)
             }
 
             // Comprueba si el nombre no es null
-            val gameName = juego.name ?: "Nombre no disponible"
+            val gameName = juego.name ?: "Nombre no disponible" // Aunque el IDE diga que no es necesario, sin este operador elvis, la aplicación da un problema crítico de null pointer
             Text(
                 text = gameName,
                 modifier = Modifier.padding(8.dp),
