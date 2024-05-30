@@ -23,8 +23,11 @@ class VideojuegosViewModel : ViewModel() {
     private val _searchResults = MutableStateFlow<List<VideojuegosLista>>(emptyList())
     val searchResults: StateFlow<List<VideojuegosLista>> = _searchResults.asStateFlow()
 
-    private val _isSearching = MutableStateFlow(false)
-    val isSearching: StateFlow<Boolean> = _isSearching.asStateFlow()
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading
+
+    private val _hasSearched = MutableStateFlow(false)
+    val hasSearched: StateFlow<Boolean> = _hasSearched
 
     /**
      * Inicializa el ViewModel y llama a la función para obtener la lista de videojuegos.
@@ -84,15 +87,16 @@ class VideojuegosViewModel : ViewModel() {
 
     fun buscarJuegos(query: String) {
         viewModelScope.launch {
+            _isLoading.value = true
+            _hasSearched.value = true
             try {
-                _isSearching.value = true
                 val response = RetrofitClient.retrofit.buscarJuegos(query)
                 _searchResults.value = response.body()?.listaVideojuegos ?: emptyList()
             } catch (e: Exception) {
                 Log.e("ERROR", "Error al buscar juegos: ${e.localizedMessage}")
                 _searchResults.value = emptyList()
             } finally {
-                _isSearching.value = false
+                _isLoading.value = false
             }
         }
     }

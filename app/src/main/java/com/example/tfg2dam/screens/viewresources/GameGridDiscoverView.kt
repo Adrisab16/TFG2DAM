@@ -12,11 +12,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,7 +32,6 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 
-// Este funciona:
 @Composable
 fun ContenidoGridDiscoverView(
     navController: NavController,
@@ -40,15 +39,30 @@ fun ContenidoGridDiscoverView(
     pad: PaddingValues
 ) {
     val searchResults by viewModel.searchResults.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+    val hasSearched by viewModel.hasSearched.collectAsState()
 
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(1),
-        modifier = Modifier
-            .padding(pad)
-            .background(Color(android.graphics.Color.parseColor("#141414"))),
-    ) {
-        items(searchResults) {
-            CardJuegoDiscoverView(navController = navController, juego = it)
+    Box(modifier = Modifier.fillMaxSize().padding(pad)) {
+        if (isLoading) {
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+        } else {
+            val nonNullResults = searchResults.filterNotNull()
+            if (hasSearched && nonNullResults.isEmpty()) {
+                Text(
+                    text = "No se encontraron resultados de búsqueda",
+                    modifier = Modifier.align(Alignment.Center),
+                    color = Color.White
+                )
+            } else {
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(1),
+                    modifier = Modifier.padding(16.dp)
+                ) {
+                    items(nonNullResults.size) { index ->
+                        CardJuegoDiscoverView(juego = nonNullResults[index], navController = navController)
+                    }
+                }
+            }
         }
     }
 }
@@ -68,14 +82,18 @@ fun CardJuegoDiscoverView(juego: VideojuegosLista, navController: NavController)
                 .fillMaxWidth()
                 .background(Color.DarkGray)
         ) {
-            if (juego.image.isNotEmpty()) {
-                GameImageDiscoverView(imagen = juego.image)
+            // Comprueba si la imagen no es null y no está vacía
+            val imageUrl = juego.image ?: ""
+            if (imageUrl.isNotEmpty()) {
+                GameImageDiscoverView(imagen = imageUrl)
             } else {
-                // Si la imagen es null, mostrar el marcador de posición
                 GameImageDiscoverView(imagen = "")
             }
+
+            // Comprueba si el nombre no es null
+            val gameName = juego.name ?: "Nombre no disponible"
             Text(
-                text = juego.name,
+                text = gameName,
                 modifier = Modifier.padding(8.dp),
                 color = Color.White
             )
@@ -86,7 +104,6 @@ fun CardJuegoDiscoverView(juego: VideojuegosLista, navController: NavController)
 @Composable
 fun GameImageDiscoverView(imagen: String) {
     if (imagen.isNotEmpty()) {
-        // Asumiendo que estás usando Coil o alguna otra biblioteca de carga de imágenes
         Image(
             painter = rememberAsyncImagePainter(imagen),
             contentDescription = null,
@@ -95,7 +112,6 @@ fun GameImageDiscoverView(imagen: String) {
                 .clip(RoundedCornerShape(8.dp))
         )
     } else {
-        // Proporcionar un marcador de posición
         Box(
             modifier = Modifier
                 .fillMaxSize()

@@ -116,7 +116,7 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
             ContenidoGridDiscoverView(
                 navController = navController,
                 viewModel = gameVM,
-                pad = PaddingValues(top = 100.dp)
+                pad = PaddingValues(top = 200.dp)
             )
         }
 
@@ -219,7 +219,3 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
         }
     }
 }
-
-
-
-
