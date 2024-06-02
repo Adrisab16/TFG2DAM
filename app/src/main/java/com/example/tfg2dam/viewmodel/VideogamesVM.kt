@@ -46,7 +46,12 @@ class VideojuegosViewModel : ViewModel() {
         }
     }
 
-    // Nuevo método para obtener un juego por su ID
+    /**
+     * Obtiene los detalles de los juegos con los IDs proporcionados.
+     *
+     * @param gameIds Lista de IDs de juegos.
+     * @param onJuegosObtenidos Función de retorno que se llama con los juegos obtenidos.
+     */
     fun obtenerJuegosPorIds(gameIds: List<Int>, onJuegosObtenidos: (List<VideojuegosLista>) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             val juegosObtenidos = mutableListOf<VideojuegosLista>()
@@ -67,6 +72,12 @@ class VideojuegosViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Obtiene los detalles de un juego por su ID.
+     *
+     * @param gameId ID del juego.
+     * @param onJuegosObtenidos Función de retorno que se llama con el juego obtenido.
+     */
     fun obtenerJuegoPorId(gameId: Int, onJuegosObtenidos: (List<VideojuegosLista>) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             val juegosObtenidos = mutableListOf<VideojuegosLista>()
@@ -85,6 +96,11 @@ class VideojuegosViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Busca juegos por una cadena de búsqueda.
+     *
+     * @param query Cadena de búsqueda.
+     */
     fun buscarJuegos(query: String) {
         viewModelScope.launch {
             _isLoading.value = true

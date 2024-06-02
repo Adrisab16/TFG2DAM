@@ -17,8 +17,6 @@ fun Alert(
     onConfirmClick: () -> Unit,
     onDismissClick: () -> Unit
 ) {
-    // DCS - Estructura del diálogo de alerta.
-
     // Estado de desplazamiento para el texto del mensaje
     val scroll = rememberScrollState(0)
 

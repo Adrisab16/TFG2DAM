@@ -50,7 +50,6 @@ import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.screens.viewresources.ContenidoGridDiscoverView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
-import com.google.relay.compose.ColumnScopeInstanceImpl.weight
 import kotlinx.coroutines.launch
 
 
@@ -64,6 +63,7 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
     var text by remember { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
 
+    // Obtiene el nombre de usuario desde Firestore al inicializar la pantalla
     LaunchedEffect(Unit) {
         loginVM.getUsernameFromFirestore { retrievedUsername ->
             retrievedUsername?.let {

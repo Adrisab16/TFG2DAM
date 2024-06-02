@@ -12,26 +12,16 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -55,12 +45,20 @@ import com.example.tfg2dam.header.Header
 import com.example.tfg2dam.menudesplegable.MenuDesplegable
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
-import com.example.tfg2dam.screens.viewresources.ContenidoGridDiscoverView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
 import com.example.tfg2dam.viewmodel.userVideogameViewModel
 import kotlinx.coroutines.launch
 
+/**
+ * Pantalla para mostrar los detalles de un juego.
+ * Esta pantalla incluye información detallada del juego y opciones para el usuario, como agregarlo a diferentes listas.
+ * @param navController Controlador de navegación para la navegación entre pantallas.
+ * @param loginVM ViewModel para manejar la autenticación del usuario.
+ * @param userVideogameVM ViewModel para manejar la interacción del usuario con los videojuegos.
+ * @param id ID del juego del que se mostrarán los detalles.
+ * @param gameVM ViewModel para manejar la información de los videojuegos.
+ */
 @Composable
 fun GameDetailsScreen(
     navController: NavHostController,
@@ -69,27 +67,40 @@ fun GameDetailsScreen(
     id: Int,
     gameVM: VideojuegosViewModel,
 ) {
+    // Estado para controlar la visibilidad del menú desplegable del usuario
     var isMenuVisible by remember { mutableStateOf(false) }
+    // Estado para controlar la visibilidad del menú desplegable de agregar a la lista
     var isAddButtonMenuVisible by remember { mutableStateOf(false) }
+    // Estado para almacenar la información del juego
     var infojuego by remember { mutableStateOf<List<VideojuegosLista>>(emptyList()) }
+    // Estado para almacenar el nombre de usuario
     var username by remember { mutableStateOf("") }
+    // Estado para almacenar el ID de usuario
     var userid by remember { mutableStateOf("") }
+    // Ámbito de la coroutine
     val scope = rememberCoroutineScope()
+    // Contexto actual
     val context = LocalContext.current
+    // Estado para controlar la visibilidad del diálogo de eliminación de cuenta
     var showDeleteDialog by remember { mutableStateOf(false) }
+    // Estado para controlar la visibilidad del diálogo de cambio de contraseña
     var showChangePasswordDialog by remember { mutableStateOf(false) }
 
+    // Efecto lanzado al inicio para obtener información del juego y del usuario
     LaunchedEffect(Unit) {
         Log.i("Id recibido en GameDetailsScreen", "$id")
 
+        // Obtener el nombre de usuario desde Firestore
         loginVM.getUsernameFromFirestore { retrievedUsername ->
             retrievedUsername?.let {
                 username = it
             }
         }
+        // Obtener el ID de usuario desde Firestore
         loginVM.getUserIdFromFirestore { userId ->
             userid = userId
         }
+        // Obtener detalles del juego por su ID
         gameVM.obtenerJuegoPorId(id) { juegosObtenidos ->
             infojuego = juegosObtenidos
         }

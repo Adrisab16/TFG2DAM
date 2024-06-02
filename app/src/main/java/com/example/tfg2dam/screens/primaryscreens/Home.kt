@@ -44,7 +44,6 @@ import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.screens.viewresources.ContenidoGridView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
-import com.google.relay.compose.ColumnScopeInstanceImpl.weight
 import kotlinx.coroutines.launch
 
 

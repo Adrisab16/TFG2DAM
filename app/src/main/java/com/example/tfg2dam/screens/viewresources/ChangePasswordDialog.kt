@@ -18,12 +18,21 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 
+/**
+ * Diálogo para cambiar la contraseña del usuario.
+ * @param onDismiss Acción a realizar al descartar el diálogo.
+ * @param onConfirm Acción a realizar al confirmar el cambio de contraseña. Recibe la contraseña anterior y la nueva contraseña como parámetros.
+ */
 @Composable
 fun ChangePasswordDialog(onDismiss: () -> Unit, onConfirm: (String, String) -> Unit) {
+    // Estado para almacenar la contraseña anterior
     var oldPassword by remember { mutableStateOf("") }
+    // Estado para almacenar la nueva contraseña
     var newPassword by remember { mutableStateOf("") }
+    // Contexto actual
     val context = LocalContext.current
 
+    // Diálogo de alerta para cambiar la contraseña
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text("Cambiar contraseña") },

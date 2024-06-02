@@ -53,7 +53,15 @@ import com.example.tfg2dam.viewmodel.userVideogameViewModel
 import kotlinx.coroutines.launch
 
 
-// Este funciona:
+/**
+ * Vista de contenido en forma de lista para mostrar juegos filtrados por tipo.
+ * @param navController Controlador de navegación para navegar a los detalles del juego o a la lista de juegos filtrados.
+ * @param viewModel ViewModel para manejar los datos de los videojuegos.
+ * @param userVideogameVM ViewModel para manejar los datos de los videojuegos del usuario.
+ * @param pad Espacios de relleno para la vista.
+ * @param gametype Tipo de juego por el cual se filtrarán los juegos.
+ * @param userId ID del usuario actual.
+ */
 @Composable
 fun ContenidoListView(
     navController: NavController,
@@ -117,6 +125,15 @@ fun ContenidoListView(
     }
 }
 
+/**
+ * Tarjeta que muestra la vista de un juego en la lista.
+ * @param navController Controlador de navegación para navegar a los detalles del juego o a la lista de juegos filtrados.
+ * @param juego Información del juego a mostrar.
+ * @param gametype Tipo de juego por el cual se filtrarán los juegos.
+ * @param gameId ID del juego.
+ * @param userId ID del usuario actual.
+ * @param userVideogameVM ViewModel para manejar los datos de los videojuegos del usuario.
+ */
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun CardJuegoListView(
@@ -194,10 +211,6 @@ fun CardJuegoListView(
             )
         }
     }
-
-
-
-
     val coroutineScope = rememberCoroutineScope()
     var countlistout by remember { mutableIntStateOf(0) }
     if (clickedState) {
@@ -225,6 +238,10 @@ fun CardJuegoListView(
     }
 }
 
+/**
+ * Composable function to display a game image in a list.
+ * @param imagen The URL of the image to display.
+ */
 @Composable
 fun GameImageListView(imagen: String) {
     val imagenPainter = rememberAsyncImagePainter(model = imagen)
@@ -238,4 +255,3 @@ fun GameImageListView(imagen: String) {
             .fillMaxHeight() // Ajustar la altura de la imagen a la altura del contenedor padre
     )
 }
-
