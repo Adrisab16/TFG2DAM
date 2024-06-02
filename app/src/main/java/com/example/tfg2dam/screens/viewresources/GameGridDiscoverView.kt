@@ -42,7 +42,7 @@ fun ContenidoGridDiscoverView(
     val isLoading by viewModel.isLoading.collectAsState()
     val hasSearched by viewModel.hasSearched.collectAsState()
 
-    Box(modifier = Modifier.fillMaxSize().padding(pad)) {
+    Box(modifier = Modifier.fillMaxSize().padding(pad).background(Color(android.graphics.Color.parseColor("#141414"))),) {
         if (isLoading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         } else {

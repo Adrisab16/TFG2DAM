@@ -8,7 +8,10 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -41,6 +44,7 @@ import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.screens.viewresources.ContenidoGridView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
+import com.google.relay.compose.ColumnScopeInstanceImpl.weight
 import kotlinx.coroutines.launch
 
 
@@ -51,7 +55,6 @@ fun Home(navController: NavController, loginVM: loginViewModel, gameVM: Videojue
     var showDeleteDialog by remember { mutableStateOf(false) }
     var showChangePasswordDialog by remember { mutableStateOf(false) }
 
-
     LaunchedEffect(Unit) {
         loginVM.getUsernameFromFirestore { retrievedUsername ->
             retrievedUsername?.let {
@@ -60,56 +63,61 @@ fun Home(navController: NavController, loginVM: loginViewModel, gameVM: Videojue
         }
     }
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color(android.graphics.Color.parseColor("#141414")))) {
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 100.dp)
-                .align(Alignment.TopCenter),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = "TOP RATING GAMES",
-                style = TextStyle(
-                    fontWeight = FontWeight.Bold, // Negrita
-                    fontSize = 24.sp, // Tamaño grande
-                    fontFamily = FontFamily.Serif, // Fuente bonita (puedes cambiar a la que desees)
-                    color = Color.White
-                ),
-            )
-        }
-
-
-        Box(modifier = Modifier
-            .padding(top = 160.dp, bottom = 60.dp)
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
             .background(Color(android.graphics.Color.parseColor("#141414")))
-        ){
-            Scaffold {
-                ContenidoGridView(
-                    viewModel = gameVM,
-                    pad = it,
-                    navController = navController
+    ) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Header(
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(vertical = 16.dp),
+                onUserIconClicked = { isMenuVisible = true },
+            )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "TOP RATING GAMES",
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 24.sp,
+                        fontFamily = FontFamily.Serif,
+                        color = Color.White
+                    ),
                 )
             }
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(6f),
+                contentAlignment = Alignment.Center
+            ) {
+                Scaffold {
+                    ContenidoGridView(
+                        viewModel = gameVM,
+                        pad = it,
+                        navController = navController
+                    )
+                }
+            }
+
+            FooterNavTab(
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                property1 = Property1.HomeClicked,
+                onListButtonClicked = { navController.navigate("MyList/0") },
+                onDiscoverButtonClicked = { navController.navigate("Discover") },
+            )
         }
-
-        Header(
-            modifier = Modifier
-                .padding(bottom = 700.dp)
-                .align(Alignment.Center)
-            , // Agregar espacio superior
-            onUserIconClicked = { isMenuVisible = true },
-        )
-
-        FooterNavTab(
-            modifier = Modifier.align(Alignment.BottomCenter),
-            property1 = Property1.HomeClicked,
-            onListButtonClicked = { navController.navigate("MyList/0") },
-            onDiscoverButtonClicked = { navController.navigate("Discover") },
-        )
 
         AnimatedVisibility(
             visible = isMenuVisible,
@@ -119,38 +127,45 @@ fun Home(navController: NavController, loginVM: loginViewModel, gameVM: Videojue
             Box(
                 Modifier
                     .fillMaxSize()
-                    .background(Color(0x99000000)) // Fondo semitransparente
-                    .clickable { isMenuVisible = false } // Ocultar el menú al hacer clic fuera de él
+                    .background(Color(0x99000000))
+                    .clickable { isMenuVisible = false }
             ) {
-                MenuDesplegable(
-                    modifier = Modifier.clickable {  },
-                    onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
-                    usernameTxttextcontent = "Hola, $username",
-                    onDeleteButtonClicked = { showDeleteDialog = true },
-                    onChangePasswordClicked = {showChangePasswordDialog = true},
-                    onCompletedListClicked = {
-                        val countlistout = 4
-                        navController.navigate("MyList/$countlistout")
-                    },
-                    onDroppedClicked = {
-                        val countlistout = 2
-                        navController.navigate("MyList/$countlistout")
-                    },
-                    onOnHoldListDailyChallengesClicked = {
-                        val countlistout = 3
-                        navController.navigate("MyList/$countlistout")
-                    },
-                    onPlanToPlayMyStadisticsClicked = {
-                        val countlistout = 5
-                        navController.navigate("MyList/$countlistout")
-                    },
-                    onPlayingListClicked = {
-                        val countlistout = 1
-                        navController.navigate("MyList/$countlistout")
-                    },
-                )
+                Box(
+                    Modifier
+                        .fillMaxHeight()
+                        .clickable {  }
+                ) {
+                    MenuDesplegable(
+                        modifier = Modifier.clickable { },
+                        onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
+                        usernameTxttextcontent = "Hola, $username",
+                        onDeleteButtonClicked = { showDeleteDialog = true },
+                        onChangePasswordClicked = { showChangePasswordDialog = true },
+                        onCompletedListClicked = {
+                            val countlistout = 4
+                            navController.navigate("MyList/$countlistout")
+                        },
+                        onDroppedClicked = {
+                            val countlistout = 2
+                            navController.navigate("MyList/$countlistout")
+                        },
+                        onOnHoldListDailyChallengesClicked = {
+                            val countlistout = 3
+                            navController.navigate("MyList/$countlistout")
+                        },
+                        onPlanToPlayMyStadisticsClicked = {
+                            val countlistout = 5
+                            navController.navigate("MyList/$countlistout")
+                        },
+                        onPlayingListClicked = {
+                            val countlistout = 1
+                            navController.navigate("MyList/$countlistout")
+                        },
+                    )
+                }
             }
         }
+
         if (showDeleteDialog) {
             AlertDialog(
                 onDismissRequest = { showDeleteDialog = false },
@@ -177,7 +192,7 @@ fun Home(navController: NavController, loginVM: loginViewModel, gameVM: Videojue
             )
         }
 
-        val coroutineScope = rememberCoroutineScope() // Obtener el ámbito de la coroutine
+        val coroutineScope = rememberCoroutineScope()
 
         if (showChangePasswordDialog) {
             val context = LocalContext.current
@@ -186,7 +201,6 @@ fun Home(navController: NavController, loginVM: loginViewModel, gameVM: Videojue
                 onConfirm = { oldPassword, newPassword ->
                     loginVM.changePassword(oldPassword, newPassword,
                         onError = { errorMessage ->
-                            // Ejecutar la llamada al Toast dentro de una coroutine
                             coroutineScope.launch {
                                 Toast.makeText(context, "Contraseña antigua incorrecta", Toast.LENGTH_LONG).show()
                             }

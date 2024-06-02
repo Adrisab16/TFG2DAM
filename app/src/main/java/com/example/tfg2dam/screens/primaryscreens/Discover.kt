@@ -8,8 +8,11 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -21,6 +24,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -46,6 +50,7 @@ import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.screens.viewresources.ContenidoGridDiscoverView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
+import com.google.relay.compose.ColumnScopeInstanceImpl.weight
 import kotlinx.coroutines.launch
 
 
@@ -68,71 +73,80 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
     }
 
     Box(
-        Modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(Color(android.graphics.Color.parseColor("#141414")))
     ) {
-        Box(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 100.dp)
-                .align(Alignment.TopCenter),
-            contentAlignment = Alignment.Center
+                .fillMaxSize()
+                .background(Color(android.graphics.Color.parseColor("#141414"))),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
-            TextField(
-                value = text,
-                onValueChange = { newText -> text = newText },
+            Header(
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(vertical = 16.dp),
+                onUserIconClicked = { isMenuVisible = true },
+            )
+
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .background(Color.DarkGray), // Cambiar el fondo a gris oscuro
-                placeholder = { Text("Buscar") },
-                leadingIcon = { Icon(Icons.Default.Search, contentDescription = "Search") },
-                trailingIcon = {
-                    IconButton(
-                        onClick = {
-                            focusManager.clearFocus()
-                            gameVM.buscarJuegos(text)
+                    .weight(1f),
+                contentAlignment = Alignment.Center
+            ) {
+                TextField(
+                    value = text,
+                    onValueChange = { newText -> text = newText },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .background(Color.DarkGray),
+                    placeholder = { Text("Buscar") },
+                    leadingIcon = { Icon(Icons.Default.Search, contentDescription = "Search") },
+                    trailingIcon = {
+                        IconButton(
+                            onClick = {
+                                focusManager.clearFocus()
+                                gameVM.buscarJuegos(text)
+                            }
+                        ) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Search")
                         }
-                    ) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Search")
-                    }
-                },
-                singleLine = true,
-                colors = TextFieldDefaults.textFieldColors(
-                    cursorColor = Color.White,
-                    focusedIndicatorColor = Color.DarkGray,
-                    unfocusedIndicatorColor = Color.DarkGray
-                ),
+                    },
+                    singleLine = true,
+                    colors = TextFieldDefaults.textFieldColors(
+                        cursorColor = Color.White,
+                        focusedIndicatorColor = Color.DarkGray,
+                        unfocusedIndicatorColor = Color.DarkGray
+                    ),
+                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(6f)
+                    .background(Color(android.graphics.Color.parseColor("#141414"))),
+                contentAlignment = Alignment.Center
+            ) {
+                Scaffold(modifier = Modifier.background(Color(android.graphics.Color.parseColor("#141414")))) {
+                    ContenidoGridDiscoverView(
+                        navController = navController,
+                        viewModel = gameVM,
+                        pad = PaddingValues(it.calculateTopPadding())
+                    )
+                }
+            }
+
+            FooterNavTab(
+                modifier = Modifier.align(Alignment.CenterHorizontally).weight(1f),
+                property1 = Property1.DiscoverClicked,
+                onHomeButtonClicked = { navController.navigate("Home") },
+                onListButtonClicked = { navController.navigate("MyList/0") }
             )
-
         }
-
-        Box(
-            modifier = Modifier
-                .align(Alignment.Center),
-            contentAlignment = Alignment.Center
-        ) {
-            ContenidoGridDiscoverView(
-                navController = navController,
-                viewModel = gameVM,
-                pad = PaddingValues(top = 200.dp)
-            )
-        }
-
-        Header(
-            modifier = Modifier
-                .padding(bottom = 700.dp)
-                .align(Alignment.Center),
-            onUserIconClicked = { isMenuVisible = true },
-        )
-
-        FooterNavTab(
-            modifier = Modifier.align(Alignment.BottomCenter),
-            property1 = Property1.DiscoverClicked,
-            onHomeButtonClicked = { navController.navigate("Home") },
-            onListButtonClicked = { navController.navigate("MyList/0") }
-        )
 
         AnimatedVisibility(
             visible = isMenuVisible,
@@ -145,33 +159,39 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
                     .background(Color(0x99000000))
                     .clickable { isMenuVisible = false }
             ) {
-                MenuDesplegable(
-                    modifier = Modifier.clickable { },
-                    onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
-                    usernameTxttextcontent = "Hola, $username",
-                    onDeleteButtonClicked = { showDeleteDialog = true },
-                    onChangePasswordClicked = { showChangePasswordDialog = true },
-                    onCompletedListClicked = {
-                        val countlistout = 4
-                        navController.navigate("MyList/$countlistout")
-                    },
-                    onDroppedClicked = {
-                        val countlistout = 2
-                        navController.navigate("MyList/$countlistout")
-                    },
-                    onOnHoldListDailyChallengesClicked = {
-                        val countlistout = 3
-                        navController.navigate("MyList/$countlistout")
-                    },
-                    onPlanToPlayMyStadisticsClicked = {
-                        val countlistout = 5
-                        navController.navigate("MyList/$countlistout")
-                    },
-                    onPlayingListClicked = {
-                        val countlistout = 1
-                        navController.navigate("MyList/$countlistout")
-                    }
-                )
+                Box(
+                    Modifier
+                        .fillMaxHeight()
+                        .clickable { }
+                ) {
+                    MenuDesplegable(
+                        modifier = Modifier.clickable { },
+                        onLogOutButtonBackgroundClicked = { loginVM.logout(); navController.navigate("Login") },
+                        usernameTxttextcontent = "Hola, $username",
+                        onDeleteButtonClicked = { showDeleteDialog = true },
+                        onChangePasswordClicked = { showChangePasswordDialog = true },
+                        onCompletedListClicked = {
+                            val countlistout = 4
+                            navController.navigate("MyList/$countlistout")
+                        },
+                        onDroppedClicked = {
+                            val countlistout = 2
+                            navController.navigate("MyList/$countlistout")
+                        },
+                        onOnHoldListDailyChallengesClicked = {
+                            val countlistout = 3
+                            navController.navigate("MyList/$countlistout")
+                        },
+                        onPlanToPlayMyStadisticsClicked = {
+                            val countlistout = 5
+                            navController.navigate("MyList/$countlistout")
+                        },
+                        onPlayingListClicked = {
+                            val countlistout = 1
+                            navController.navigate("MyList/$countlistout")
+                        },
+                    )
+                }
             }
         }
 
