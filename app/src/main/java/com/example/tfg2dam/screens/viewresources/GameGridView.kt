@@ -33,7 +33,12 @@ import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 
 
-// Este funciona:
+/**
+ * Vista de contenido en forma de cuadrícula para mostrar juegos.
+ * @param navController Controlador de navegación para navegar a los detalles del juego.
+ * @param viewModel ViewModel para manejar los datos de los videojuegos.
+ * @param pad Espacios de relleno para la vista.
+ */
 @Composable
 fun ContenidoGridView(
     navController: NavController,
@@ -68,6 +73,11 @@ fun ContenidoGridView(
     }
 }
 
+/**
+ * Tarjeta que muestra la vista de un juego.
+ * @param navController Controlador de navegación para navegar a los detalles del juego.
+ * @param juego Información del juego a mostrar.
+ */
 @Composable
 fun CardJuego(
     navController: NavController,
@@ -95,6 +105,10 @@ fun CardJuego(
     }
 }
 
+/**
+ * Vista de la imagen del juego.
+ * @param imagen URL de la imagen del juego.
+ */
 @Composable
 fun GameImage(imagen: String) {
     val imagenPainter = rememberAsyncImagePainter(model = imagen)

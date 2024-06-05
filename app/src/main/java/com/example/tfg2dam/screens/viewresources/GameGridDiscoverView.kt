@@ -32,6 +32,12 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 
+/**
+ * Vista de contenido en forma de cuadrícula para la pantalla de busqueda.
+ * @param navController Controlador de navegación para navegar a los detalles del juego.
+ * @param viewModel ViewModel para manejar los datos de los videojuegos.
+ * @param pad Espacios de relleno para la vista.
+ */
 @Composable
 fun ContenidoGridDiscoverView(
     navController: NavController,
@@ -42,7 +48,7 @@ fun ContenidoGridDiscoverView(
     val isLoading by viewModel.isLoading.collectAsState()
     val hasSearched by viewModel.hasSearched.collectAsState()
 
-    Box(modifier = Modifier.fillMaxSize().padding(pad)) {
+    Box(modifier = Modifier.fillMaxSize().padding(pad).background(Color(android.graphics.Color.parseColor("#141414"))),) {
         if (isLoading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         } else {
@@ -67,6 +73,11 @@ fun ContenidoGridDiscoverView(
     }
 }
 
+/**
+ * Tarjeta que muestra la vista de un juego en la pantalla de busqueda.
+ * @param juego Información del juego a mostrar.
+ * @param navController Controlador de navegación para navegar a los detalles del juego.
+ */
 @Composable
 fun CardJuegoDiscoverView(juego: VideojuegosLista, navController: NavController) {
     Card(
@@ -101,6 +112,10 @@ fun CardJuegoDiscoverView(juego: VideojuegosLista, navController: NavController)
     }
 }
 
+/**
+ * Vista de la imagen del juego en la pantalla de busqueda.
+ * @param imagen URL de la imagen del juego.
+ */
 @Composable
 fun GameImageDiscoverView(imagen: String) {
     if (imagen.isNotEmpty()) {

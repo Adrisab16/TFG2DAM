@@ -278,6 +278,16 @@ class loginViewModel: ViewModel() {
         }
     }
 
+    /**
+     * Cambia la contraseña del usuario actualmente autenticado en Firebase.
+     *
+     * @param oldPassword La contraseña antigua del usuario.
+     * @param newPassword La nueva contraseña que se establecerá.
+     * @param onError Función de retorno que se llama si ocurre un error durante el proceso de cambio de contraseña.
+     * Recibe un mensaje de error como parámetro.
+     * @param navController NavController que se utilizará para navegar a la pantalla de inicio de sesión después
+     * de cambiar la contraseña con éxito.
+     */
     fun changePassword(
         oldPassword: String,
         newPassword: String,
@@ -290,23 +300,23 @@ class loginViewModel: ViewModel() {
                 if (user != null && user.email != null) {
                     val credential = EmailAuthProvider.getCredential(user.email!!, oldPassword)
 
-                    // Reauthenticate the user
+                    // Reauthentica al usuario
                     user.reauthenticate(credential).await()
 
-                    // Update the password in Firebase Auth
+                    // Actualiza la contraseña en Firebase Auth
                     user.updatePassword(newPassword).await()
 
-                    // Update the password in Firestore
+                    // Actualiza la contraseña en Firestore
                     val userId = user.uid
                     val userDocRef = firestore.collection("users").document(userId)
                     userDocRef.update("password", newPassword).await()
 
-                    // Actualizar la interfaz de usuario en el hilo principal
+                    // Actualiza la interfaz de usuario en el hilo principal
                     withContext(Dispatchers.Main) {
                         navController.navigate("Login")
                     }
 
-                    // También debes llamar al método logout en el hilo principal
+                    // Llama al método logout en el hilo principal
                     withContext(Dispatchers.Main) {
                         logout()
                     }
