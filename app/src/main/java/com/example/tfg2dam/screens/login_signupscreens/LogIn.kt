@@ -62,7 +62,6 @@ fun LogIn(navController: NavController, loginVM: LoginViewModel) {
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-            Spacer(modifier = Modifier.height(20.dp))
             LoginHeader(
                 property1 = Property1.Default,
                 modifier = Modifier.padding(top = 10.dp)
@@ -81,7 +80,7 @@ fun LogIn(navController: NavController, loginVM: LoginViewModel) {
                 ) {
                     Box{
                         PlatformsIcons(
-                            modifier = Modifier.fillMaxWidth(0.6f)
+                            modifier = Modifier.align(Alignment.Center)
                         )
                     }
 
@@ -119,6 +118,7 @@ fun LogIn(navController: NavController, loginVM: LoginViewModel) {
                     Spacer(modifier = Modifier.height(40.dp))
 
                     LogInButton(
+                        property1 = com.example.tfg2dam.loginbutton.Property1.Default,
                         onLogInButtonClicked = {
                             loginVM.login(
                                 onSuccess = { navController.navigate("Home") },
@@ -130,7 +130,7 @@ fun LogIn(navController: NavController, loginVM: LoginViewModel) {
                                 }
                             )
                         },
-                        modifier = Modifier.fillMaxWidth(0.6f)
+                        modifier = Modifier.fillMaxWidth(0.7f)
                     )
 
                     Spacer(modifier = Modifier.height(20.dp))
