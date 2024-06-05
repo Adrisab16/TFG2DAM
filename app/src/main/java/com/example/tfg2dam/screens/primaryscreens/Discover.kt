@@ -47,11 +47,12 @@ import com.example.tfg2dam.screens.viewresources.ContenidoGridDiscoverView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.loginViewModel
 import kotlinx.coroutines.launch
-
+import androidx.compose.foundation.layout.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: VideojuegosViewModel) {
+    val context = LocalContext.current
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
     var showDeleteDialog by remember { mutableStateOf(false) }
@@ -72,20 +73,30 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
             .fillMaxSize()
             .background(Color(android.graphics.Color.parseColor("#141414")))
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 100.dp)
-                .align(Alignment.TopCenter),
-            contentAlignment = Alignment.Center
+        Column(
+            Modifier.fillMaxSize()
         ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .padding(start = 16.dp, end = 16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Header(
+                    modifier = Modifier.fillMaxWidth(),
+                    onUserIconClicked = { isMenuVisible = true },
+                )
+            }
+
             TextField(
                 value = text,
                 onValueChange = { newText -> text = newText },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)
-                    .background(Color.DarkGray), // Cambiar el fondo a gris oscuro
+                    .background(Color.DarkGray)
+                    .weight(1f),
                 placeholder = { Text("Buscar") },
                 leadingIcon = { Icon(Icons.Default.Search, contentDescription = "Search") },
                 trailingIcon = {
@@ -106,33 +117,28 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
                 ),
             )
 
-        }
+            Box(
+                modifier = Modifier
+                    .weight(6f)
+                    .fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                ContenidoGridDiscoverView(
+                    navController = navController,
+                    viewModel = gameVM,
+                    pad = PaddingValues()
+                )
+            }
 
-        Box(
-            modifier = Modifier
-                .align(Alignment.Center),
-            contentAlignment = Alignment.Center
-        ) {
-            ContenidoGridDiscoverView(
-                navController = navController,
-                viewModel = gameVM,
-                pad = PaddingValues(top = 200.dp)
+            FooterNavTab(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                property1 = Property1.DiscoverClicked,
+                onHomeButtonClicked = { navController.navigate("Home") },
+                onListButtonClicked = { navController.navigate("MyList/0") }
             )
         }
-
-        Header(
-            modifier = Modifier
-                .padding(bottom = 700.dp)
-                .align(Alignment.Center),
-            onUserIconClicked = { isMenuVisible = true },
-        )
-
-        FooterNavTab(
-            modifier = Modifier.align(Alignment.BottomCenter),
-            property1 = Property1.DiscoverClicked,
-            onHomeButtonClicked = { navController.navigate("Home") },
-            onListButtonClicked = { navController.navigate("MyList/0") }
-        )
 
         AnimatedVisibility(
             visible = isMenuVisible,
@@ -183,7 +189,7 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
                 confirmButton = {
                     Button(
                         onClick = {
-                            loginVM.deleteAccount {
+                            loginVM.deleteAccount(context) {
                                 navController.navigate("Login")
                             }
                         }

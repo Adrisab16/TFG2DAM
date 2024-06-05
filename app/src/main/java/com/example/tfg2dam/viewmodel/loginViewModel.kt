@@ -1,7 +1,8 @@
 package com.example.tfg2dam.viewmodel
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -20,55 +21,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import java.io.FileWriter
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 /**
  * ViewModel que gestiona el inicio de sesión y registro de usuarios.
  */
 class loginViewModel: ViewModel() {
-    // Definición de variables y funciones para manejar el inicio de sesión y registro de usuarios.
 
-    // Instancias de Firebase Auth y Firestore
     private val auth: FirebaseAuth = Firebase.auth
     private val firestore = Firebase.firestore
-
-    // Estado para mostrar una alerta
-    var showAlert by mutableStateOf(false)
-        private set
-
-    // Variables para el email, contraseña y nombre de usuario
     var email by mutableStateOf("")
         private set
     var password by mutableStateOf("")
         private set
     var userName by mutableStateOf("")
         private set
-
-
-
-
-
-    /**
-     * Método privado para escribir en el archivo de registro.
-     *
-     * @param action La acción realizada para escribir en el archivo de registro.
-     */
-    private fun writeToLog(action: String) {
-        // Registro de la acción con su marca de tiempo
-        val timeStamp = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
-        val logMessage = "[$timeStamp] $action"
-        try {
-            // Escritura en el archivo de registro
-            FileWriter("F:\\MyProjects\\TFG2DAM", true).use { writer ->
-                writer.appendLine(logMessage)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
 
     /**
      * Intenta iniciar sesión con el email y la contraseña proporcionados.
@@ -81,22 +47,17 @@ class loginViewModel: ViewModel() {
     fun login(onSuccess: () -> Unit, onError: (String) -> Unit) {
         viewModelScope.launch {
             try {
-                // Intento de inicio de sesión con Firebase Auth
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            // Si el inicio de sesión es exitoso, ejecuta onSuccess
-                            writeToLog("Inicio de sesión exitoso")
                             onSuccess()
                         } else {
-                            // Si el inicio de sesión falla, ejecuta onError con un mensaje de error
-                            writeToLog("Error al iniciar sesión")
-                            Log.d("ERROR EN FIREBASE", "Usuario y/o contraseña incorrectos")
-                            onError("Error al iniciar sesión. Usuario y/o contraseña incorrectos.")
+                            Log.d("ERROR EN FIREBASE", "usuario o contraseña incorrectas")
+                            onError("Error al iniciar sesión. O el usuario o la contraseña son incorrectas.")
                         }
                     }
             } catch (e: Exception) {
-                Log.d("ERROR EN JETPACK", "ERROR: ${e.localizedMessage}")
+                Log.d("ERROR DE LA APLICACION", "ERROR: ${e.localizedMessage}")
             }
         }
     }
@@ -109,7 +70,7 @@ class loginViewModel: ViewModel() {
      *
      * @param onSuccess Acción a ejecutar si el registro es exitoso.
      */
-    fun createUser(onSuccess: () -> Unit){
+    fun createUser(context: Context, onSuccess: () -> Unit) {
         viewModelScope.launch {
             try {
                 // Utiliza el servicio de autenticación de Firebase para registrar al usuario
@@ -117,20 +78,26 @@ class loginViewModel: ViewModel() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            writeToLog("Usuario creado con éxito")
-                            // Si el registro es exitoso, guarda la información del usuario en la colección "Users" y ejecuta onSuccess
                             saveUser(userName, password)
                             onSuccess()
                         } else {
-                            writeToLog("Error al crear usuario")
-                            Log.d("ERROR EN FIREBASE","Error al crear usuario")
-                            showAlert = true
+                            Log.d("ERROR EN FIREBASE", "Error al crear usuario")
+                            Toast.makeText(context, "Error al crear el usuario", Toast.LENGTH_SHORT).show()
                         }
                     }
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 Log.d("ERROR CREAR USUARIO", "ERROR: ${e.localizedMessage}")
             }
         }
+    }
+
+    /**
+     * Actualiza el nombre de usuario.
+     *
+     * @param userName Nuevo nombre de usuario a establecer.
+     */
+    fun changeUserName(userName: String) {
+        this.userName = userName
     }
 
     /**
@@ -138,9 +105,7 @@ class loginViewModel: ViewModel() {
      *
      * @param username Nombre de usuario a guardar.
      */
-    @SuppressLint("SuspiciousIndentation")
     private fun saveUser(username: String, password: String) {
-        // Obtención del ID y el email del usuario actual
         val id = auth.currentUser?.uid
         val email = auth.currentUser?.email
 
@@ -165,25 +130,15 @@ class loginViewModel: ViewModel() {
                 // Guardar el usuario en la colección "Users" en Firestore
                 firestore.collection("users").document(id).set(user)
                     .addOnSuccessListener {
-                        Log.d("GUARDAR OK", "Se guardó el usuario correctamente en Firestore")
+                        Log.d("USUARIO GUARDADO", "Se guardó el usuario correctamente en Firestore")
                     }
                     .addOnFailureListener { exception ->
-                        Log.d("ERROR AL GUARDAR", "ERROR al guardar en Firestore: $exception")
+                        Log.e("ERROR AL GUARDAR", "ERROR al guardar en Firestore: $exception")
                     }
             }
         } else {
             Log.d("ERROR GUARDAR USUARIO", "El ID de usuario o el correo electrónico son nulos.")
         }
-    }
-
-
-
-    /**
-     * Cierra el diálogo de alerta de error mostrada en la UI.
-     */
-    fun closeAlert(){
-        writeToLog("Alerta cerrada")
-        showAlert = false
     }
 
     /**
@@ -196,32 +151,13 @@ class loginViewModel: ViewModel() {
     }
 
     /**
-     * Actualiza la contraseña del usuario.
-     *
-     * @param password Nueva contraseña a establecer.
-     */
-    fun changePassword(password: String) {
-        this.password = password
-    }
-
-    /**
-     * Actualiza el nombre de usuario.
-     *
-     * @param userName Nuevo nombre de usuario a establecer.
-     */
-    fun changeUserName(userName: String) {
-        this.userName = userName
-    }
-
-    /**
      * Cierra la sesión del usuario actual.
      */
     fun logout() {
         try {
             auth.signOut()
-            writeToLog("Cierre de sesion del usuario exitoso")
         }catch(_: Exception){
-            writeToLog("Fallo al cerrar sesión")
+            Log.d("ERROR AL CERRAR SESION", "No se ha podido cerrar sesión")
         }
     }
 
@@ -230,7 +166,7 @@ class loginViewModel: ViewModel() {
      *
      * @param onSuccess Acción a ejecutar si la eliminación de la cuenta es exitosa.
      */
-    fun deleteAccount(onSuccess: () -> Unit) {
+    fun deleteAccount(context: Context, onSuccess: () -> Unit) {
         val user = auth.currentUser
         val userId = user?.uid
 
@@ -250,26 +186,34 @@ class loginViewModel: ViewModel() {
                             // Eliminar la autenticación del usuario después de eliminar los datos en Firestore
                             user?.delete()?.addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    writeToLog("Cuenta eliminada con éxito")
                                     onSuccess()
                                 } else {
-                                    writeToLog("Error al eliminar cuenta")
-                                    showAlert = true
+                                    Toast.makeText(context, "Error al eliminar la cuenta", Toast.LENGTH_SHORT).show()
+
                                 }
                             }
                         }
                         .addOnFailureListener { exception ->
-                            // Manejar el error si la eliminación de datos en Firestore falla
-                            writeToLog("Error al eliminar datos del usuario en Firestore: $exception")
-                            showAlert = true
+                            Log.e("ERROR AL ELIMINAR", "Error al eliminar datos del usuario en Firestore: $exception")
+                            Toast.makeText(context, "Error al eliminar datos del usuario en Firestore", Toast.LENGTH_SHORT).show()
+
                         }
                 }
             }
             .addOnFailureListener { exception ->
-                // Manejar el error si la consulta a Firestore falla
-                writeToLog("Error al obtener ID del documento en Firestore: $exception")
-                showAlert = true
+                Log.e("ERROR AL OBTENER ID", "Error al obtener ID del documento en Firestore: $exception")
+                Toast.makeText(context, "Error al obtener ID del documento en Firestore", Toast.LENGTH_SHORT).show()
+
             }
+    }
+
+    /**
+     * Actualiza la contraseña del usuario.
+     *
+     * @param password Nueva contraseña a establecer.
+     */
+    fun changePassword(password: String) {
+        this.password = password
     }
 
     /**
@@ -300,12 +244,12 @@ class loginViewModel: ViewModel() {
                 }
                 .addOnFailureListener { exception ->
                     // Manejar el error si la consulta a Firestore falla
-                    writeToLog("Error al obtener datos del usuario en Firestore: $exception")
+                    Log.e("ERROR DE OBTENCION DE DATOS", "Error al obtener datos del usuario en Firestore: $exception")
                     callback(null)
                 }
         } else {
             // Si el ID del usuario es null, llamar al callback con null
-            writeToLog("El ID del usuario actual es null")
+            Log.e("ID FALLIDO", "El ID del usuario actual es null")
             callback(null)
         }
     }
@@ -331,8 +275,6 @@ class loginViewModel: ViewModel() {
         } catch (e: Exception) {
             // Manejar cualquier excepción que pueda ocurrir dentro del bloque try
             Log.e("ERROR", "Error al obtener el ID del usuario: ${e.localizedMessage}", e)
-            // Aquí puedes manejar el error de la manera que desees
-            // Por ejemplo, puedes lanzar otra excepción, proporcionar un valor predeterminado, o no hacer nada
         }
     }
 
@@ -386,5 +328,4 @@ class loginViewModel: ViewModel() {
             }
         }
     }
-
 }

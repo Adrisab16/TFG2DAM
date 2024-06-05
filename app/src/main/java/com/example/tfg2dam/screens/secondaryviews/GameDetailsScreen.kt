@@ -241,7 +241,7 @@ fun GameDetailsScreen(
                 confirmButton = {
                     Button(
                         onClick = {
-                            loginVM.deleteAccount {
+                            loginVM.deleteAccount(context) {
                                 navController.navigate("Login")
                             }
                         }
@@ -260,7 +260,6 @@ fun GameDetailsScreen(
         val coroutineScope = rememberCoroutineScope() // Obtener el ámbito de la coroutine
 
         if (showChangePasswordDialog) {
-            val context = LocalContext.current
             ChangePasswordDialog(
                 onDismiss = { showChangePasswordDialog = false },
                 onConfirm = { oldPassword, newPassword ->

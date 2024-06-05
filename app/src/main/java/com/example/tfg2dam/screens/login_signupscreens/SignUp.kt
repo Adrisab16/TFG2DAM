@@ -17,10 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.tfg2dam.alerts.Alert
 import com.example.tfg2dam.R
 import com.example.tfg2dam.loginbutton.LogInButton
 import com.example.tfg2dam.loginheader.LoginHeader
@@ -41,6 +41,7 @@ import com.example.tfg2dam.viewmodel.loginViewModel
  */
 @Composable
 fun SignUp(navController: NavController, loginVM: loginViewModel){
+    val context = LocalContext.current
 
     // Contenedor principal que llena toda la pantalla
     Box(Modifier.fillMaxSize()) {
@@ -125,7 +126,7 @@ fun SignUp(navController: NavController, loginVM: loginViewModel){
                     Spacer(modifier = Modifier.height(40.dp))
 
                     // Renderiza el botón de inicio de sesión
-                    LogInButton(property1 = com.example.tfg2dam.loginbutton.Property1.SignUpButton, onLogInButtonClicked =  {loginVM.createUser { navController.navigate("Home") }})
+                    LogInButton(property1 = com.example.tfg2dam.loginbutton.Property1.SignUpButton, onLogInButtonClicked =  {loginVM.createUser(context) { navController.navigate("Home") }})
 
                     Spacer(modifier = Modifier.height(20.dp))
 
@@ -133,17 +134,6 @@ fun SignUp(navController: NavController, loginVM: loginViewModel){
                     NavSignUpButton(property1 = com.example.tfg2dam.navsignupbutton.Property1.NavLogInButton, onNavButtonSignUpClicked =  {navController.navigate("LogIn")})
                 }
             }
-        }
-
-        // Se muestra un diálogo de alerta si [LoginViewModel.showAlert] es true.
-        if (loginVM.showAlert) {
-            Alert(
-                title = "Alerta",
-                message = "Usuario no creado correctamente",
-                confirmText = "Aceptar",
-                onConfirmClick = { loginVM.closeAlert() },
-                onDismissClick = { }
-            ) // Dejo el onDismissClick sin ninguna accion para que no oculte el diálogo
         }
     }
 }

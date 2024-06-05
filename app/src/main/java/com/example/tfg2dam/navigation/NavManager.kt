@@ -30,11 +30,9 @@ fun NavManager(
     gameVM: VideojuegosViewModel,
     userVideogameVM: userVideogameViewModel
     ) {
-    // Configuración del sistema de navegación y definición de las rutas.
-    // Se crea el controlador de navegación que recordará el estado de la navegación.
+
     val navController = rememberNavController()
 
-    // Se configuran las rutas y se asocian con las respectivas funciones que muestran las vistas.
     NavHost(navController = navController, startDestination = "Blank") {
 
         // Muestra la vista correspondiente a la pantalla Blank.

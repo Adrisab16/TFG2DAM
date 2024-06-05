@@ -46,6 +46,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun Home(navController: NavController, loginVM: loginViewModel, gameVM: VideojuegosViewModel) {
+    val context = LocalContext.current
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
     var showDeleteDialog by remember { mutableStateOf(false) }
@@ -159,7 +160,7 @@ fun Home(navController: NavController, loginVM: loginViewModel, gameVM: Videojue
                 confirmButton = {
                     Button(
                         onClick = {
-                            loginVM.deleteAccount {
+                            loginVM.deleteAccount(context) {
                                 navController.navigate("Login")
                             }
                         }

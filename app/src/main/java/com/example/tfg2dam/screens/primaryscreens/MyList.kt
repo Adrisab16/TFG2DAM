@@ -46,6 +46,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameVM:userVideogameViewModel, countlistout: String){
+    val context = LocalContext.current
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
     var countlist by remember { mutableIntStateOf(countlistout.toInt()) }
@@ -223,7 +224,7 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
                 confirmButton = {
                     Button(
                         onClick = {
-                            loginVM.deleteAccount {
+                            loginVM.deleteAccount(context) {
                                 navController.navigate("Login")
                             }
                         }
