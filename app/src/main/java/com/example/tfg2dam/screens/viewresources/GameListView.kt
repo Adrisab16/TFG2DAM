@@ -49,7 +49,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
-import com.example.tfg2dam.viewmodel.userVideogameViewModel
+import com.example.tfg2dam.viewmodel.UserVideogameViewModel
 import kotlinx.coroutines.launch
 
 
@@ -66,7 +66,7 @@ import kotlinx.coroutines.launch
 fun ContenidoListView(
     navController: NavController,
     viewModel: VideojuegosViewModel,
-    userVideogameVM: userVideogameViewModel,
+    userVideogameVM: UserVideogameViewModel,
     pad: PaddingValues,
     gametype: String,
     userId: String,
@@ -142,7 +142,7 @@ fun CardJuegoListView(
     gametype: String,
     gameId: Int,
     userId: String,
-    userVideogameVM: userVideogameViewModel,
+    userVideogameVM: UserVideogameViewModel,
 ) {
     // Mantén un estado para controlar si se ha hecho clic en el botón de eliminación
     var clickedState by remember { mutableStateOf(false) }

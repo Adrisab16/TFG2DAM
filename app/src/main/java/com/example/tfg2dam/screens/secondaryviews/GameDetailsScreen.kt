@@ -45,14 +45,14 @@ import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.LoginViewModel
-import com.example.tfg2dam.viewmodel.userVideogameViewModel
+import com.example.tfg2dam.viewmodel.UserVideogameViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun GameDetailsScreen(
     navController: NavHostController,
     loginVM: LoginViewModel,
-    userVideogameVM: userVideogameViewModel,
+    userVideogameVM: UserVideogameViewModel,
     id: Int,
     gameVM: VideojuegosViewModel,
 ) {
@@ -92,6 +92,7 @@ fun GameDetailsScreen(
                 .padding(bottom = 700.dp)
                 .align(Alignment.Center),
             onUserIconClicked = { isMenuVisible = true },
+            onAppTitleClicked = { navController.navigate("Home") }
         )
 
         if (infojuego.isNotEmpty()) {

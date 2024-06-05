@@ -14,7 +14,7 @@ import com.example.tfg2dam.ui.theme.TFG2DAMTheme
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 //import com.example.tfg2dam.viewmodel.VideogamesViewModel
 import com.example.tfg2dam.viewmodel.LoginViewModel
-import com.example.tfg2dam.viewmodel.userVideogameViewModel
+import com.example.tfg2dam.viewmodel.UserVideogameViewModel
 import com.google.firebase.FirebaseApp
 
 /**
@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
         val gameVM: VideojuegosViewModel by viewModels()
 
         // Inicializa el ViewModel para la gestión de las listas de videojuegos asociadas alos usuarios.
-        val userVideogameVM: userVideogameViewModel by viewModels()
+        val userVideogameVM: UserVideogameViewModel by viewModels()
 
         // Configura la interfaz de usuario utilizando Jetpack Compose.
         setContent {

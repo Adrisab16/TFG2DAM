@@ -40,12 +40,12 @@ import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.screens.viewresources.ContenidoListView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.LoginViewModel
-import com.example.tfg2dam.viewmodel.userVideogameViewModel
+import com.example.tfg2dam.viewmodel.UserVideogameViewModel
 import kotlinx.coroutines.launch
 
 
 @Composable
-fun MyList(navController: NavController, loginVM: LoginViewModel, userVideoGameVM:userVideogameViewModel, countlistout: String){
+fun MyList(navController: NavController, loginVM: LoginViewModel, userVideoGameVM:UserVideogameViewModel, countlistout: String){
     val context = LocalContext.current
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
@@ -82,6 +82,7 @@ fun MyList(navController: NavController, loginVM: LoginViewModel, userVideoGameV
                 .align(Alignment.TopCenter)
             , // Agregar espacio superior
             onUserIconClicked = { isMenuVisible = true },
+            onAppTitleClicked = { navController.navigate("Home") }
         )
 
         MyListTopNavBar(

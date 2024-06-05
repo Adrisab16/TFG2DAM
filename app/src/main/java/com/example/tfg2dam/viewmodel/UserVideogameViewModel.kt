@@ -10,7 +10,7 @@ import kotlinx.coroutines.tasks.await
 /**
  * ViewModel para manejar los videojuegos del usuario.
  */
-class userVideogameViewModel: ViewModel() {
+class UserVideogameViewModel: ViewModel() {
 
     private val firestore = Firebase.firestore
 

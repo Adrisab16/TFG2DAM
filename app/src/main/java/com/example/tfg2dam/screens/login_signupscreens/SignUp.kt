@@ -96,7 +96,7 @@ fun SignUp(navController: NavController, loginVM: LoginViewModel){
                     ) {
                         UserField(
                             textFieldValue = loginVM.userName,
-                            onTextFieldValueChanged = { loginVM.changeUserName(it) },
+                            onTextFieldValueChanged = { loginVM.cambioDeUsername(it) },
                         )
                     }
                     Spacer(modifier = Modifier.height(30.dp))
@@ -108,7 +108,7 @@ fun SignUp(navController: NavController, loginVM: LoginViewModel){
                     ) {
                         EmailField(
                             textFieldValue = loginVM.email,
-                            onTextFieldValueChanged = { loginVM.changeEmail(it) },
+                            onTextFieldValueChanged = { loginVM.cambioDeEmail(it) },
                         )
                     }
                     Spacer(modifier = Modifier.height(30.dp))
@@ -120,7 +120,7 @@ fun SignUp(navController: NavController, loginVM: LoginViewModel){
                     ) {
                         PasswordField(
                             textFieldValue = loginVM.password,
-                            onTextFieldValueChanged = { loginVM.changePassword(it) },
+                            onTextFieldValueChanged = { loginVM.cambioDeContrasenia(it) },
                         )
                     }
                     Spacer(modifier = Modifier.height(40.dp))

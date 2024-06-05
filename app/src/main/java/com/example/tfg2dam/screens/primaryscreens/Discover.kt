@@ -86,6 +86,7 @@ fun Discover(navController: NavController, loginVM: LoginViewModel, gameVM: Vide
                 Header(
                     modifier = Modifier.fillMaxWidth(),
                     onUserIconClicked = { isMenuVisible = true },
+                    onAppTitleClicked = { navController.navigate("Home") }
                 )
             }
 

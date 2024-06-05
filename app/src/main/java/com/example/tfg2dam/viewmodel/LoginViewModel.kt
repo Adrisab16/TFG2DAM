@@ -62,6 +62,14 @@ class LoginViewModel: ViewModel() {
         }
     }
 
+    /**
+     * Actualiza el nombre de usuario.
+     *
+     * @param userName Nuevo nombre de usuario a establecer.
+     */
+    fun cambioDeUsername(userName: String) {
+        this.userName = userName
+    }
 
     /**
      * Crea un nuevo usuario con el email y la contraseña proporcionados.
@@ -89,15 +97,6 @@ class LoginViewModel: ViewModel() {
                 Log.d("ERROR CREAR USUARIO", "ERROR: ${e.localizedMessage}")
             }
         }
-    }
-
-    /**
-     * Actualiza el nombre de usuario.
-     *
-     * @param userName Nuevo nombre de usuario a establecer.
-     */
-    fun changeUserName(userName: String) {
-        this.userName = userName
     }
 
     /**
@@ -146,9 +145,7 @@ class LoginViewModel: ViewModel() {
      *
      * @param email Nuevo email a establecer.
      */
-    fun changeEmail(email: String) {
-        this.email = email
-    }
+    fun cambioDeEmail(email: String) { this.email = email }
 
     /**
      * Cierra la sesión del usuario actual.
@@ -212,9 +209,7 @@ class LoginViewModel: ViewModel() {
      *
      * @param password Nueva contraseña a establecer.
      */
-    fun changePassword(password: String) {
-        this.password = password
-    }
+    fun cambioDeContrasenia(password: String) { this.password = password }
 
     /**
      * Obtiene el nombre de usuario del usuario actualmente autenticado en Firestore.

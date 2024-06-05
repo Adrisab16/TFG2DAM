@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.tfg2dam.screens.blankview.BlankView
+import com.example.tfg2dam.screens.defaultview.DefaultView
 import com.example.tfg2dam.screens.primaryscreens.Discover
 import com.example.tfg2dam.screens.primaryscreens.Home
 import com.example.tfg2dam.screens.login_signupscreens.LogIn
@@ -15,7 +15,7 @@ import com.example.tfg2dam.screens.login_signupscreens.SignUp
 import com.example.tfg2dam.screens.secondaryviews.GameDetailsScreen
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.LoginViewModel
-import com.example.tfg2dam.viewmodel.userVideogameViewModel
+import com.example.tfg2dam.viewmodel.UserVideogameViewModel
 
 /**
  * Función que gestiona la navegación entre las diferentes pantallas de la aplicación.
@@ -28,7 +28,7 @@ import com.example.tfg2dam.viewmodel.userVideogameViewModel
 fun NavManager(
     loginVM: LoginViewModel,
     gameVM: VideojuegosViewModel,
-    userVideogameVM: userVideogameViewModel
+    userVideogameVM: UserVideogameViewModel
     ) {
 
     val navController = rememberNavController()
@@ -37,7 +37,7 @@ fun NavManager(
 
         // Muestra la vista correspondiente a la pantalla Blank.
         composable("Blank") {
-            BlankView(navController)
+            DefaultView(navController)
         }
 
         // Muestra la vista correspondiente a la pantalla de registro (Sign-Up).
