@@ -1,4 +1,4 @@
-package com.example.tfg2dam.screens.blankview
+package com.example.tfg2dam.screens.defaultview
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
  * @param navController Controlador de navegación utilizado para cambiar entre pantallas.
  */
 @Composable
-fun BlankView(navController: NavController){
+fun DefaultView(navController: NavController){
     // Se utiliza LaunchedEffect para ejecutar el código de forma asincrónica cuando el componente se inicializa.
     LaunchedEffect(Unit){
         // Verifica si hay un usuario autenticado en Firebase.

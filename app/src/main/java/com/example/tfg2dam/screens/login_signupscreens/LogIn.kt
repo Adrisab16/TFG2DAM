@@ -8,9 +8,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -44,93 +44,101 @@ import kotlinx.coroutines.launch
 @Composable
 fun LogIn(navController: NavController, loginVM: LoginViewModel) {
 
-    // Alcance de la corrutina para la gestión de operaciones asíncronas
     val coroutineScope = rememberCoroutineScope()
-
-    // Contexto de la aplicación obtenido del LocalContext
     val context = LocalContext.current
 
-    // Contenedor principal
     Box(Modifier.fillMaxSize()) {
-        // Fondo de pantalla de inicio de sesión
         Image(
             painter = painterResource(id = R.drawable.login_background_login_background_photo),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds // Esto ajustará la escala de contenido para que la imagen ocupe tod0 el espacio disponible sin recortarla
+            contentScale = ContentScale.FillBounds
         )
 
-        // Título de la pantalla de inicio de sesión
-        LoginHeader(property1 = Property1.Default, modifier = Modifier
-            .align(Alignment.TopCenter)
-            .padding(top = 10.dp))
-
-        // Contenedor principal de la pantalla de inicio de sesión
-        Box(modifier = Modifier.align(Alignment.Center).padding(top=60.dp)) {
-
-            // Campo de entrada de inicio de sesión
-            LogInField()
-
-            // Iconos decorativos de las plataformas de consolas que aparecen en la parte de arriba
-            Box(modifier = Modifier
-                .align(Alignment.TopCenter)
-                .padding(top = 20.dp)) {
-                PlatformsIcons()
-            }
-
-            // Contenedor central
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
+            Spacer(modifier = Modifier.height(20.dp))
+            LoginHeader(
+                property1 = Property1.Default,
+                modifier = Modifier.padding(top = 10.dp)
+            )
+            Spacer(modifier = Modifier.height(10.dp))
             Box(
-                modifier = Modifier.align(Alignment.Center),
+                modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
+                LogInField()
+
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                    modifier = Modifier
+                        .align(Alignment.Center)
                 ) {
-                    Spacer(modifier = Modifier.height(40.dp))
+                    Box{
+                        PlatformsIcons(
+                            modifier = Modifier.fillMaxWidth(0.6f)
+                        )
+                    }
 
-                    // Campo de entrada de email
-                    Box(modifier =  Modifier
-                        .background(Color.DarkGray, shape = RoundedCornerShape(10.dp))
-                        .clip(RoundedCornerShape(10.dp))
-                        .width(300.dp)
+                    Spacer(modifier = Modifier.height(30.dp))
+
+
+                    Box(
+                        modifier = Modifier
+                            .background(Color.DarkGray, shape = RoundedCornerShape(10.dp))
+                            .clip(RoundedCornerShape(10.dp))
+                            .fillMaxWidth(0.8f)
+                            .padding(horizontal = 16.dp, vertical = 8.dp)
                     ) {
                         EmailField(
                             textFieldValue = loginVM.email,
-                            onTextFieldValueChanged = { loginVM.cambioDeEmail(it) },
+                            onTextFieldValueChanged = { loginVM.cambioDeEmail(it) }
                         )
                     }
+
                     Spacer(modifier = Modifier.height(30.dp))
 
-                    // Campo de entrada de contraseña
-                    Box(modifier =  Modifier
-                        .background(Color.DarkGray, shape = RoundedCornerShape(10.dp))
-                        .clip(RoundedCornerShape(10.dp))
-                        .width(300.dp)
+                    Box(
+                        modifier = Modifier
+                            .background(Color.DarkGray, shape = RoundedCornerShape(10.dp))
+                            .clip(RoundedCornerShape(10.dp))
+                            .fillMaxWidth(0.8f)
+                            .padding(horizontal = 16.dp, vertical = 8.dp)
                     ) {
                         PasswordField(
                             textFieldValue = loginVM.password,
-                            onTextFieldValueChanged = { loginVM.cambioDeContrasenia(it) },
+                            onTextFieldValueChanged = { loginVM.cambioDeContrasenia(it) }
                         )
                     }
+
                     Spacer(modifier = Modifier.height(40.dp))
 
-                    // Botón de inicio de sesión
-                    LogInButton(onLogInButtonClicked = {
-                        loginVM.login(
-                            onSuccess = { navController.navigate("Home") },
-                            onError = { errorMessage ->
-                                // Muestra el Toast en caso de error
-                                coroutineScope.launch {
-                                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                    LogInButton(
+                        onLogInButtonClicked = {
+                            loginVM.login(
+                                onSuccess = { navController.navigate("Home") },
+                                onError = { errorMessage ->
+                                    coroutineScope.launch {
+                                        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT)
+                                            .show()
+                                    }
                                 }
-                            }
-                        )
-                    })
+                            )
+                        },
+                        modifier = Modifier.fillMaxWidth(0.6f)
+                    )
+
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    // Botón para ir a la pantalla de registro (SignUp)
-                    NavSignUpButton(onNavButtonSignUpClicked = {navController.navigate("SignUp")})
+                    NavSignUpButton(
+                        onNavButtonSignUpClicked = { navController.navigate("SignUp") },
+                        modifier = Modifier.fillMaxWidth(0.6f)
+                    )
                 }
             }
         }

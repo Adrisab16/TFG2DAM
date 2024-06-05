@@ -45,7 +45,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun MyList(navController: NavController, loginVM: LoginViewModel, userVideoGameVM:UserVideogameViewModel, countlistout: String){
+fun MyList(navController: NavController, loginVM: LoginViewModel, userVideoGameVM: UserVideogameViewModel, countlistout: String){
     val context = LocalContext.current
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
@@ -70,6 +70,7 @@ fun MyList(navController: NavController, loginVM: LoginViewModel, userVideoGameV
                 username = it
             }
         }
+
     }
 
 
