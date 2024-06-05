@@ -45,13 +45,13 @@ import com.example.tfg2dam.menudesplegable.MenuDesplegable
 import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.screens.viewresources.ContenidoGridDiscoverView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
-import com.example.tfg2dam.viewmodel.loginViewModel
+import com.example.tfg2dam.viewmodel.LoginViewModel
 import kotlinx.coroutines.launch
 import androidx.compose.foundation.layout.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: VideojuegosViewModel) {
+fun Discover(navController: NavController, loginVM: LoginViewModel, gameVM: VideojuegosViewModel) {
     val context = LocalContext.current
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
@@ -131,9 +131,7 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
             }
 
             FooterNavTab(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
+                modifier = Modifier.align(Alignment.CenterHorizontally),
                 property1 = Property1.DiscoverClicked,
                 onHomeButtonClicked = { navController.navigate("Home") },
                 onListButtonClicked = { navController.navigate("MyList/0") }
@@ -207,7 +205,6 @@ fun Discover(navController: NavController, loginVM: loginViewModel, gameVM: Vide
 
         val coroutineScope = rememberCoroutineScope()
         if (showChangePasswordDialog) {
-            val context = LocalContext.current
             ChangePasswordDialog(
                 onDismiss = { showChangePasswordDialog = false },
                 onConfirm = { oldPassword, newPassword ->

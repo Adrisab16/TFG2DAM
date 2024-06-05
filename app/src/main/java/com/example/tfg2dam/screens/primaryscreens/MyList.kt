@@ -39,13 +39,13 @@ import com.example.tfg2dam.mylisttopnavbar.MyListTopNavBar
 import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.screens.viewresources.ContenidoListView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
-import com.example.tfg2dam.viewmodel.loginViewModel
+import com.example.tfg2dam.viewmodel.LoginViewModel
 import com.example.tfg2dam.viewmodel.userVideogameViewModel
 import kotlinx.coroutines.launch
 
 
 @Composable
-fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameVM:userVideogameViewModel, countlistout: String){
+fun MyList(navController: NavController, loginVM: LoginViewModel, userVideoGameVM:userVideogameViewModel, countlistout: String){
     val context = LocalContext.current
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
@@ -244,7 +244,6 @@ fun MyList(navController: NavController, loginVM: loginViewModel, userVideoGameV
         val coroutineScope = rememberCoroutineScope() // Obtener el ámbito de la coroutine
 
         if (showChangePasswordDialog) {
-            val context = LocalContext.current
             ChangePasswordDialog(
                 onDismiss = { showChangePasswordDialog = false },
                 onConfirm = { oldPassword, newPassword ->

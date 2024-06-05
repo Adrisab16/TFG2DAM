@@ -13,7 +13,7 @@ import com.example.tfg2dam.navigation.NavManager
 import com.example.tfg2dam.ui.theme.TFG2DAMTheme
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 //import com.example.tfg2dam.viewmodel.VideogamesViewModel
-import com.example.tfg2dam.viewmodel.loginViewModel
+import com.example.tfg2dam.viewmodel.LoginViewModel
 import com.example.tfg2dam.viewmodel.userVideogameViewModel
 import com.google.firebase.FirebaseApp
 
@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
         FirebaseApp.initializeApp(this)
 
         // Inicializa el ViewModel para la autenticación, gestión y registro de sesiones de usuario.
-        val loginVM: loginViewModel by viewModels()
+        val loginVM: LoginViewModel by viewModels()
 
         // Inicializa el ViewModel para la gestión de datos de videojuegos.
         val gameVM: VideojuegosViewModel by viewModels()

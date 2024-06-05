@@ -44,14 +44,14 @@ import com.example.tfg2dam.menudesplegable.MenuDesplegable
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
-import com.example.tfg2dam.viewmodel.loginViewModel
+import com.example.tfg2dam.viewmodel.LoginViewModel
 import com.example.tfg2dam.viewmodel.userVideogameViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun GameDetailsScreen(
     navController: NavHostController,
-    loginVM: loginViewModel,
+    loginVM: LoginViewModel,
     userVideogameVM: userVideogameViewModel,
     id: Int,
     gameVM: VideojuegosViewModel,

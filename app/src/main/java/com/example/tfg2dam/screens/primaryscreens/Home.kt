@@ -43,12 +43,12 @@ import com.example.tfg2dam.menudesplegable.MenuDesplegable
 import com.example.tfg2dam.screens.viewresources.ChangePasswordDialog
 import com.example.tfg2dam.screens.viewresources.ContenidoGridView
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
-import com.example.tfg2dam.viewmodel.loginViewModel
+import com.example.tfg2dam.viewmodel.LoginViewModel
 import kotlinx.coroutines.launch
 
 
 @Composable
-fun Home(navController: NavController, loginVM: loginViewModel, gameVM: VideojuegosViewModel) {
+fun Home(navController: NavController, loginVM: LoginViewModel, gameVM: VideojuegosViewModel) {
     val context = LocalContext.current
     var isMenuVisible by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
@@ -195,7 +195,6 @@ fun Home(navController: NavController, loginVM: loginViewModel, gameVM: Videojue
         val coroutineScope = rememberCoroutineScope()
 
         if (showChangePasswordDialog) {
-            val context = LocalContext.current
             ChangePasswordDialog(
                 onDismiss = { showChangePasswordDialog = false },
                 onConfirm = { oldPassword, newPassword ->

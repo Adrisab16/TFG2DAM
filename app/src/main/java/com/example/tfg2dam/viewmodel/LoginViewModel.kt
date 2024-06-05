@@ -25,7 +25,7 @@ import kotlinx.coroutines.withContext
 /**
  * ViewModel que gestiona el inicio de sesión y registro de usuarios.
  */
-class loginViewModel: ViewModel() {
+class LoginViewModel: ViewModel() {
 
     private val auth: FirebaseAuth = Firebase.auth
     private val firestore = Firebase.firestore

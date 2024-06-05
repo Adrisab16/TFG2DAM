@@ -32,7 +32,7 @@ import com.example.tfg2dam.navsignupbutton.NavSignUpButton
 import com.example.tfg2dam.platformsicons.PlatformsIcons
 import com.example.tfg2dam.uiresources.EmailField
 import com.example.tfg2dam.uiresources.PasswordField
-import com.example.tfg2dam.viewmodel.loginViewModel
+import com.example.tfg2dam.viewmodel.LoginViewModel
 import kotlinx.coroutines.launch
 
 /**
@@ -42,7 +42,7 @@ import kotlinx.coroutines.launch
  * @param loginVM ViewModel para la autenticación y gestión de sesiones de usuario.
  */
 @Composable
-fun LogIn(navController: NavController, loginVM: loginViewModel) {
+fun LogIn(navController: NavController, loginVM: LoginViewModel) {
 
     // Alcance de la corrutina para la gestión de operaciones asíncronas
     val coroutineScope = rememberCoroutineScope()

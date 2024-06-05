@@ -31,7 +31,7 @@ import com.example.tfg2dam.signupfield.SignUpField
 import com.example.tfg2dam.uiresources.EmailField
 import com.example.tfg2dam.uiresources.PasswordField
 import com.example.tfg2dam.uiresources.UserField
-import com.example.tfg2dam.viewmodel.loginViewModel
+import com.example.tfg2dam.viewmodel.LoginViewModel
 
 /**
  * Función componible para la pantalla de registro (Sign-Up).
@@ -40,7 +40,7 @@ import com.example.tfg2dam.viewmodel.loginViewModel
  * @param loginVM El ViewModel para manejar operaciones relacionadas con el inicio de sesión.
  */
 @Composable
-fun SignUp(navController: NavController, loginVM: loginViewModel){
+fun SignUp(navController: NavController, loginVM: LoginViewModel){
     val context = LocalContext.current
 
     // Contenedor principal que llena toda la pantalla

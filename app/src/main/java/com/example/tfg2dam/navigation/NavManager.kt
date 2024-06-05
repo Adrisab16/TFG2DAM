@@ -14,7 +14,7 @@ import com.example.tfg2dam.screens.primaryscreens.MyList
 import com.example.tfg2dam.screens.login_signupscreens.SignUp
 import com.example.tfg2dam.screens.secondaryviews.GameDetailsScreen
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
-import com.example.tfg2dam.viewmodel.loginViewModel
+import com.example.tfg2dam.viewmodel.LoginViewModel
 import com.example.tfg2dam.viewmodel.userVideogameViewModel
 
 /**
@@ -26,7 +26,7 @@ import com.example.tfg2dam.viewmodel.userVideogameViewModel
  */
 @Composable
 fun NavManager(
-    loginVM: loginViewModel,
+    loginVM: LoginViewModel,
     gameVM: VideojuegosViewModel,
     userVideogameVM: userVideogameViewModel
     ) {
