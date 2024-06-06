@@ -34,16 +34,26 @@ data class UserModel(
  * @property CTD Lista de identificadores de juegos completados múltiples veces.
  */
 data class GameMap(
-    @get:PropertyName("CP") val CP: MutableList<Int> = mutableListOf(), // Lista de Juegos completados
-    @get:PropertyName("PTP") val PTP: MutableList<Int> = mutableListOf(), // Lista de Juegos por completar
-    @get:PropertyName("DR") val DR: MutableList<Int> = mutableListOf(), // Lista de Juegos abandonados
-    @get:PropertyName("OH") val OH: MutableList<Int> = mutableListOf(), // Lista de Juegos en espera
-    @get:PropertyName("CTD") val CTD: MutableList<Int> = mutableListOf(), // Lista de juegos completados
+    @get:PropertyName("CP") val CP: MutableList<ValoracionMap> = mutableListOf(), // Lista de Juegos completados
+    @get:PropertyName("PTP") val PTP: MutableList<ValoracionMap> = mutableListOf(), // Lista de Juegos por completar
+    @get:PropertyName("DR") val DR: MutableList<ValoracionMap> = mutableListOf(), // Lista de Juegos abandonados
+    @get:PropertyName("OH") val OH: MutableList<ValoracionMap> = mutableListOf(), // Lista de Juegos en espera
+    @get:PropertyName("CTD") val CTD: MutableList<ValoracionMap> = mutableListOf(), // Lista de juegos completados
 ) {
     /**
      * Constructor secundario que permite la creación de un `GameMap` con listas vacías predeterminadas.
      */
     constructor() : this(mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf())
+}
+
+data class ValoracionMap(
+    val gameID: Int,
+    val valoracion: Int,
+){
+    /**
+     * Constructor secundario que permite la creación de un `GameMap` con listas vacías predeterminadas.
+     */
+    constructor() : this(0, 0)
 }
 
 /**

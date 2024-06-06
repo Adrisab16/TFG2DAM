@@ -3,6 +3,7 @@ package com.example.tfg2dam.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.tfg2dam.model.UserModel
+import com.example.tfg2dam.model.ValoracionMap
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.tasks.await
@@ -22,7 +23,7 @@ class UserVideogameViewModel: ViewModel() {
      * @param gameType Tipo de lista de videojuegos a la que añadir el juego.
      */
 
-    suspend fun addGameIdToUser(userId: String, gameId: Int, gameType: String) {
+    suspend fun addGameIdToUser(userId: String, gameId: Int, valoracion: Int, gameType: String) {
         try {
             // Obtener el usuario de Firestore
             val userDocument = firestore.collection("users").document(userId).get().await()
@@ -31,11 +32,11 @@ class UserVideogameViewModel: ViewModel() {
                 if (userModel != null) {
                     // Actualizar el mapa de juegos agregando el nuevo gameId a la lista existente
                     val updatedGameMap = when (gameType) {
-                        "CP" -> userModel.gameMap.copy(CP = userModel.gameMap.CP.toMutableList().apply { add(gameId) })
-                        "PTP" -> userModel.gameMap.copy(PTP = userModel.gameMap.PTP.toMutableList().apply { add(gameId) })
-                        "DR" -> userModel.gameMap.copy(DR = userModel.gameMap.DR.toMutableList().apply { add(gameId) })
-                        "OH" -> userModel.gameMap.copy(OH = userModel.gameMap.OH.toMutableList().apply { add(gameId) })
-                        "CTD" -> userModel.gameMap.copy(CTD = userModel.gameMap.CTD.toMutableList().apply { add(gameId) })
+                        "CP" -> userModel.gameMap.copy(CP = userModel.gameMap.CP.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
+                        "PTP" -> userModel.gameMap.copy(PTP = userModel.gameMap.PTP.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
+                        "DR" -> userModel.gameMap.copy(DR = userModel.gameMap.DR.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
+                        "OH" -> userModel.gameMap.copy(OH = userModel.gameMap.OH.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
+                        "CTD" -> userModel.gameMap.copy(CTD = userModel.gameMap.CTD.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
                         else -> userModel.gameMap // Si el tipo de juego no es válido, no se realiza ninguna modificación
                     }
 
@@ -75,13 +76,15 @@ class UserVideogameViewModel: ViewModel() {
             if (userDocument.exists()) {
                 val userModel = userDocument.toObject(UserModel::class.java)
                 if (userModel != null) {
+                    // Intentar buscar el valoracion map de ese id
+
                     // Actualizar el mapa de juegos eliminando el gameId de la lista correspondiente
                     val updatedGameMap = when (gameType) {
-                        "CP" -> userModel.gameMap.copy(CP = userModel.gameMap.CP.toMutableList().apply { remove(gameId) })
-                        "PTP" -> userModel.gameMap.copy(PTP = userModel.gameMap.PTP.toMutableList().apply { remove(gameId) })
-                        "DR" -> userModel.gameMap.copy(DR = userModel.gameMap.DR.toMutableList().apply { remove(gameId) })
-                        "OH" -> userModel.gameMap.copy(OH = userModel.gameMap.OH.toMutableList().apply { remove(gameId) })
-                        "CTD" -> userModel.gameMap.copy(CTD = userModel.gameMap.CTD.toMutableList().apply { remove(gameId) })
+                        "CP" -> userModel.gameMap.copy(CP = userModel.gameMap.CP.toMutableList().apply { remove(userModel.gameMap.CP.filter { valoracion -> valoracion.gameID == gameId }.first()) })
+                        "PTP" -> userModel.gameMap.copy(PTP = userModel.gameMap.PTP.toMutableList().apply { remove(userModel.gameMap.PTP.filter { valoracion -> valoracion.gameID == gameId }.first()) })
+                        "DR" -> userModel.gameMap.copy(DR = userModel.gameMap.DR.toMutableList().apply { remove(userModel.gameMap.DR.filter { valoracion -> valoracion.gameID == gameId }.first()) })
+                        "OH" -> userModel.gameMap.copy(OH = userModel.gameMap.OH.toMutableList().apply { remove(userModel.gameMap.OH.filter { valoracion -> valoracion.gameID == gameId }.first()) })
+                        "CTD" -> userModel.gameMap.copy(CTD = userModel.gameMap.CTD.toMutableList().apply { remove(userModel.gameMap.CTD.filter { valoracion -> valoracion.gameID == gameId }.first()) })
                         else -> userModel.gameMap // Si el tipo de juego no es válido, no se realiza ninguna modificación
                     }
 
@@ -119,18 +122,18 @@ class UserVideogameViewModel: ViewModel() {
      * @param gameType Tipo de lista de videojuegos a obtener.
      * @return Lista de IDs de videojuegos de la lista que me pase por aprámetro o null si ocurre un error.
      */
-    suspend fun getVideoGamesByType(userId: String, gameType: String): List<Int>? {
+    suspend fun getVideoGamesByType(userId: String, gameType: String): List<ValoracionMap>? {
         return try {
             val userDocument = firestore.collection("users").document(userId).get().await()
             if (userDocument.exists()) {
                 val userModel = userDocument.toObject(UserModel::class.java)
                 if (userModel?.gameMap != null) {
                     when (gameType) {
-                        "CP" -> userModel.gameMap.CP
-                        "PTP" -> userModel.gameMap.PTP
-                        "DR" -> userModel.gameMap.DR
-                        "OH" -> userModel.gameMap.OH
-                        "CTD" -> userModel.gameMap.CTD
+                        "CP" -> userModel.gameMap.CP.sortedByDescending { it.valoracion }
+                        "PTP" -> userModel.gameMap.PTP.sortedByDescending { it.valoracion }
+                        "DR" -> userModel.gameMap.DR.sortedByDescending { it.valoracion }
+                        "OH" -> userModel.gameMap.OH.sortedByDescending { it.valoracion }
+                        "CTD" -> userModel.gameMap.CTD.sortedByDescending { it.valoracion }
                         else -> null
                     }
                 } else {

@@ -30,11 +30,8 @@ class LoginViewModel: ViewModel() {
     private val auth: FirebaseAuth = Firebase.auth
     private val firestore = Firebase.firestore
     var email by mutableStateOf("")
-        private set
     var password by mutableStateOf("")
-        private set
     var userName by mutableStateOf("")
-        private set
 
     /**
      * Intenta iniciar sesión con el email y la contraseña proporcionados.
@@ -89,7 +86,8 @@ class LoginViewModel: ViewModel() {
                             saveUser(userName, password)
                             onSuccess()
                         } else {
-                            Log.d("ERROR EN FIREBASE", "Error al crear usuario")
+                            // ${task.exception} Quedarme solo con el mensaje usando un split.
+                            Log.d("ERROR EN FIREBASE", "Error al crear usuario ")
                             Toast.makeText(context, "Error al crear el usuario", Toast.LENGTH_SHORT).show()
                         }
                     }

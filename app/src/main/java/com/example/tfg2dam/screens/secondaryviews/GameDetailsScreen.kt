@@ -134,36 +134,37 @@ fun GameDetailsScreen(
                                         when (option) {
                                             "On Hold" -> {
                                                 // Acción para On Hold
+                                                // Meter dialogo para cambiar valoracion
                                                 scope.launch {
-                                                    userVideogameVM.addGameIdToUser(userid, id, "OH")
+                                                    userVideogameVM.addGameIdToUser(userid, id, 0, "OH")
                                                 }
                                                 showToast("Juego añadido a la lista On-Hold", context)
                                             }
                                             "Completed" -> {
                                                 // Acción para Completed
                                                 scope.launch {
-                                                    userVideogameVM.addGameIdToUser(userid, id, "CTD")
+                                                    userVideogameVM.addGameIdToUser(userid, id, 0, "CTD")
                                                 }
                                                 showToast("Juego añadido a la lista Completed", context)
                                             }
                                             "Dropped" -> {
                                                 // Acción para Dropped
                                                 scope.launch {
-                                                    userVideogameVM.addGameIdToUser(userid, id, "DR")
+                                                    userVideogameVM.addGameIdToUser(userid, id, 0, "DR")
                                                 }
                                                 showToast("Juego añadido a la lista Dropped", context)
                                             }
                                             "Plan to play" -> {
                                                 // Acción para Plan to play
                                                 scope.launch {
-                                                    userVideogameVM.addGameIdToUser(userid, id, "PTP")
+                                                    userVideogameVM.addGameIdToUser(userid, id, 0, "PTP")
                                                 }
                                                 showToast("Juego añadido a la lista Plan To Play", context)
                                             }
                                             "Playing" -> {
                                                 // Acción para Playing
                                                 scope.launch {
-                                                    userVideogameVM.addGameIdToUser(userid, id, "CP")
+                                                    userVideogameVM.addGameIdToUser(userid, id, 0, "CP")
                                                 }
                                                 showToast("Juego añadido a la lista Currently Playing", context)
                                             }

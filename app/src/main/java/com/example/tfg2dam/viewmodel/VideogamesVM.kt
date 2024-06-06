@@ -3,6 +3,7 @@ package com.example.tfg2dam.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.tfg2dam.model.ValoracionMap
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.network.RetrofitClient
 import kotlinx.coroutines.Dispatchers
@@ -52,12 +53,12 @@ class VideojuegosViewModel : ViewModel() {
      * @param gameIds Lista de IDs de juegos.
      * @param onJuegosObtenidos Función de retorno que se llama con los juegos obtenidos.
      */
-    fun obtenerJuegosPorIds(gameIds: List<Int>, onJuegosObtenidos: (List<VideojuegosLista>) -> Unit) {
+    fun obtenerJuegosPorIds(gameIds: List<ValoracionMap>, onJuegosObtenidos: (List<VideojuegosLista>) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             val juegosObtenidos = mutableListOf<VideojuegosLista>()
             for (id in gameIds) {
                 try {
-                    val response = RetrofitClient.retrofit.obtenerJuegoPorId(id)
+                    val response = RetrofitClient.retrofit.obtenerJuegoPorId(id.gameID)
                     val juego = response.body()
                     if (juego != null) {
                         juegosObtenidos.add(juego)
