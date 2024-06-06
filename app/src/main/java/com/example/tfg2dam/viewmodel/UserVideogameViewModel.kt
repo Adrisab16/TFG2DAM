@@ -25,32 +25,40 @@ class UserVideogameViewModel: ViewModel() {
 
     suspend fun addGameIdToUser(userId: String, gameId: Int, valoracion: Int, gameType: String) {
         try {
-            // Obtener el usuario de Firestore
             val userDocument = firestore.collection("users").document(userId).get().await()
             if (userDocument.exists()) {
                 val userModel = userDocument.toObject(UserModel::class.java)
                 if (userModel != null) {
-                    // Actualizar el mapa de juegos agregando el nuevo gameId a la lista existente
-                    val updatedGameMap = when (gameType) {
-                        "CP" -> userModel.gameMap.copy(CP = userModel.gameMap.CP.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
-                        "PTP" -> userModel.gameMap.copy(PTP = userModel.gameMap.PTP.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
-                        "DR" -> userModel.gameMap.copy(DR = userModel.gameMap.DR.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
-                        "OH" -> userModel.gameMap.copy(OH = userModel.gameMap.OH.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
-                        "CTD" -> userModel.gameMap.copy(CTD = userModel.gameMap.CTD.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
-                        else -> userModel.gameMap // Si el tipo de juego no es válido, no se realiza ninguna modificación
+                    val gameExists = when (gameType) {
+                        "CP" -> userModel.gameMap.CP.any { it.gameID == gameId }
+                        "PTP" -> userModel.gameMap.PTP.any { it.gameID == gameId }
+                        "DR" -> userModel.gameMap.DR.any { it.gameID == gameId }
+                        "OH" -> userModel.gameMap.OH.any { it.gameID == gameId }
+                        "CTD" -> userModel.gameMap.CTD.any { it.gameID == gameId }
+                        else -> false
                     }
 
-                    // Actualizar el objeto UserModel con el nuevo mapa de juegos
-                    val updatedUser = userModel.copy(gameMap = updatedGameMap)
+                    if (!gameExists) {
+                        val updatedGameMap = when (gameType) {
+                            "CP" -> userModel.gameMap.copy(CP = userModel.gameMap.CP.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
+                            "PTP" -> userModel.gameMap.copy(PTP = userModel.gameMap.PTP.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
+                            "DR" -> userModel.gameMap.copy(DR = userModel.gameMap.DR.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
+                            "OH" -> userModel.gameMap.copy(OH = userModel.gameMap.OH.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
+                            "CTD" -> userModel.gameMap.copy(CTD = userModel.gameMap.CTD.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
+                            else -> userModel.gameMap
+                        }
 
-                    // Guardar el usuario actualizado en Firestore
-                    firestore.collection("users").document(userId).set(updatedUser)
-                        .addOnSuccessListener {
-                            Log.d("ACTUALIZACIÓN EXITOSA", "Se agregó el gameId al usuario correctamente en Firestore")
-                        }
-                        .addOnFailureListener { exception ->
-                            Log.e("ERROR AL ACTUALIZAR", "ERROR al actualizar en Firestore", exception)
-                        }
+                        val updatedUser = userModel.copy(gameMap = updatedGameMap)
+                        firestore.collection("users").document(userId).set(updatedUser)
+                            .addOnSuccessListener {
+                                Log.d("ACTUALIZACIÓN EXITOSA", "Se agregó el gameId al usuario correctamente en Firestore")
+                            }
+                            .addOnFailureListener { exception ->
+                                Log.e("ERROR AL ACTUALIZAR", "ERROR al actualizar en Firestore", exception)
+                            }
+                    } else {
+                        Log.d("GAME ID EXISTENTE", "El gameId ya existe en la lista correspondiente")
+                    }
                 }
             } else {
                 Log.d("USUARIO NO ENCONTRADO", "No se encontró ningún usuario con el ID proporcionado")
@@ -59,6 +67,7 @@ class UserVideogameViewModel: ViewModel() {
             Log.e("ERROR AL AGREGAR GAME ID", "ERROR: ${e.localizedMessage}", e)
         }
     }
+
 
     /**
      * Elimina videojuegos (su id) de las 5 listas disponibles
@@ -133,7 +142,7 @@ class UserVideogameViewModel: ViewModel() {
                         "PTP" -> userModel.gameMap.PTP.sortedByDescending { it.valoracion }
                         "DR" -> userModel.gameMap.DR.sortedByDescending { it.valoracion }
                         "OH" -> userModel.gameMap.OH.sortedByDescending { it.valoracion }
-                        "CTD" -> userModel.gameMap.CTD.sortedByDescending { it.valoracion }
+                        "CTD" -> userModel.gameMap.CTD.sortedBy { it.valoracion }
                         else -> null
                     }
                 } else {

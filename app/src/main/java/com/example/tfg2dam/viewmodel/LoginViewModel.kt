@@ -86,9 +86,13 @@ class LoginViewModel: ViewModel() {
                             saveUser(userName, password)
                             onSuccess()
                         } else {
-                            // ${task.exception} Quedarme solo con el mensaje usando un split.
-                            Log.d("ERROR EN FIREBASE", "Error al crear usuario ")
-                            Toast.makeText(context, "Error al crear el usuario", Toast.LENGTH_SHORT).show()
+                            // Aparece el mensaje de error que devuelve Firebase
+                            val errorMessage = task.exception?.message
+                                ?.split(":")?.getOrNull(0)
+                                ?.substringBefore(".")?.plus(".")
+                                ?.trim()
+                            Log.d("ERROR EN FIREBASE", "Error al crear usuario: ${task.exception}") // Aqui muestra el mensaje de Firebase completo
+                            Toast.makeText(context, "Error al crear el usuario: $errorMessage", Toast.LENGTH_SHORT).show()
                         }
                     }
             } catch (e: Exception) {
