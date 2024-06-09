@@ -29,36 +29,68 @@ class UserVideogameViewModel: ViewModel() {
             if (userDocument.exists()) {
                 val userModel = userDocument.toObject(UserModel::class.java)
                 if (userModel != null) {
-                    val gameExists = when (gameType) {
-                        "CP" -> userModel.gameMap.CP.any { it.gameID == gameId }
-                        "PTP" -> userModel.gameMap.PTP.any { it.gameID == gameId }
-                        "DR" -> userModel.gameMap.DR.any { it.gameID == gameId }
-                        "OH" -> userModel.gameMap.OH.any { it.gameID == gameId }
-                        "CTD" -> userModel.gameMap.CTD.any { it.gameID == gameId }
-                        else -> false
-                    }
-
-                    if (!gameExists) {
-                        val updatedGameMap = when (gameType) {
-                            "CP" -> userModel.gameMap.copy(CP = userModel.gameMap.CP.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
-                            "PTP" -> userModel.gameMap.copy(PTP = userModel.gameMap.PTP.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
-                            "DR" -> userModel.gameMap.copy(DR = userModel.gameMap.DR.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
-                            "OH" -> userModel.gameMap.copy(OH = userModel.gameMap.OH.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
-                            "CTD" -> userModel.gameMap.copy(CTD = userModel.gameMap.CTD.toMutableList().apply { add(ValoracionMap(gameId, valoracion)) })
-                            else -> userModel.gameMap
+                    val updatedGameMap = when (gameType) {
+                        "CP" -> {
+                            val updatedList = userModel.gameMap.CP.toMutableList()
+                            val gameIndex = updatedList.indexOfFirst { it.gameID == gameId }
+                            if (gameIndex != -1) {
+                                updatedList[gameIndex] = ValoracionMap(gameId, valoracion)
+                            } else {
+                                updatedList.add(ValoracionMap(gameId, valoracion))
+                            }
+                            userModel.gameMap.copy(CP = updatedList)
                         }
-
-                        val updatedUser = userModel.copy(gameMap = updatedGameMap)
-                        firestore.collection("users").document(userId).set(updatedUser)
-                            .addOnSuccessListener {
-                                Log.d("ACTUALIZACIÓN EXITOSA", "Se agregó el gameId al usuario correctamente en Firestore")
+                        "PTP" -> {
+                            val updatedList = userModel.gameMap.PTP.toMutableList()
+                            val gameIndex = updatedList.indexOfFirst { it.gameID == gameId }
+                            if (gameIndex != -1) {
+                                updatedList[gameIndex] = ValoracionMap(gameId, valoracion)
+                            } else {
+                                updatedList.add(ValoracionMap(gameId, valoracion))
                             }
-                            .addOnFailureListener { exception ->
-                                Log.e("ERROR AL ACTUALIZAR", "ERROR al actualizar en Firestore", exception)
+                            userModel.gameMap.copy(PTP = updatedList)
+                        }
+                        "DR" -> {
+                            val updatedList = userModel.gameMap.DR.toMutableList()
+                            val gameIndex = updatedList.indexOfFirst { it.gameID == gameId }
+                            if (gameIndex != -1) {
+                                updatedList[gameIndex] = ValoracionMap(gameId, valoracion)
+                            } else {
+                                updatedList.add(ValoracionMap(gameId, valoracion))
                             }
-                    } else {
-                        Log.d("GAME ID EXISTENTE", "El gameId ya existe en la lista correspondiente")
+                            userModel.gameMap.copy(DR = updatedList)
+                        }
+                        "OH" -> {
+                            val updatedList = userModel.gameMap.OH.toMutableList()
+                            val gameIndex = updatedList.indexOfFirst { it.gameID == gameId }
+                            if (gameIndex != -1) {
+                                updatedList[gameIndex] = ValoracionMap(gameId, valoracion)
+                            } else {
+                                updatedList.add(ValoracionMap(gameId, valoracion))
+                            }
+                            userModel.gameMap.copy(OH = updatedList)
+                        }
+                        "CTD" -> {
+                            val updatedList = userModel.gameMap.CTD.toMutableList()
+                            val gameIndex = updatedList.indexOfFirst { it.gameID == gameId }
+                            if (gameIndex != -1) {
+                                updatedList[gameIndex] = ValoracionMap(gameId, valoracion)
+                            } else {
+                                updatedList.add(ValoracionMap(gameId, valoracion))
+                            }
+                            userModel.gameMap.copy(CTD = updatedList)
+                        }
+                        else -> userModel.gameMap
                     }
+
+                    val updatedUser = userModel.copy(gameMap = updatedGameMap)
+                    firestore.collection("users").document(userId).set(updatedUser)
+                        .addOnSuccessListener {
+                            Log.d("ACTUALIZACIÓN EXITOSA", "Se agregó o actualizó el gameId al usuario correctamente en Firestore")
+                        }
+                        .addOnFailureListener { exception ->
+                            Log.e("ERROR AL ACTUALIZAR", "ERROR al actualizar en Firestore", exception)
+                        }
                 }
             } else {
                 Log.d("USUARIO NO ENCONTRADO", "No se encontró ningún usuario con el ID proporcionado")
