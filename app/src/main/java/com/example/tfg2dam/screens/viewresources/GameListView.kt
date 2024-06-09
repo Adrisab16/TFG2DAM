@@ -47,7 +47,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
-import com.example.tfg2dam.model.ValoracionMap
 import com.example.tfg2dam.model.VideojuegosLista
 import com.example.tfg2dam.viewmodel.VideojuegosViewModel
 import com.example.tfg2dam.viewmodel.UserVideogameViewModel
@@ -145,9 +144,14 @@ fun CardJuegoListView(
     userId: String,
     userVideogameVM: UserVideogameViewModel,
 ) {
-    // Mantén un estado para controlar si se ha hecho clic en el botón de eliminación
     var clickedState by remember { mutableStateOf(false) }
     var nameGameType by remember { mutableStateOf("") }
+    var valoracion by remember { mutableStateOf<Int?>(null) }  // Estado para la valoración
+
+    // Obtener la valoración del juego desde Firebase
+    LaunchedEffect(gameId) {
+        valoracion = userVideogameVM.getValoracion(userId, gameId, gametype)
+    }
 
     Row(
         modifier = Modifier
@@ -189,7 +193,10 @@ fun CardJuegoListView(
             Spacer(modifier = Modifier.height(10.dp))
             Text(text = "Tiempo de juego: ${juego.gameplaytime}h", color = Color.Black)
             Spacer(modifier = Modifier.height(10.dp))
-            Text(text = "Fecha salida: ${juego.datereleased}", color = Color.Black)
+            Text(
+                text = "Valoración del usuario: ${valoracion ?: "0"}",  // Mostrar la valoración obtenida o "0" si es nula
+                color = Color.Black
+            )
         }
 
         Spacer(modifier = Modifier.width(10.dp))
@@ -212,6 +219,7 @@ fun CardJuegoListView(
             )
         }
     }
+
     val coroutineScope = rememberCoroutineScope()
     var countlistout by remember { mutableIntStateOf(0) }
     if (clickedState) {
@@ -226,13 +234,11 @@ fun CardJuegoListView(
                     "PTP" -> { nameGameType = "Plan to Play"; countlistout = 5 }
                 }
                 navController.navigate("MyList/$countlistout")
-                // Restablecer el estado de clickedState
                 clickedState = false
             }
         }
         Toast.makeText(
             LocalContext.current,
-            //"${juego.name} has been removed from $nameGameType",
             "${juego.name} ha sido eliminado",
             Toast.LENGTH_SHORT
         ).show()

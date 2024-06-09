@@ -13,9 +13,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -60,7 +57,6 @@ fun GameDetailsScreen(
     gameVM: VideojuegosViewModel,
 ) {
     var isMenuVisible by remember { mutableStateOf(false) }
-    var isAddButtonMenuVisible by remember { mutableStateOf(false) }
     var infojuego by remember { mutableStateOf<List<VideojuegosLista>>(emptyList()) }
     var username by remember { mutableStateOf("") }
     var userid by remember { mutableStateOf("") }

@@ -158,4 +158,28 @@ class UserVideogameViewModel: ViewModel() {
             null
         }
     }
+
+    suspend fun getValoracion(userId: String, gameId: Int, gameType: String): Int? {
+        return try {
+            val userDocument = firestore.collection("users").document(userId).get().await()
+            if (userDocument.exists()) {
+                val userModel = userDocument.toObject(UserModel::class.java)
+                userModel?.gameMap?.let {
+                    when (gameType) {
+                        "CP" -> it.CP.find { valoracion -> valoracion.gameID == gameId }?.valoracion
+                        "PTP" -> it.PTP.find { valoracion -> valoracion.gameID == gameId }?.valoracion
+                        "DR" -> it.DR.find { valoracion -> valoracion.gameID == gameId }?.valoracion
+                        "OH" -> it.OH.find { valoracion -> valoracion.gameID == gameId }?.valoracion
+                        "CTD" -> it.CTD.find { valoracion -> valoracion.gameID == gameId }?.valoracion
+                        else -> null
+                    }
+                }
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            Log.e("ERROR AL OBTENER VALORACION", "ERROR: ${e.localizedMessage}", e)
+            null
+        }
+    }
 }
