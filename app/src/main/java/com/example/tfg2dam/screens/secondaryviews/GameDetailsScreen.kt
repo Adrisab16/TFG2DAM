@@ -10,8 +10,10 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.AlertDialog
@@ -19,6 +21,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -61,10 +64,13 @@ fun GameDetailsScreen(
     var infojuego by remember { mutableStateOf<List<VideojuegosLista>>(emptyList()) }
     var username by remember { mutableStateOf("") }
     var userid by remember { mutableStateOf("") }
+    var rating by remember { mutableStateOf("") }
+    var selectedList by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     var showDeleteDialog by remember { mutableStateOf(false) }
     var showChangePasswordDialog by remember { mutableStateOf(false) }
+    var showAddGameDialog by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         Log.i("Id recibido en GameDetailsScreen", "$id")
@@ -104,76 +110,76 @@ fun GameDetailsScreen(
                     metacriticScoretextcontent = "Metacritic Score: ${infojuego[0].mcscore}/100",
                     gameHourstextcontent = "Hours to beat:\n${infojuego[0].gameplaytime} horas",
                     releasedtextcontent = "Fecha de Lanzamiento: ${infojuego[0].datereleased}",
-                    onAddButtonClicked = {
-                        scope.launch {
-                            isAddButtonMenuVisible = !isAddButtonMenuVisible
-                        }
-                    }
+                    onAddButtonClicked = { showAddGameDialog = true }
                 )
-                if (isAddButtonMenuVisible) { // Mostrar el menú desplegable solo si isAddButtonMenuVisible es true
-                    Box(
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .padding(top = 355.dp, end = 50.dp)
-                    ) {
-                        DropdownMenu(
-                            expanded = isAddButtonMenuVisible,
-                            onDismissRequest = {
-                                isAddButtonMenuVisible = false // Ocultar el menú al hacer clic en cualquier parte de la pantalla
-                            },
-                            modifier = Modifier
-                                .width(150.dp) // Ancho del menú desplegable
-                                .wrapContentHeight() // Alto del menú desplegable
-                                .align(Alignment.BottomStart) // Alineación del menú desplegable
-                        ) {
-                            listOf("On Hold", "Completed", "Dropped", "Plan to play", "Playing").forEach { option ->
-                                DropdownMenuItem(
-                                    text = { Text(option) },
-                                    onClick = {
-                                        // Realizar acción según la opción seleccionada
-                                        when (option) {
-                                            "On Hold" -> {
-                                                // Acción para On Hold
-                                                // Meter dialogo para cambiar valoracion
-                                                scope.launch {
-                                                    userVideogameVM.addGameIdToUser(userid, id, 0, "OH")
+
+                if (showAddGameDialog) {
+                    AlertDialog(
+                        onDismissRequest = { showAddGameDialog = false },
+                        title = { Text("Añadir:\n${infojuego[0].name}") },
+                        text = {
+                            Column {
+                                OutlinedTextField(
+                                    value = rating,
+                                    onValueChange = { rating = it },
+                                    label = { Text("Valoración (0-10)") },
+                                    singleLine = true
+                                )
+                                var expanded by remember { mutableStateOf(false) }
+                                Box(
+                                    modifier = Modifier
+                                        .padding(bottom = 5.dp, top = 10.dp)
+                                        .align(Alignment.CenterHorizontally)
+                                        .background(Color(android.graphics.Color.parseColor("#141414")))
+                                        .clickable { expanded = true }
+                                ) {
+                                    Text(
+                                        text = selectedList.ifEmpty { "Seleccionar lista" },
+                                        modifier = Modifier
+                                            .padding(bottom = 10.dp, top = 10.dp, start = 30.dp, end = 30.dp)
+                                    )
+                                    DropdownMenu(
+                                        expanded = expanded,
+                                        onDismissRequest = { expanded = false }
+                                    ) {
+                                        listOf("CP", "PTP", "DR", "OH", "CTD").forEach { option ->
+                                            DropdownMenuItem(
+                                                text = { Text(option) },
+                                                onClick = {
+                                                    selectedList = option
+                                                    expanded = false
                                                 }
-                                                showToast("Juego añadido a la lista On-Hold", context)
-                                            }
-                                            "Completed" -> {
-                                                // Acción para Completed
-                                                scope.launch {
-                                                    userVideogameVM.addGameIdToUser(userid, id, 0, "CTD")
-                                                }
-                                                showToast("Juego añadido a la lista Completed", context)
-                                            }
-                                            "Dropped" -> {
-                                                // Acción para Dropped
-                                                scope.launch {
-                                                    userVideogameVM.addGameIdToUser(userid, id, 0, "DR")
-                                                }
-                                                showToast("Juego añadido a la lista Dropped", context)
-                                            }
-                                            "Plan to play" -> {
-                                                // Acción para Plan to play
-                                                scope.launch {
-                                                    userVideogameVM.addGameIdToUser(userid, id, 0, "PTP")
-                                                }
-                                                showToast("Juego añadido a la lista Plan To Play", context)
-                                            }
-                                            "Playing" -> {
-                                                // Acción para Playing
-                                                scope.launch {
-                                                    userVideogameVM.addGameIdToUser(userid, id, 0, "CP")
-                                                }
-                                                showToast("Juego añadido a la lista Currently Playing", context)
-                                            }
+                                            )
                                         }
                                     }
-                                )
+                                }
+                            }
+                        },
+                        confirmButton = {
+                            Button(
+                                onClick = {
+                                    // Validar y añadir el juego a la lista del usuario
+                                    val ratingValue = rating.toIntOrNull()
+                                    if (ratingValue != null && ratingValue in 0..10 && selectedList.isNotEmpty()) {
+                                        scope.launch {
+                                            userVideogameVM.addGameIdToUser(userid, id, ratingValue, selectedList)
+                                            showToast("Juego añadido a la lista $selectedList", context)
+                                            showAddGameDialog = false
+                                        }
+                                    } else {
+                                        showToast("Por favor, introduce una valoración válida y selecciona una lista.", context)
+                                    }
+                                }
+                            ) {
+                                Text("Añadir")
+                            }
+                        },
+                        dismissButton = {
+                            Button(onClick = { showAddGameDialog = false }) {
+                                Text("Cancelar")
                             }
                         }
-                    }
+                    )
                 }
             }
         } else {
