@@ -1,3 +1,5 @@
+**Aplicación desarrollada por Adrián Sabino Pérez**
+
 **Documentación oficial de Ocio & Geek:** https://adrisab16.gitbook.io/tfg2dam/
 
 
