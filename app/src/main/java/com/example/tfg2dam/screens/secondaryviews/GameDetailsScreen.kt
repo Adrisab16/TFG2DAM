@@ -138,7 +138,7 @@ fun GameDetailsScreen(
                                         expanded = expanded,
                                         onDismissRequest = { expanded = false }
                                     ) {
-                                        listOf("CP", "PTP", "DR", "OH", "CTD").forEach { option ->
+                                        listOf("Currently Playing", "Plan to Play", "Dropped", "On-Hold", "Completed").forEach { option ->
                                             DropdownMenuItem(
                                                 text = { Text(option) },
                                                 onClick = {
@@ -158,7 +158,14 @@ fun GameDetailsScreen(
                                     val ratingValue = rating.toIntOrNull()
                                     if (ratingValue != null && ratingValue in 0..10 && selectedList.isNotEmpty()) {
                                         scope.launch {
-                                            userVideogameVM.addGameIdToUser(userid, id, ratingValue, selectedList)
+                                            when(selectedList){
+                                                "Currently Playing"->{userVideogameVM.addGameIdToUser(userid, id, ratingValue, "CP")}
+                                                "Plan to Play"->{userVideogameVM.addGameIdToUser(userid, id, ratingValue, "PTP")}
+                                                "Dropped"->{userVideogameVM.addGameIdToUser(userid, id, ratingValue, "DR")}
+                                                "On-Hold"->{userVideogameVM.addGameIdToUser(userid, id, ratingValue, "OH")}
+                                                "Completed"->{userVideogameVM.addGameIdToUser(userid, id, ratingValue, "CTD")}
+                                            }
+
                                             showToast("Juego añadido a la lista $selectedList", context)
                                             showAddGameDialog = false
                                         }

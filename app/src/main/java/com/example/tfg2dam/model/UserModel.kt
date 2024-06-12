@@ -46,6 +46,12 @@ data class GameMap(
     constructor() : this(mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf())
 }
 
+/**
+ * Data class que representa el mapa de juegos como clave y su valoracion como valor.
+ *
+ * @property gameID Id del videojuego en cuestión.
+ * @property valoracion Numero del 1 al 10 que corresponde a la valoración que el usuario haya introducido para el juego en cuestión.
+ */
 data class ValoracionMap(
     val gameID: Int,
     val valoracion: Int,

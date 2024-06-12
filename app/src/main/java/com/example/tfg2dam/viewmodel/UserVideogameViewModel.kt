@@ -157,11 +157,11 @@ class UserVideogameViewModel: ViewModel() {
     /**
      * Obtiene los videojuegos de una lista específica para el usuario actual.
      *
-     * IMPORTANTE: Solo obtiene los gameid, ni los muestra ni nada, esta info se le pasa a la vista y se llama a la API para que se muestre
+     * IMPORTANTE: Solo obtiene los gameid y la valoracion en forma de mapa, ni los muestra ni nada, esta info se le pasa a la vista y se llama a la API para que se muestre
      *
      * @param userId ID del usuario.
      * @param gameType Tipo de lista de videojuegos a obtener.
-     * @return Lista de IDs de videojuegos de la lista que me pase por aprámetro o null si ocurre un error.
+     * @return Lista de ValoraciónMap de la lista que me pase por aprámetro o null si ocurre un error.
      */
     suspend fun getVideoGamesByType(userId: String, gameType: String): List<ValoracionMap>? {
         return try {
@@ -191,6 +191,16 @@ class UserVideogameViewModel: ViewModel() {
         }
     }
 
+    /**
+     * Obtiene la valoración de un juego en específico
+     *
+     *
+     * @param userId ID del usuario.
+     * @param gameId Id del juego del que queremos obtener la valoración.
+     * @param gameType Tipo de lista de videojuegos a obtener.
+     *
+     * @return El valor de la valoración en formas de Integer.
+     */
     suspend fun getValoracion(userId: String, gameId: Int, gameType: String): Int? {
         return try {
             val userDocument = firestore.collection("users").document(userId).get().await()
